@@ -1,4 +1,4 @@
-# vaccine-plan
+# vaccination-plan
 
 ## About
 このサービスは小さな子どもを育てている保護者を対象とした、予防接種の予定管理サービスです。
