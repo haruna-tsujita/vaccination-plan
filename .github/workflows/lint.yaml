@@ -15,6 +15,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
+        ruby-version: 3.0.1
         bundler-cache: true
 
     - name: Set up Node.js
@@ -29,6 +30,7 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-
+          
     - name: yarn install
       run:  yarn install --check-files
 
