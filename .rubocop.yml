@@ -1,0 +1,36 @@
+inherit_gem:
+  rubocop-fjord:
+    - config/rubocop.yml
+    - config/rails.yml
+
+Metrics/BlockLength:
+  Exclude:
+    - test/**/*
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+    - app/controllers/products_controller.rb
+    - app/controllers/reports_controller.rb
+    - app/controllers/users_controller.rb
+    - app/models/event.rb
+    - app/models/notification.rb
+    - app/models/notification_facade.rb
+    - app/models/practice.rb
+    - app/models/user.rb
+    - app/models/product.rb
+    - app/models/report.rb
+
+AllCops:
+  Exclude:
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - app/views/**/*
+    - config/**/*
+    - config.ru
+    - node_modules/**/*
+    - db/migrate/*
+    - db/schema.rb
+    - storage/**/*
+    - tmp/**/*
+    - bin/**/*
