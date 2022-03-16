@@ -157,6 +157,30 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.2.1)
     rexml (3.2.5)
+    rubocop (1.26.0)
+      parallel (~> 1.10)
+      parser (>= 3.1.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.16.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.16.0)
+      parser (>= 3.1.1.0)
+    rubocop-fjord (0.2.0)
+      rubocop (>= 1.0)
+      rubocop-performance
+    rubocop-minitest (0.18.0)
+      rubocop (>= 0.90, < 2.0)
+    rubocop-performance (1.13.3)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.13.2)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
+    ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -232,6 +256,14 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
+<<<<<<< HEAD
+=======
+  rubocop
+  rubocop-fjord (~> 0.2.0)
+  rubocop-minitest
+  rubocop-performance
+  rubocop-rails
+>>>>>>> bfebf0b (Gemfileを変更、無駄な空白を削除)
   sass-rails (>= 6)
   selenium-webdriver
   slim-rails
