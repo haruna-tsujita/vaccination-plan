@@ -12,6 +12,33 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3"
-  }
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "webpack-dev-server": "^3",
+    "npm-run-all": "^4.1.5"
+  },
+  "description": "## About このサービスは小さな子どもを育てている保護者を対象とした、予防接種の予定管理サービスです。",
+  "main": "babel.config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint 'app/javascript/**/*.{js,vue}' --max-warnings=0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/napple29/vaccination-plan.git"
+  },
+  "author": "Haruna <snwxxx29@gmail.com> (https://twitter.com/napple29)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/napple29/vaccination-plan/issues"
+  },
+  "homepage": "https://github.com/napple29/vaccination-plan#readme"
 }
