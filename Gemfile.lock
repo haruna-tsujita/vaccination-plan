@@ -156,6 +156,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
+    rails-i18n (7.0.3)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (6.1.5)
       actionpack (= 6.1.5)
       activesupport (= 6.1.5)
@@ -237,12 +240,9 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-<<<<<<< HEAD
-=======
     unicode-display_width (2.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
->>>>>>> 4a0eadb (deviseを導入 bundle install)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -282,7 +282,11 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+  rails-i18n
+>>>>>>> a66a94f (devise外で作成したslimのi18nを設定)
   rubocop
   rubocop-fjord (~> 0.2.0)
   rubocop-minitest
