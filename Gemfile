@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'devise-i18n'
 gem 'html2slim'
+gem 'letter_opener_web'
 gem 'rails-i18n'
 gem 'slim-rails'
 
