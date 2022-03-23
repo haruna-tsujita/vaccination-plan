@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ChildrenController < ApplicationController
+  before_action :set_child, only: %i[show edit update]
+
   def index; end
 
   def show; end
@@ -8,6 +10,8 @@ class ChildrenController < ApplicationController
   def new
     @child = Child.new
   end
+
+  def edit;end
 
   def create
     @child = Child.new(child_params)
@@ -23,9 +27,22 @@ class ChildrenController < ApplicationController
     end
   end
 
-  def edit; end
+    def update
+    respond_to do |format|
+      if @child.update(child_params)
+        format.html { redirect_to child_url(@child), notice: 'Child was successfully updated.' }
+        format.json { render :show, status: :ok, location: @child }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @child.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
+  def set_child
+    @child = Child.find(params[:id])
+  end
 
   # Only allow a list of trusted parameters through.
   def child_params
