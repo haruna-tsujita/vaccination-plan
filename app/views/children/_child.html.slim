@@ -5,3 +5,7 @@ div id="#{dom_id child}"
   p
     strong Birthday:
     = child.birthday.strftime('%Y年%m月%d日')
+  div
+    strong Avatar:
+    -if child.avatar.attached?
+      =image_tag child.avatar.variant(resize: '50x50^')
