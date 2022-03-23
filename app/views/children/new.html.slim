@@ -1,2 +1,6 @@
-h1 Children#new
-p Find me in app/views/children/new.html.slim
+h1 子どもの登録
+
+= render 'form', child: @child
+br/
+div
+  = link_to 'Back to children', children_path

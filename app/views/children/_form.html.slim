@@ -1,0 +1,11 @@
+= form_with(model: child) do |form|
+
+  div
+    = form.label :name, style: 'display: block'
+    = form.text_field :name
+  div
+    = form.label :birthday, style: 'display: block'
+    = form.date_field :birthday
+
+  div
+    = form.submit
