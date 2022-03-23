@@ -1,2 +1,6 @@
-h1 Children#edit
-p Find me in app/views/children/edit.html.slim
+h1 こどもの編集
+
+= render "form", child: @child
+br/
+div
+  = link_to "Back to children", children_path
