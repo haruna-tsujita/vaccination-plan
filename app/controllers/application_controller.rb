@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, if: :except_top_page
 
   def after_sign_in_path_for(resource)
-    # ログイン後に遷移するpathを設定
+    if resource.sign_in_count == 1
+      new_child_path
+    else
+      children_path
+    end
   end
 
   def after_sign_out_path_for(_resource)
