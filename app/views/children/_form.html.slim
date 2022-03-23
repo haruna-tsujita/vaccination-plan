@@ -6,6 +6,9 @@
   div
     = form.label :birthday, style: 'display: block'
     = form.date_field :birthday
+  div
+    = form.label :avatar, style: 'display: block'
+    = form.file_field :avatar
 
   div
     = form.submit
