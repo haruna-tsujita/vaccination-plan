@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if resource.sign_in_count == 1
       new_child_path
     else
-      child_path
+      children_path
     end
   end
 
