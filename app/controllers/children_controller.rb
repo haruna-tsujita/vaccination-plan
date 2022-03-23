@@ -11,7 +11,7 @@ class ChildrenController < ApplicationController
     @child = Child.new
   end
 
-  def edit;end
+  def edit; end
 
   def create
     @child = Child.new(child_params)
@@ -27,7 +27,7 @@ class ChildrenController < ApplicationController
     end
   end
 
-    def update
+  def update
     respond_to do |format|
       if @child.update(child_params)
         format.html { redirect_to child_url(@child), notice: 'Child was successfully updated.' }
@@ -40,6 +40,7 @@ class ChildrenController < ApplicationController
   end
 
   private
+
   def set_child
     @child = Child.find(params[:id])
   end
