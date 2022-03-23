@@ -1,4 +1,7 @@
-div id=("#{dom_id child}")
+div id="#{dom_id child}"
   p
     strong Name:
     = child.name
+  p
+    strong Birthday:
+    = child.birthday.strftime('%Y年%m月%d日')
