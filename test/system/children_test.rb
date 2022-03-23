@@ -24,4 +24,24 @@ class Childrentest < ApplicationSystemTestCase
     visit children_path
     assert_text 'ログイン'
   end
+
+  test 'create_new_child' do
+    setup
+    visit new_child_path
+    fill_in 'Name', with: 'hanako'
+    fill_in 'Birthday', with: Date.parse('2022-03-01')
+    click_on '登録する'
+    assert_text 'hanako'
+    assert_text '2022年03月01日'
+  end
+
+  test 'update_new_child' do
+    setup
+    visit "/children/#{children(:hanako).id}/edit"
+    fill_in 'Name', with: '桃子'
+    fill_in 'Birthday', with: Date.parse('2022-03-03')
+    click_on '更新する'
+    assert_text '桃子'
+    assert_text '2022年03月03日'
+  end
 end
