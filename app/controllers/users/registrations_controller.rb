@@ -10,9 +10,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    user = User.find(params[:id])
+    if user.save
+      redirect_to root_path, notice: 'ユーザーを作成しました'
+    else
+      render :new
+    end
+    super
+  end
 
   # GET /resource/edit
   # def edit
