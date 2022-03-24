@@ -44,4 +44,23 @@ class Childrentest < ApplicationSystemTestCase
     assert_text '桃子'
     assert_text '2022年03月03日'
   end
+
+  test 'name_and_birthday_is_valid' do
+    setup
+    visit new_child_path
+    fill_in 'Name', with: nil
+    fill_in 'Birthday', with: nil
+    click_on '登録する'
+    assert_text 'Nameを入力してください'
+    assert_text 'Birthdayを入力してください'
+  end
+
+  test 'birthday_is_not_after_today' do
+    setup
+    visit new_child_path
+    fill_in 'Name', with: 'alice'
+    fill_in 'Birthday', with: Date.current + 1.day
+    click_on '登録する'
+    assert_text 'Birthdayは今日以前の日付にしてください'
+  end
 end
