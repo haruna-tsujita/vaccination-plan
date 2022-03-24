@@ -6,6 +6,10 @@
   div
     = form.label :birthday, style: 'display: block'
     = form.date_field :birthday
+  div
+    = form.label :avatar, style: 'display: block'
+    = form.file_field :avatar
+    = image_tag child.avatar.variant(resize: '50x50^') if child.avatar.attached?
 
   div
     = form.submit
