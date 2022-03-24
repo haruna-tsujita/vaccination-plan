@@ -15,6 +15,7 @@ class ChildrenController < ApplicationController
 
   def create
     @child = Child.new(child_params)
+    @child.user_id = current_user.id
 
     respond_to do |format|
       if @child.save
