@@ -8,6 +8,8 @@ class Child < ApplicationRecord
   validate :birthday_before_today
 
   def birthday_before_today
+    return unless birthday
+
     errors.add(:birthday, 'は今日以前の日付にしてください') if birthday > Date.current
   end
 end
