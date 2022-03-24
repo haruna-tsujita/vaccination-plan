@@ -44,18 +44,12 @@ ActiveRecord::Schema.define(version: 2022_03_23_065135) do
   end
 
   create_table "children", force: :cascade do |t|
-    t.string "name"
-    t.date "birthday"
+    t.string "name", null: false
+    t.date "birthday", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_children_on_user_id"
-  end
-
-  create_table "template1", id: false, force: :cascade do |t|
-    t.integer "id"
-    t.text "name"
-    t.integer "age"
   end
 
   create_table "users", force: :cascade do |t|
