@@ -1,2 +1,6 @@
-h1 Histories#new
-p Find me in app/views/histories/new.html.slim
+h1 New history
+= render "form", history: @history
+br/
+
+div
+  = link_to "Back to histories", child_histories_path
