@@ -1,17 +1,16 @@
+# frozen_string_literal: true
+
 class HistoriesController < ApplicationController
   def new
     @child = Child.find(params[:child_id])
     @history = History.new
   end
 
-  def index
-  end
+  def index; end
 
-  def edit
-  end
+  def edit; end
 
-  def show
-  end
+  def show; end
 
   def create
     @child = Child.find(params[:child_id])
@@ -20,7 +19,7 @@ class HistoriesController < ApplicationController
 
     respond_to do |format|
       if @history.save
-        format.html { redirect_to history_url(@history), notice: "History was successfully created." }
+        format.html { redirect_to history_url(@history), notice: 'History was successfully created.' }
         format.json { render :show, status: :created, location: @history }
       else
         format.html { render :new, status: :unprocessable_entity }
