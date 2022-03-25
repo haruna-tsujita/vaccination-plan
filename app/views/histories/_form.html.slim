@@ -1,12 +1,12 @@
 = form_with(model: [child, history], url: new_child_history_path) do |form|
   - if history.errors.any?
-    div style=("color: red")
+    div style=('color: red')
       h2
-        = pluralize(history.errors.count, "error")
+        = pluralize(history.errors.count, 'error')
         | prohibited this history from being saved:
       ul
         - history.errors.each do |error|
-          li= error.full_message
+          li = error.full_message
   div
     = form.label :date
     = form.date_field :date
