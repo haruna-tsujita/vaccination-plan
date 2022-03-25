@@ -9,9 +9,12 @@ class ChildrenController < ApplicationController
 
   def new
     @child = Child.new
+    @child.user_id = current_user.id
   end
 
-  def edit; end
+  def edit
+    @child.user_id = current_user.id
+  end
 
   def create
     @child = Child.new(child_params)
@@ -29,6 +32,8 @@ class ChildrenController < ApplicationController
   end
 
   def update
+    @child.user_id = current_user.id
+
     respond_to do |format|
       if @child.update(child_params)
         format.html { redirect_to child_url(@child), notice: 'Child was successfully updated.' }
