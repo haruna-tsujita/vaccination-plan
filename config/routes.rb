@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'histories/new'
+  get 'histories/index'
+  get 'histories/edit'
+  get 'histories/show'
   devise_for :users, path: ''
   resources :children
   root 'top#index'
