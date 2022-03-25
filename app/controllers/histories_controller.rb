@@ -1,5 +1,6 @@
 class HistoriesController < ApplicationController
   def new
+    @history = History.new
   end
 
   def index
