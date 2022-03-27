@@ -1,4 +1,3 @@
-# coding: utf-8
 # frozen_string_literal: true
 
 Vaccination.create(name: JpVaccination.find('hib_1').name, period: JpVaccination.find('hib_1').period, key: 'hib_1')
