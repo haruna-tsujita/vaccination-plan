@@ -31,7 +31,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'html2slim'
 gem 'image_processing', '~> 1.2'
-# gem 'letter_opener_web'
+gem 'jp_vaccination'
 gem 'rails-i18n'
 gem 'slim-rails'
 
