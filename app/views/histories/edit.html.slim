@@ -1,2 +1,6 @@
 h1 Histories#edit
-p Find me in app/views/histories/edit.html.slim
+= render 'form', child: @child, history: @history
+br/
+
+div
+  = link_to 'Back to histories', child_histories_path
