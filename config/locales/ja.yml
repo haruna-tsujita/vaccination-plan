@@ -5,6 +5,8 @@ ja:
       user:
         sign_in: 'ログイン'
         sign_up: 'アカウント登録'
+      history:
+        date: '接種日時'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
