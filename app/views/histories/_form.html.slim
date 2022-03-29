@@ -1,4 +1,4 @@
-= form_with(model: [child, history], url: new_child_history_path) do |form|
+= form_with(model: [child, history]) do |form|
   - if history.errors.any?
     div style=('color: red')
       h2
@@ -8,7 +8,7 @@
         - history.errors.each do |error|
           li = error.full_message
   div
-    = form.label :date
+    = form.label :date, 'ワクチンをうった日付'
     = form.date_field :date
   div
     = form.submit
