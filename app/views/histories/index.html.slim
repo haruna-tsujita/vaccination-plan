@@ -1,0 +1,32 @@
+h1 Histories#index
+
+table
+  tr
+    th ワクチン
+  tr
+    td きろく
+  - Vaccination::VACCINATION_NAME.each do |vaccination_name|
+    tr
+      th
+        = vaccination_name
+    tr
+      td
+        ul class="vaccinated_table"
+          - vaccination_ids = Vaccination.where(name: vaccination_name).map(&:id)
+          - case vaccination_ids.size
+          - when 2..4
+            - histories = @histories.select { |history| history if history.vaccination_id.between?(vaccination_ids.first, vaccination_ids.last) }
+          - when 1
+            - histories = @histories.select { |history| history if history.vaccination_id == vaccination_ids.first }
+          - count = 0
+          - histories.sort!.each do |history|
+            - default_number = ['①', '②', '③', '④']
+            - vaccinated_number = ['❶', '❷', '❸', '❹']
+            li
+              - if history.date || history.vaccinated
+                div class="vaccinated"
+                  = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id)
+                div class="date" #{history.date}
+              - else
+                = link_to default_number[count], edit_child_history_path(params[:child_id], history.id)
+            - count += 1

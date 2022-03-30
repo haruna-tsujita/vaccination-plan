@@ -9,9 +9,12 @@ class ChildrenController < ApplicationController
 
   def new
     @child = Child.new
+    @child.user_id = current_user.id
   end
 
-  def edit; end
+  def edit
+    @child.user_id = current_user.id
+  end
 
   def create
     @child = Child.new(child_params)
@@ -19,6 +22,7 @@ class ChildrenController < ApplicationController
 
     respond_to do |format|
       if @child.save
+        (1..30).to_a.each { |num| History.create({ child_id: @child.id, vaccination_id: num }) }
         format.html { redirect_to child_url(@child), notice: 'Child was successfully created.' }
         format.json { render :show, status: :created, location: @child }
       else
@@ -29,6 +33,8 @@ class ChildrenController < ApplicationController
   end
 
   def update
+    @child.user_id = current_user.id
+
     respond_to do |format|
       if @child.update(child_params)
         format.html { redirect_to child_url(@child), notice: 'Child was successfully updated.' }

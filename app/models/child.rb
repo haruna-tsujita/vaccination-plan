@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Child < ApplicationRecord
+  has_many :histories, dependent: :destroy
+  belongs_to :user
   has_one_attached :avatar
 
   validates :name, presence: true
