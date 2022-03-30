@@ -7,6 +7,8 @@
       ul
         - history.errors.each do |error|
           li = error.full_message
+  h2
+    = vaccination_formal_name
   div
     = form.label :date, 'ワクチンをうった日付'
     = form.date_field :date
