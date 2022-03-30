@@ -11,7 +11,7 @@ table
         - hib_histories = @histories.select { |history| history if history.vaccination_id.between?(1, 4) }
         - hib_histories.sort!.each do |history|
           li
-            - if history.date
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
             - else
@@ -23,7 +23,7 @@ table
         - b_histories = @histories.select { |history| history if history.vaccination_id.between?(5, 7) }
         - b_histories.sort!.each do |history|
           li
-            - if history.date
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
             - else
@@ -35,11 +35,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id.between?(8, 10) }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th 小児用肺炎球菌
     td
@@ -47,11 +47,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id.between?(11, 14) }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th ４種混合
     td
@@ -59,11 +59,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id.between?(15, 18) }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th ２種混合
     td
@@ -71,11 +71,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id == 19 }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th ＢＣＧ
     td
@@ -83,11 +83,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id == 20 }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th 麻しん・風しん混合
     td
@@ -95,11 +95,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id.between?(21, 22) }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th みずぼうそう
     td
@@ -107,11 +107,11 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id.between?(23, 24) }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || history.vaccinated
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
   tr
     th おたふくかぜ
     td
@@ -119,8 +119,8 @@ table
         - rota_histories = @histories.select { |history| history if history.vaccination_id.between?(25, 26) }
         - rota_histories.sort!.each do |history|
           li
-            - unless history.date
-              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
-            - else
+            - if history.date || (history.vaccinated == true)
               = link_to '●', edit_child_history_path(params[:child_id], history.id)
               = history.date
+            - else
+              = link_to '◯', edit_child_history_path(params[:child_id], history.id)
