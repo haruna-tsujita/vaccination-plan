@@ -13,6 +13,7 @@ class HistoriesController < ApplicationController
   def edit
     @child = Child.find(params[:child_id])
     @history = History.find(params[:id])
+    @history.child_id = @child.id
   end
 
   def show; end
@@ -36,9 +37,11 @@ class HistoriesController < ApplicationController
   def update
     @child = Child.find(params[:child_id])
     @history = History.find(params[:id])
+    @history.child_id = @child.id
 
     respond_to do |format|
       if @history.update(history_params)
+        History.automatically_vaccinated(@history.vaccination_id, @history.child_id)
         format.html { redirect_to child_histories_url, notice: 'History was successfully updated.' }
         format.json { render :show, status: :ok, location: @history }
       else
