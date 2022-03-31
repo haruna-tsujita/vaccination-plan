@@ -1,5 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+carol:
+  name: carol
+  birthday: Date.parse('2022-01-03')
+  user: alice
 
-hanako:
-  name: hanako
-  birthday: Date.parse('2022-03-03')
+dave:
+  name: dave
+  birthday: Date.parse('2021-07-28')
+  user: bob
