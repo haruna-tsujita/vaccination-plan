@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HistoriesController < ApplicationController
+  before_action :show_page_own_children_only
+
   def new
     @child = Child.find(params[:child_id])
     @history = History.new
@@ -55,5 +57,11 @@ class HistoriesController < ApplicationController
 
   def history_params
     params.require(:history).permit(:date, :vaccinated, :vaccination_id, :id)
+  end
+
+  def show_page_own_children_only
+    return if current_user == Child.find(params[:child_id]).user
+
+    redirect_to children_path
   end
 end
