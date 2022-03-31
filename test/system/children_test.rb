@@ -8,7 +8,7 @@ class Childrentest < ApplicationSystemTestCase
 
   def setup
     Warden.test_mode!
-    @user = users(:Alice)
+    @user = users(:alice)
     login_as(@user, scope: :user)
   end
 
@@ -37,7 +37,7 @@ class Childrentest < ApplicationSystemTestCase
 
   test 'update_new_child' do
     setup
-    visit "/children/#{children(:hanako).id}/edit"
+    visit "/children/#{children(:carol).id}/edit"
     fill_in 'Name', with: '桃子'
     fill_in 'Birthday', with: Date.parse('2022-03-03')
     click_on '更新する'
