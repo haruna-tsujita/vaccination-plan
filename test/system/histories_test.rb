@@ -56,7 +56,7 @@ class Historiestest < ApplicationSystemTestCase
     setup_alice
     carol = children(:carol)
     visit edit_child_history_path(carol.id, histories(:carol_history_hib_first).id)
-    fill_in 'ワクチンをうった日付', with: Date.current + 1.days
+    fill_in 'ワクチンをうった日付', with: Date.current + 1.day
     click_on '更新する'
     assert_text '接種日時は今日より前の日付にしてください'
   end
@@ -64,9 +64,9 @@ class Historiestest < ApplicationSystemTestCase
   test 'validation bigger than before history' do
     setup_alice
     carol = children(:carol)
-    histories(:carol_history_rotavirus_second).update(date: Date.current - 1.months)
+    histories(:carol_history_rotavirus_second).update(date: Date.current - 1.month)
     visit edit_child_history_path(carol.id, histories(:carol_history_rotavirus_third).id)
-    fill_in 'ワクチンをうった日付', with: Date.current - 1.months - 1.days
+    fill_in 'ワクチンをうった日付', with: Date.current - 1.month - 1.day
     click_on '更新する'
     assert_text '接種日時が前回の期より前の日付になっています'
   end
@@ -74,9 +74,9 @@ class Historiestest < ApplicationSystemTestCase
   test 'validation not update bigger than before history' do
     setup_alice
     carol = children(:carol)
-    histories(:carol_history_rotavirus_second).update(date: Date.current - 1.months)
+    histories(:carol_history_rotavirus_second).update(date: Date.current - 1.month)
     visit edit_child_history_path(carol.id, histories(:carol_history_rotavirus_third).id)
-    fill_in 'ワクチンをうった日付', with: Date.current - 1.months + 1.days
+    fill_in 'ワクチンをうった日付', with: Date.current - 1.month + 1.day
     click_on '更新する'
     assert_text 'History was successfully updated.'
   end
@@ -94,9 +94,9 @@ class Historiestest < ApplicationSystemTestCase
   test 'validation not update smaller than before history' do
     setup_alice
     carol = children(:carol)
-    histories(:carol_history_rotavirus_third).update(date: Date.current - 1.months)
+    histories(:carol_history_rotavirus_third).update(date: Date.current - 1.month)
     visit edit_child_history_path(carol.id, histories(:carol_history_rotavirus_second).id)
-    fill_in 'ワクチンをうった日付', with: Date.current - 1.months - 1.days
+    fill_in 'ワクチンをうった日付', with: Date.current - 1.month - 1.day
     click_on '更新する'
     assert_text 'History was successfully updated.'
   end
@@ -104,7 +104,7 @@ class Historiestest < ApplicationSystemTestCase
   test 'automatically_vaccinated' do
     setup_bob
     dave = children(:dave)
-    visit "/children/#{dave.id}/histories/#{(History.find_by(child_id: dave.id, vaccination_id: Vaccination.find_by(key: 'hib_2').id).id)}/edit"
+    visit "/children/#{dave.id}/histories/#{History.find_by(child_id: dave.id, vaccination_id: Vaccination.find_by(key: 'hib_2').id).id}/edit"
     assert_text 'ヒブ 第2期'
     fill_in 'ワクチンをうった日付', with: Date.current
     click_on '更新する'
