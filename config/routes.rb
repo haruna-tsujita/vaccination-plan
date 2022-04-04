@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'schedules/index'
   devise_for :users, path: ''
   resources :children do
     resources :histories
