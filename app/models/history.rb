@@ -19,24 +19,31 @@ class History < ApplicationRecord
     return if date.nil?
 
     vaccination = Vaccination.find(vaccination_id)
-    return if vaccination.key[-1] == '1'
+    last_letter = vaccination.key[-1]
+    return if last_letter == '1'
 
-    before_history = History.find_by(vaccination_id: vaccination_id - 1)
+    vaccination.key[-1] = (last_letter.to_i - 1).to_s
+    before_id = Vaccination.find_by(key: vaccination.key).id
+    before_history = History.find_by(vaccination_id: before_id, child_id: child_id)
     return if before_history.date.nil?
 
-    errors.add(:date, 'が前回の期より後の日付になっています') unless before_history.date < date
+    errors.add(:date, 'が前回の期より前の日付になっています') if before_history.date > date
   end
 
   def smaller_than_after_history
     return if date.nil?
 
     vaccination = Vaccination.find(vaccination_id)
-    return if vaccination.key[-1] == '4'
+    last_letter = vaccination.key[-1]
+    vaccination.key[-1] = (last_letter.to_i + 1).to_s
 
-    after_history = History.find_by(vaccination_id: vaccination_id + 1)
-    return if after_history.date.nil?
+    next_period = Vaccination.find_by(key: vaccination.key)
+    return if next_period.nil?
 
-    errors.add(:date, 'が次回の期より後の日付になっています') unless date < after_history.date
+    next_history = History.find_by(vaccination_id: next_period.id, child_id: child_id)
+    return if next_history.date.nil?
+
+    errors.add(:date, 'が次回の期より後の日付になっています') if date > next_history.date
   end
 
   def self.automatically_vaccinated(vaccination_id, child_id)
