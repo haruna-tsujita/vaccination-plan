@@ -1,11 +1,149 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+hib_1:
+  name: ヒブ
+  period: 第1期
+  key: hib_1
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-# one: {}
-# column: value
-#
-# two: {}
-# column: value
+hib_2:
+  name: ヒブ
+  period: 第2期
+  key: hib_2
+
+hib_3:
+  name: ヒブ
+  period: 第3期
+  key: hib_3
+
+hib_4:
+  name: ヒブ
+  period: 第4期
+  key: hib_4
+
+hepatitis_B_1:
+  name: Ｂ型肝炎
+  period: 1回目
+  key: hepatitis_B_1
+
+hepatitis_B_2:
+  name: Ｂ型肝炎
+  period: 2回目
+  key: hepatitis_B_2
+
+hepatitis_B_3:
+  name: Ｂ型肝炎
+  period: 3回目
+  key: hepatitis_B_3
+
+rotavirus_1:
+  name: ロタウイルス
+  period: 1回目
+  key: rotavirus_1
+
+rotavirus_2:
+  name: ロタウイルス
+  period: 2回目
+  key: rotavirus_2
+
+rotavirus_3:
+  name: ロタウイルス
+  period: 3回目
+  key: rotavirus_3
+
+pneumococcus_1:
+  name: 小児用肺炎球菌
+  period: 1回目
+  key: pneumococcus_1
+
+pneumococcus_2:
+  name: 小児用肺炎球菌
+  period: 2回目
+  key: pneumococcus_2
+
+pneumococcus_3:
+  name: 小児用肺炎球菌
+  period: 3回目
+  key: pneumococcus_3
+
+pneumococcus_4:
+  name: 小児用肺炎球菌
+  period: 4回目
+  key: pneumococcus_4
+
+DPT_IPV_1:
+  name: ４種混合
+  period: 1回目
+  key: DPT_IPV_1
+
+DPT_IPV_2:
+  name: ４種混合
+  period: 2回目
+  key: DPT_IPV_2
+
+DPT_IPV_3:
+  name: ４種混合
+  period: 3回目
+  key: DPT_IPV_3
+
+DPT_IPV_4:
+  name: ４種混合
+  period: 4回目
+  key: DPT_IPV_4
+
+DT_1:
+  name: ２種混合
+  period: 1回目
+  key: DT_1
+
+BCG_1:
+  name: ＢＣＧ
+  period: nil
+  key: BCG_1
+
+MR_1:
+  name: 麻しん・風しん混合
+  period: 第1期
+  key: MR_1
+
+MR_2:
+  name: 麻しん・風しん混合
+  period: 第2期
+  key: MR_2
+
+chickenpox_1:
+  name: 水痘
+  period: 1回目
+  key: chickenpox_1
+
+chickenpox_2:
+  name: 水痘
+  period: 2回目
+  key: chickenpox_2
+
+mumps_1:
+  name: おたふくかぜ
+  period: 1回目
+  key: mumps_1
+
+mumps_2:
+  name: おたふくかぜ
+  period: 2回目
+  key: mumps_2
+
+Japanese_encephalitis_1:
+  name: 日本脳炎
+  period: 1回目
+  key: Japanese_encephalitis_1
+
+Japanese_encephalitis_2:
+  name: 日本脳炎
+  period: 2回目
+  key: Japanese_encephalitis_2
+
+Japanese_encephalitis_3:
+  name: 日本脳炎
+  period: 3回目
+  key: Japanese_encephalitis_3
+
+Japanese_encephalitis_4:
+  name: 日本脳炎
+  period: 4回目
+  key: Japanese_encephalitis_4

@@ -1,11 +1,65 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+carol_history_hib_first:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: hib_1
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-# one: {}
-# column: value
-#
-# two: {}
-# column: value
+carol_history_hib_second:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: hib_2
+
+carol_history_hib_third:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: hib_3
+
+carol_history_hib_force:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: hib_4
+
+carol_history_rotavirus_first:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: rotavirus_1
+
+carol_history_rotavirus_second:
+  child: carol
+  date: Date.current - 2.months
+  vaccinated: null
+  vaccination: rotavirus_2
+
+carol_history_rotavirus_third:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: rotavirus_3
+
+dave_history_hib_first:
+  child: dave
+  date: null
+  vaccinated: null
+  vaccination: hib_1
+
+dave_history_hib_second:
+  child: dave
+  date: null
+  vaccinated: null
+  vaccination: hib_2
+
+dave_history_hib_third:
+  child: dave
+  date: null
+  vaccinated: null
+  vaccination: hib_3
+
+dave_history_hib_force:
+  child: dave
+  date: null
+  vaccinated: null
+  vaccination: hib_4
