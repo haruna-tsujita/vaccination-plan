@@ -19,7 +19,7 @@ table
           - when 1
             - histories = @histories.select { |history| history if history.vaccination_id == vaccination_ids.first }
           - count = 0
-          - histories.sort!.each do |history|
+          - histories.each do |history|
             - default_number = ['①', '②', '③', '④']
             - vaccinated_number = ['❶', '❷', '❸', '❹']
             li

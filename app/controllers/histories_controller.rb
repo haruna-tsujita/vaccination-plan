@@ -9,7 +9,7 @@ class HistoriesController < ApplicationController
   end
 
   def index
-    @histories = History.where(child_id: params[:child_id])
+    @histories = History.where(child_id: params[:child_id]).order(vaccination_id: :asc)
   end
 
   def edit
