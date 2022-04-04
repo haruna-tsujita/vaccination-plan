@@ -1,35 +1,65 @@
 carol_history_hib_first:
   child: carol
-  date: nil
-  vaccinated: nil
+  date: null
+  vaccinated: null
   vaccination: hib_1
 
 carol_history_hib_second:
   child: carol
-  date: nil
-  vaccinated: nil
+  date: null
+  vaccinated: null
   vaccination: hib_2
 
 carol_history_hib_third:
   child: carol
-  date: nil
-  vaccinated: nil
+  date: null
+  vaccinated: null
   vaccination: hib_3
+
+carol_history_hib_force:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: hib_4
+
+carol_history_rotavirus_first:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: rotavirus_1
+
+carol_history_rotavirus_second:
+  child: carol
+  date: Date.current - 2.months
+  vaccinated: null
+  vaccination: rotavirus_2
+
+carol_history_rotavirus_third:
+  child: carol
+  date: null
+  vaccinated: null
+  vaccination: rotavirus_3
 
 dave_history_hib_first:
   child: dave
-  date: nil
-  vaccinated: nil
+  date: null
+  vaccinated: null
   vaccination: hib_1
 
 dave_history_hib_second:
   child: dave
-  date: nil
-  vaccinated: nil
+  date: null
+  vaccinated: null
   vaccination: hib_2
 
 dave_history_hib_third:
   child: dave
-  date: nil
-  vaccinated: nil
+  date: null
+  vaccinated: null
   vaccination: hib_3
+
+dave_history_hib_force:
+  child: dave
+  date: null
+  vaccinated: null
+  vaccination: hib_4
