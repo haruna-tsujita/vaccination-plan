@@ -11,7 +11,7 @@ table
         = vaccination_name
     tr
       td
-        ul class="vaccinated_table"
+        ul.history__items class="vaccinated_table"
           - vaccination_ids = Vaccination.where(name: vaccination_name).map(&:id)
           - case vaccination_ids.size
           - when 2..4
@@ -22,7 +22,7 @@ table
           - histories.each do |history|
             - default_number = ['①', '②', '③', '④']
             - vaccinated_number = ['❶', '❷', '❸', '❹']
-            li
+            li.history__item
               - if history.date || history.vaccinated
                 div class="vaccinated"
                   = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id)
