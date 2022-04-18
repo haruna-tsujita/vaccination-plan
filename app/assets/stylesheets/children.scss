@@ -1,3 +1,18 @@
-// Place all the styles related to the children controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.child_info {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.child__items {
+  display: inline-block;
+  text-align: center;
+}
+
+.name_age__items {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.birthday__item {
+  padding-left: 20px;
+}
