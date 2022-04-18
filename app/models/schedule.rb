@@ -2,7 +2,7 @@
 
 class Schedule < ApplicationRecord
   class << self
-    def recommended_schedules(histories, child)
+    def future_plans(histories, child)
       sort_by_date_vaccination_days =
         schedules(histories, child).sort_by do |day|
           [Date, String].include?(day[:date].class) ? day[:date] : day[:date].first
