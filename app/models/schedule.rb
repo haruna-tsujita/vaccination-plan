@@ -2,25 +2,25 @@
 
 class Schedule < ApplicationRecord
   def self.schedules(histories, child)
-    histories.map.with_index do |history, idx|
-    unless history.vaccinated || history.date
-      vaccination =  Vaccination.find(history.vaccination_id)
+    histories.map do |history|
+      next if history.vaccinated || history.date
+
+      vaccination = Vaccination.find(history.vaccination_id)
       last_letter = vaccination.key[-1]
-      date =
-        unless last_letter == '1'
-          before_vac_key = vaccination.key.gsub(/[2-4]/){ |num| "#{num.to_i - 1}"}
-          before_vac_id = Vaccination.find_by(key: before_vac_key).id
-          before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
-          if before_history.date || before_history.vaccinated
-            calc_date(vaccination: vaccination, date: before_history.date, birthday: child.birthday)
-          else
-            calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
-          end
-        else
-          calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
-        end
-      {name: vaccination.name + vaccination.period, date: date}
-      end
+      date = case last_letter
+             when '1'
+               calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
+             else
+               before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
+               before_vac_id = Vaccination.find_by(key: before_vac_key).id
+               before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
+               if before_history.date || before_history.vaccinated
+                 calc_date(vaccination: vaccination, date: before_history.date, birthday: child.birthday)
+               else
+                 calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
+               end
+             end
+      { name: vaccination.name + vaccination.period, date: date }
     end.compact
   end
 
@@ -48,13 +48,13 @@ class Schedule < ApplicationRecord
   def self.pre_school_year(birthday)
     fifth_birthday = birthday + 5.years
     year = case fifth_birthday.month
-            when 1..3
-              fifth_birthday.year
-            when 4
-              fifth_birthday.day == 1 ? fifth_birthday.year : fifth_birthday.year.next
-            when 5..12
-              fifth_birthday.year.next
-            end
+           when 1..3
+             fifth_birthday.year
+           when 4
+             fifth_birthday.day == 1 ? fifth_birthday.year : fifth_birthday.year.next
+           when 5..12
+             fifth_birthday.year.next
+           end
     Date.new(year, 4, 1)..Date.new(year.next, 3, 31)
   end
 end
