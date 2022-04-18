@@ -1,5 +1,7 @@
 h1 #{@child.name}のスケジュール
 
+= render '/children/child', child: @child
+
 p
   - Schedule.future_plans(@histories, @child).each do |key, values|
     br
