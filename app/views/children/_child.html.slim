@@ -1,14 +1,14 @@
-div.child_info id="#{dom_id child}"
-  div.child__items
+.child_info id="#{dom_id child}"
+  .child__items
     -if child.avatar.attached?
       =image_tag child.avatar.variant(resize: '50x50^')
-  div.child__items
-    div.name_age__items
+  .child__items
+    .name_age__items
       p
         = child.name
-    div.name_age__items
+    .name_age__items
       p
-        = "#{(Date.today.month - child.birthday.month)}ヶ月"
-    div.birthday__item
+        = "#{Time.zone.today.month - child.birthday.month}ヶ月"
+    .birthday__item
       p
         = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
