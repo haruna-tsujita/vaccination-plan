@@ -1,7 +1,7 @@
 h1 #{@child.name}のスケジュール
 
 p
-  - Schedule.recommended_schedules(@histories, @child).each do |key, values|
+  - Schedule.future_plans(@histories, @child).each do |key, values|
     br
     = key
     br
