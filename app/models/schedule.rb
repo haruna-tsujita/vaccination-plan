@@ -2,8 +2,7 @@
 
 class Schedule < ApplicationRecord
   def self.schedules(histories, child)
-    schedules = []
-    histories.each_with_index do |history, idx|
+    histories.map.with_index do |history, idx|
     unless history.vaccinated || history.date
       vaccination =  Vaccination.find(history.vaccination_id)
       last_letter = vaccination.key[-1]
@@ -13,31 +12,26 @@ class Schedule < ApplicationRecord
           before_vac_id = Vaccination.find_by(key: before_vac_key).id
           before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
           if before_history.date || before_history.vaccinated
-            if JpVaccination.find(vaccination.key).recommended.class != Hash
-              pre_school_year(child.birthday)
-            elsif JpVaccination.find(vaccination.key).recommended[:month]
-              before_history.date >> JpVaccination.find(vaccination.key).recommended[:month]
-            end
+            calc_date(vaccination, child)
           else
-            if JpVaccination.find(vaccination.key).recommended.class != Hash
-              pre_school_year(child.birthday)
-            elsif JpVaccination.find(vaccination.key).recommended[:month]
-              child.birthday >> JpVaccination.find(vaccination.key).recommended[:month]
-            elsif JpVaccination.find(vaccination.key).recommended[:year]
-              child.birthday >> JpVaccination.find(vaccination.key).recommended[:year] * 12
-            end
+            calc_date(vaccination, child)
           end
         else
-          if JpVaccination.find(vaccination.key).recommended[:month]
-            child.birthday >> JpVaccination.find(vaccination.key).recommended[:month]
-          elsif JpVaccination.find(vaccination.key).recommended[:year]
-            child.birthday >> JpVaccination.find(vaccination.key).recommended[:year] * 12
-          end
+          calc_date(vaccination, child)
         end
-      schedules << {name: vaccination.name + vaccination.period, date: date}
+      {name: vaccination.name + vaccination.period, date: date}
       end
+    end.compact
+  end
+
+  def self.calc_date(vaccination, child)
+    if JpVaccination.find(vaccination.key).recommended.class != Hash
+      pre_school_year(child.birthday)
+    elsif JpVaccination.find(vaccination.key).recommended[:month]
+      child.birthday >> JpVaccination.find(vaccination.key).recommended[:month]
+    elsif JpVaccination.find(vaccination.key).recommended[:year]
+      child.birthday >> JpVaccination.find(vaccination.key).recommended[:year] * 12
     end
-    schedules
   end
 
   def self.recommended_schedules(histories, child)
