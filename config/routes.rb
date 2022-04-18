@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, path: ''
   resources :children do
     resources :histories
+    resources :schedules, only: [:index]
   end
   root 'top#index'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

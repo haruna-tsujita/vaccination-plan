@@ -1,0 +1,18 @@
+h1 #{@child.name}のスケジュール
+
+p
+  - Schedule.future_plans(@histories, @child).each do |key, values|
+    br
+    - if key.instance_of?(Date)
+      = l(key, format: :long)
+    - else
+      p 小学校入学前1年間
+      = l(key.first, format: :long)
+      br
+      ="〜#{l(key.last, format: :long)}"
+    br
+    ul.schedule__items
+      - values.each do |value|
+        li.schedule__item
+          = value
+      br
