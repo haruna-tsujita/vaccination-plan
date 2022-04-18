@@ -1,2 +1,12 @@
-h1 Schedules#index
-p Find me in app/views/schedules/index.html.slim
+h1 #{@child.name}のスケジュール
+
+p
+  - Schedule.recommended_schedules(@histories, @child).each do |key, values|
+    br
+    = key
+    br
+    ul.schedule__items
+      - values.each do |value|
+        li.schedule__item
+          = value
+      br
