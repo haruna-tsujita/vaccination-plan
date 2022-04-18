@@ -34,7 +34,7 @@ class Schedule < ApplicationRecord
                    calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
                  end
                end
-        { name: vaccination.name + vaccination.period, date: date }
+        { name: "#{vaccination.name} #{vaccination.period}", date: date }
       end.compact
     end
 
