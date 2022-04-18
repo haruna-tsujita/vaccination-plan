@@ -1,9 +1,6 @@
 = form_with(model: [child, history]) do |form|
   - if history.errors.any?
     div style=('color: red')
-      h2
-        = pluralize(history.errors.count, 'error')
-        | prohibited this history from being saved:
       ul
         - history.errors.each do |error|
           li = error.full_message
