@@ -12,25 +12,25 @@ class Schedule < ApplicationRecord
           before_vac_id = Vaccination.find_by(key: before_vac_key).id
           before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
           if before_history.date || before_history.vaccinated
-            calc_date(vaccination, child)
+            calc_date(vaccination: vaccination, date: before_history.date, birthday: child.birthday)
           else
-            calc_date(vaccination, child)
+            calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
           end
         else
-          calc_date(vaccination, child)
+          calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
         end
       {name: vaccination.name + vaccination.period, date: date}
       end
     end.compact
   end
 
-  def self.calc_date(vaccination, child)
+  def self.calc_date(vaccination:, date:, birthday:)
     if JpVaccination.find(vaccination.key).recommended.class != Hash
-      pre_school_year(child.birthday)
+      pre_school_year(birthday)
     elsif JpVaccination.find(vaccination.key).recommended[:month]
-      child.birthday >> JpVaccination.find(vaccination.key).recommended[:month]
+      date >> JpVaccination.find(vaccination.key).recommended[:month]
     elsif JpVaccination.find(vaccination.key).recommended[:year]
-      child.birthday >> JpVaccination.find(vaccination.key).recommended[:year] * 12
+      date >> JpVaccination.find(vaccination.key).recommended[:year] * 12
     end
   end
 
