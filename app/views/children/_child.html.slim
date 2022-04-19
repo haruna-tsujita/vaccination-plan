@@ -1,14 +1,15 @@
-.child_info id="#{dom_id child}"
+.child_infos id="#{dom_id child}"
   .child__items
     -if child.avatar.attached?
-      =image_tag child.avatar.variant(resize: '50x50^')
+      = image_tag child.avatar.variant(resize: '50x50^'), class: 'child__picture'
   .child__items
-    .name_age__items
-      p
-        = child.name
-    .name_age__items
-      p
-        = "#{Time.zone.today.month - child.birthday.month}ヶ月"
-    .birthday__item
-      p
-        = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
+      .name_age__items
+        .name_age__item
+        p
+          = child.name
+      .name_age__items
+        p
+          = "#{Time.zone.today.month - child.birthday.month}ヶ月"
+      .birthday__item
+        p
+          = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
