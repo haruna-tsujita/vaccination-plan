@@ -24,6 +24,4 @@ p
     ul.schedule__items
       - names.each do |name|
         li.schedule__item
-          - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
-          - history = History.find_by(vaccination_id: vaccination.id)
-          = link_to "#{name[:name]} #{name[:period]}", edit_child_history_path(@child, history.id)
+          = "#{name[:name]} #{name[:period]}"
