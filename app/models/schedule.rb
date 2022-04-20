@@ -8,9 +8,9 @@ class Schedule < ApplicationRecord
           [Date, String].include?(day[:date].class) ? day[:date] : day[:date].first
         end
       combined_name_and_date = sort_by_date_vaccination_days.each_with_object({}) do |day, ret|
-        ret[day[:name]] = day[:date]
+        ret[day[:vaccinations]] = day[:date]
       end
-      combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value(&:sort!)
+      combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value { |ary| ary.sort_by { |hash| hash[:name] } }
     end
 
     private
@@ -34,7 +34,7 @@ class Schedule < ApplicationRecord
                    calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
                  end
                end
-        { name: "#{vaccination.name} #{vaccination.period}", date: date }
+        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s }, date: date }
       end.compact
     end
 
