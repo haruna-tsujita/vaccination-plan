@@ -13,3 +13,18 @@
       .birthday__item
         p
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
+
+  button class="js-modal-trigger" data-target="modal-js-example"
+    | ▼
+  div id="modal-js-example" class="modal"
+    .modal-background
+
+    .modal-content
+      .box
+        - current_user.children.each do |child|
+          -if child.avatar.attached?
+            = image_tag child.avatar, class: 'child__picture_modal'
+          = link_to child.name, child_schedules_path(child), data: { 'turbolinks' => false }
+          br
+
+  button class="modal-close is-large" aria-label="close"
