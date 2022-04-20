@@ -1,18 +1,29 @@
 = render '/children/child', child: @child
 
 p
-  - Schedule.future_plans(@histories, @child).each do |key, values|
-    br
-    - if key.instance_of?(Date)
-      = l(key, format: :long)
+  - Schedule.future_plans(@histories, @child).each do |date, names, idx|
+    - if (date.instance_of?(Range) && date.first <= Time.now) || (date.instance_of?(Date) && date <= Time.now)
+      = '現在接種可能' if idx == 0
+      ul.schedule__items
+        - names.each do |name|
+          li.schedule__item
+            - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
+            - history = History.find_by(vaccination_id: vaccination.id)
+            = link_to name[:name] + ' ' + name[:period], edit_child_history_path(@child, history.id)
+        - next
+
+    - if date.instance_of?(Date)
+      br
+      = l(date, format: :long)
     - else
+      br
       p 小学校入学前1年間
-      = l(key.first, format: :long)
-      br
-      ="〜#{l(key.last, format: :long)}"
-    br
+      = l(date.first, format: :long)
+      = "〜#{l(date.last, format: :long)}"
+
     ul.schedule__items
-      - values.each do |value|
+      - names.each do |name|
         li.schedule__item
-          = value
-      br
+          - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
+          - history = History.find_by(vaccination_id: vaccination.id)
+          = link_to name[:name] + ' ' + name[:period], edit_child_history_path(@child, history.id)
