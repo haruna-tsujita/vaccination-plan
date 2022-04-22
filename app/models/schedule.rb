@@ -28,10 +28,10 @@ class Schedule < ApplicationRecord
                  before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
                  before_vac_id = Vaccination.find_by(key: before_vac_key).id
                  before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
-                 if before_history.date || before_history.vaccinated
-                   calc_date(vaccination: vaccination, date: before_history.date, birthday: child.birthday)
-                 else
+                 if before_history.nil? || before_history.date.nil? && before_history.vaccinated.nil?
                    calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
+                 else
+                   calc_date(vaccination: vaccination, date: before_history.date, birthday: child.birthday)
                  end
                end
         { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s }, date: date }
