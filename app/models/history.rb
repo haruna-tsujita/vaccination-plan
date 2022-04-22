@@ -36,7 +36,6 @@ class History < ApplicationRecord
     return if date.nil?
 
     vaccination = Vaccination.find(vaccination_id)
-    last_letter = vaccination.key[-1]
     next_vac_key = vaccination.key.gsub(/[1-4]/) { |num| (num.to_i + 1).to_s }
 
     next_period = Vaccination.find_by(key: next_vac_key)
