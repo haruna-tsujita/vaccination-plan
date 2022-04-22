@@ -4,7 +4,8 @@ class History < ApplicationRecord
   belongs_to :child
   belongs_to :vaccination
 
-  validates :vaccination_id, presence: true
+  validates :child_id, presence: true
+  validates :vaccination_id, presence: true, uniqueness: { scope: :child }
   validate :history_before_today
   validate :bigger_than_before_history
   validate :smaller_than_after_history
@@ -22,9 +23,10 @@ class History < ApplicationRecord
     last_letter = vaccination.key[-1]
     return if last_letter == '1'
 
-    vaccination.key[-1] = (last_letter.to_i - 1).to_s
-    before_id = Vaccination.find_by(key: vaccination.key).id
-    before_history = History.find_by(vaccination_id: before_id, child_id: child_id)
+    before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
+    before_vac_id = Vaccination.find_by(key: before_vac_key).id
+    before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
+
     return if before_history.date.nil?
 
     errors.add(:date, 'が前回の期より前の日付になっています') if before_history.date > date
@@ -34,10 +36,9 @@ class History < ApplicationRecord
     return if date.nil?
 
     vaccination = Vaccination.find(vaccination_id)
-    last_letter = vaccination.key[-1]
-    vaccination.key[-1] = (last_letter.to_i + 1).to_s
+    next_vac_key = vaccination.key.gsub(/[1-4]/) { |num| (num.to_i + 1).to_s }
 
-    next_period = Vaccination.find_by(key: vaccination.key)
+    next_period = Vaccination.find_by(key: next_vac_key)
     return if next_period.nil?
 
     next_history = History.find_by(vaccination_id: next_period.id, child_id: child_id)
@@ -51,11 +52,11 @@ class History < ApplicationRecord
     return if vaccination.key[-1] == '1'
 
     vaccinations = Vaccination.where(name: vaccination.name)
-    the_vaccination_histories = vaccinations.collect do |vaccine|
-      History.find_by(vaccination_id: vaccine.id, child_id: child_id) if vaccine.id < vaccination_id
+    the_vaccination_histories = vaccinations.collect do |vac|
+      History.find_by(vaccination_id: vac.id, child_id: child_id) if vac.id < vaccination_id
     end
     the_vaccination_histories.compact.each do |history|
-      history.update(vaccinated: true) unless History.find(history.id).date
+      history.update(vaccinated: true) unless History.find_by(id: history.id, child_id: child_id).date
     end
   end
 end
