@@ -9,7 +9,7 @@
           = child.name
       .name_age__items
         p
-          = "#{Time.zone.today.month - child.birthday.month}ヶ月"
+          = Child.calc_moon_age(Date.current, child.birthday)
       .birthday__item
         p
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
