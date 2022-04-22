@@ -93,4 +93,5 @@ ActiveRecord::Schema.define(version: 2022_03_25_030726) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "children", "users"
   add_foreign_key "histories", "children"
+  add_foreign_key "histories", "vaccinations"
 end
