@@ -1,2 +1,9 @@
-h1 Families#index
-p Find me in app/views/families/index.html.slim
+- Family.family_schedule(@children, @histories).each do |k, v|
+  = k
+  br
+  - v.each do |h|
+    = h[:name]
+    = h[:period]
+    = h[:child]
+    br
+  br
