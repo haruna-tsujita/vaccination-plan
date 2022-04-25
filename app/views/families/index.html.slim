@@ -1,9 +1,11 @@
 - Family.family_schedule(@children, @histories).each do |k, v|
   = k
   br
-  - v.each do |h|
+  - v.each_with_index do |h, idx|
+    - if (idx == 0) || ((idx != 0) && (v[idx][:child] != v[idx - 1][:child]))
+      = h[:child]
+      br
     = h[:name]
     = h[:period]
-    = h[:child]
     br
   br
