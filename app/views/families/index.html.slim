@@ -1,11 +1,33 @@
-- Family.family_schedule(@children, @histories).each do |k, v|
-  = k
-  br
-  - v.each_with_index do |h, idx|
-    - if (idx == 0) || ((idx != 0) && (v[idx][:child] != v[idx - 1][:child]))
-      = h[:child]
+- Family.family_schedule(@children, @histories).each_with_index do |(k, v), index|
+  - if (k.instance_of?(Range) && k.first <= Time.current) || (k.instance_of?(Date) && k <= Time.current)
+    = '現在接種可能' if index.zero?
+    ul.schedule__items
+      - v.each_with_index do |h, idx|
+        li.schedule__item
+          - if (idx == 0) || ((idx != 0) && (v[idx][:child] != v[idx - 1][:child]))
+            = h[:child]
+            br
+          = h[:name]
+          = h[:period]
       br
-    = h[:name]
-    = h[:period]
+    - next
+
+  - if k.instance_of?(Date)
+      br
+      = l(k, format: :long)
+  - else
     br
-  br
+    p 小学校入学前1年間
+    = l(k.first, format: :long)
+    = '〜'
+    = l(k.last, format: :long)
+
+  ul.schedule__items
+      - v.each_with_index do |h, idx|
+        li.schedule__item
+          - if (idx == 0) || ((idx != 0) && (v[idx][:child] != v[idx - 1][:child]))
+            = h[:child]
+            br
+          = h[:name]
+          = h[:period]
+      br
