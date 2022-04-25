@@ -25,10 +25,4 @@ class Family
       {date => array[1]} if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
     end
   end
-
-  def self.vaccination_date_after_today(children, histories)
-    Family.family_schedule(children, histories).select.with_index do |hash, index|
-      hash unless (hash[:date].instance_of?(Range) && hash[:date].first <= Time.current) || (hash[:date].instance_of?(Date) && hash[:date] <= Time.current)
-    end
-  end
 end
