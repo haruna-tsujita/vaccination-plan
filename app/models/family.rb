@@ -7,14 +7,14 @@ class Family
       Schedule.future_plans(child_histories, child)
     end
 
-    merge_history = {}.merge(*all_histories) { |_key, v1, v2| v1 + v2 }
-    sort_plan = merge_history.sort_by do |a, _b|
-      [Date, String].include?(a.class) ? a : a.first
+    merge_history = {}.merge(*all_histories) { |_key, histories1, histories2| histories1 + histories2 }
+    sort_plan = merge_history.sort_by do |date, _vaccination|
+      [Date, String].include?(date.class) ? date : date.first
     end.to_h
-    sort_plan.each_value do |b|
-      b.sort_by do |x|
-        x[:child]
-        x[:name]
+    sort_plan.each_value do |vaccinations|
+      vaccinations.sort_by do |vaccination|
+        vaccination[:child]
+        vaccination[:name]
       end
     end.to_h
   end
