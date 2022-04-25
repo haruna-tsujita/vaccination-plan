@@ -1,16 +1,25 @@
+.hidden_box
+  label for="label1000"
+    = '現在接種可能'
+  input type="checkbox" id="label1000"
+  .hidden_show
+    - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), index|
+      .hidden_box
+        label for="label#{index}"
+          = date
+        input type="checkbox" id="label#{index}"
+        .hidden_show
+          - vacs.each_with_index do |vac, idx|
+            - if (idx == 0) || ((idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child]))
+              = vac[:child]
+              br
+            ul.schedule__items
+              li.schedule__item
+                = vac[:name]
+                = vac[:period]
+
 - Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), index|
-  - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
-    = '現在接種可能' if index.zero?
-    ul.schedule__items
-      - vaccinations.each_with_index do |vaccination, idx|
-        li.schedule__item
-          - if (idx == 0) || ((idx != 0) && (vaccinations[idx][:child] != vaccinations[idx - 1][:child]))
-            = vaccination[:child]
-            br
-          = vaccination[:name]
-          = vaccination[:period]
-    br
-  - else
+  - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
     .hidden_box
       label for="label#{index}"
         - if date.instance_of?(Date)
