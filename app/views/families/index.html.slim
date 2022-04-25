@@ -1,33 +1,33 @@
-- Family.family_schedule(@children, @histories).each_with_index do |(k, v), index|
-  - if (k.instance_of?(Range) && k.first <= Time.current) || (k.instance_of?(Date) && k <= Time.current)
+- Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), index|
+  - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
     = '現在接種可能' if index.zero?
-    ul.schedule__items
-      - v.each_with_index do |h, idx|
-        li.schedule__item
-          - if (idx == 0) || ((idx != 0) && (v[idx][:child] != v[idx - 1][:child]))
-            = h[:child]
-            br
-          = h[:name]
-          = h[:period]
-      br
-    - next
+      ul.schedule__items
+        - vaccinations.each_with_index do |vaccination, idx|
+          li.schedule__item
+            - if (idx == 0) || ((idx != 0) && (vaccinations[idx][:child] != vaccinations[idx - 1][:child]))
+              = vaccination[:child]
+              br
+            = vaccination[:name]
+            = vaccination[:period]
+        br
+      - next
 
-  - if k.instance_of?(Date)
+  - if date.instance_of?(Date)
       br
-      = l(k, format: :long)
+      = l(date, format: :long)
   - else
     br
     p 小学校入学前1年間
-    = l(k.first, format: :long)
+    = l(date.first, format: :long)
     = '〜'
-    = l(k.last, format: :long)
+    = l(date.last, format: :long)
 
   ul.schedule__items
-      - v.each_with_index do |h, idx|
+      - vaccinations.each_with_index do |vaccination, idx|
         li.schedule__item
-          - if (idx == 0) || ((idx != 0) && (v[idx][:child] != v[idx - 1][:child]))
-            = h[:child]
+          - if (idx == 0) || ((idx != 0) && (vaccinations[idx][:child] != vaccinations[idx - 1][:child]))
+            = vaccination[:child]
             br
-          = h[:name]
-          = h[:period]
+          = vaccination[:name]
+          = vaccination[:period]
       br
