@@ -15,8 +15,8 @@ class Child < ApplicationRecord
     errors.add(:birthday, 'は今日以前の日付にしてください') if birthday > Date.current
   end
 
-  def self.calc_moon_age(birthday)
-    moon_age = TimeDifference.between(birthday, Date.current).in_months
+  def self.calc_moon_age(birthday, today)
+    moon_age = TimeDifference.between(birthday, today).in_months
     "#{(moon_age / 12).floor}才 #{(moon_age % 12).floor}ヶ月"
   end
 end
