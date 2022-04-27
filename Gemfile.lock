@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/napple29/time_difference.git
+  revision: a004dfb18f5e58f2e6f82a385ae7326c05445b5f
+  branch: depfu/update/group/rails-6.1.5
+  specs:
+    time_difference (0.7.0)
+      activesupport (~> 6.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -324,6 +332,7 @@ DEPENDENCIES
   slim-rails
   slim_lint
   spring
+  time_difference!
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
