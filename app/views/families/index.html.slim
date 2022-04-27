@@ -6,12 +6,21 @@
     - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), index|
       .hidden_box
         label for="label#{index}"
-          = date
+          - if date.instance_of?(Date)
+            = l(date, format: :long)
+          - else
+            = l(date.first, format: :long)
+            = '〜'
+            br
+            = l(date.last, format: :long)
+        - vacs.each_with_index do |vac, idx|
+          - if vac[:child].avatar.attached? && idx.zero? || idx != 0 && vacs[idx][:child] != vacs[idx - 1][:child]
+            = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture'
         input type="checkbox" id="label#{index}"
         .hidden_show
           - vacs.each_with_index do |vac, idx|
-            - if (idx == 0) || ((idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child]))
-              = vac[:child]
+            - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
+              = vac[:child].name
               br
             ul.schedule__items
               li.schedule__item
@@ -29,14 +38,17 @@
           = '〜'
           br
           = l(date.last, format: :long)
+      - vaccinations.each_with_index do |vac, idx|
+        -if vac[:child].avatar.attached? && idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
+            = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture'
       input type="checkbox" id="label#{index}"
       .hidden_show
         ul.schedule__items
-            - vaccinations.each_with_index do |vaccination, idx|
-              li.schedule__item
-                - if (idx == 0) || ((idx != 0) && (vaccinations[idx][:child] != vaccinations[idx - 1][:child]))
-                  = vaccination[:child]
-                  br
-                = vaccination[:name]
-                = vaccination[:period]
-            br
+          - vaccinations.each_with_index do |vaccination, idx|
+            li.schedule__item
+              - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
+                = vaccination[:child].name
+                br
+              = vaccination[:name]
+              = vaccination[:period]
+          br

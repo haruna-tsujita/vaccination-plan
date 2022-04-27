@@ -20,9 +20,8 @@ class Family
   end
 
   def self.vaccination_date_before_today(children, histories)
-    Family.family_schedule(children, histories).select.with_index do |array, index|
-      date = array[0]
-      {date => array[1]} if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+    Family.family_schedule(children, histories).select do |date, vaccination|
+      { date => vaccination } if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
     end
   end
 end
