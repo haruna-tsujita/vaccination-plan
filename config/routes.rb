@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'families/index'
   devise_for :users, path: ''
   resources :families, only: [:index]
   resources :children do
