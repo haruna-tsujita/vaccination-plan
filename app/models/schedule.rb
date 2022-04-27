@@ -30,7 +30,7 @@ class Schedule < ApplicationRecord
                  before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
                  calc_for_each_vaccinated_status(before_history: before_history, vaccination: vaccination, child: child)
                end
-        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s }, date: date }
+        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: date }
       end.compact
     end
 
