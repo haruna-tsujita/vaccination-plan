@@ -5,4 +5,5 @@ br/
 div
   = link_to 'Back to children', children_path
 
-= render 'global_nav'
+if current_user.children
+  = render 'global_nav'
