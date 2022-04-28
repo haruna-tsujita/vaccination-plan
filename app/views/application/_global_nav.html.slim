@@ -1,0 +1,10 @@
+.container
+  nav class="navbar is-fixed-bottom" role="navigation"
+    .navbar-end
+      .navbar-item.has-text-centered.shrink__item
+        = link_to '記録', child_histories_path(@child ||= current_user.children[0]), data: { 'turbolinks' => false }
+      .navbar-item.has-text-centered.shrink__item
+        = link_to '予定', child_schedules_path(@child ||= current_user.children[0]), data: { 'turbolinks' => false }
+      .navbar-item.has-text-centered
+        = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+    .navbar-end

@@ -12,3 +12,5 @@ html
   body
     = render 'layouts/notification'
     = yield
+    - if current_user
+      = render 'global_nav'
