@@ -7,3 +7,8 @@ dave:
   name: dave
   birthday: Date.parse('2021-07-28')
   user: bob
+
+frank:
+  name: frank
+  birthday: Date.parse('2020-01-28')
+  user: bob

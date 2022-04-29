@@ -63,3 +63,27 @@ dave_history_hib_force:
   date: null
   vaccinated: null
   vaccination: hib_4
+
+frank_history_hib_first:
+  child: frank
+  date: null
+  vaccinated: null
+  vaccination: hib_1
+
+frank_history_hib_second:
+  child: frank
+  date: null
+  vaccinated: null
+  vaccination: hib_2
+
+frank_history_hib_third:
+  child: frank
+  date: null
+  vaccinated: null
+  vaccination: hib_3
+
+frank_history_hib_force:
+  child: frank
+  date: null
+  vaccinated: null
+  vaccination: hib_4
