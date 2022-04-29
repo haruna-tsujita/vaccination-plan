@@ -1,2 +1,31 @@
-h1 Settings#index
-p Find me in app/views/settings/index.html.slim
+nav class="navbar" role="navigation" aria-label="main navigation"
+  div class="navbar-brand"
+    a class="navbar-item"
+      / img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" # ロゴができたら挿入する
+
+    a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
+      span aria-hidden="true"
+      span aria-hidden="true"
+      span aria-hidden="true"
+
+  div id="navbarBasicExample" class="navbar-menu"
+    div class="navbar-start"
+      a class="navbar-item"
+        = link_to 'アカウント編集・削除', edit_user_registration_path(current_user)
+
+    - if current_user.children
+      div class="navbar-item has-dropdown is-hoverable"
+        a class="navbar-link"
+          p 子どもの編集・削除
+        div class="navbar-dropdown"
+          - current_user.children.each do |child|
+            a class="navbar-item"
+              = link_to "#{child.name}", edit_child_path(child.id)
+      hr class="navbar-divider"
+      a class="navbar-item"
+        = link_to 'ログアウト',
+          destroy_user_session_path,
+          class: 'dropdown-item',
+          method: :delete
+    div class="navbar-end"
+
