@@ -1,0 +1,24 @@
+- if @children || !@child.created_at
+  .container
+    nav class="navbar is-fixed-bottom" role="navigation"
+      .navbar-end
+        .navbar-item.has-text-centered
+          = link_to '記録', child_histories_path(@children[0]), data: { 'turbolinks' => false }
+        .navbar-item.has-text-centered
+          = link_to '予定', child_schedules_path(@children[0]), data: { 'turbolinks' => false }
+        - if current_user.children.size > 1
+          .navbar-item.has-text-centered
+            = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+      .navbar-end
+- elsif @child.created_at
+  .container
+    nav class="navbar is-fixed-bottom" role="navigation"
+      .navbar-end
+        .navbar-item.has-text-centered
+          = link_to '記録', child_histories_path(@child), data: { 'turbolinks' => false }
+        .navbar-item.has-text-centered
+          = link_to '予定', child_schedules_path(@child), data: { 'turbolinks' => false }
+        - if current_user.children.size > 1
+          .navbar-item.has-text-centered
+            = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+      .navbar-end
