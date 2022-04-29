@@ -1,4 +1,4 @@
-- if @children || !@child.created_at
+- if @children
   .container
     nav class="navbar is-fixed-bottom" role="navigation"
       .navbar-end
@@ -18,6 +18,18 @@
           = link_to '記録', child_histories_path(@child), data: { 'turbolinks' => false }
         .navbar-item.has-text-centered
           = link_to '予定', child_schedules_path(@child), data: { 'turbolinks' => false }
+        - if current_user.children.size > 1
+          .navbar-item.has-text-centered
+            = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+      .navbar-end
+- else
+  .container
+    nav class="navbar is-fixed-bottom" role="navigation"
+      .navbar-end
+        .navbar-item.has-text-centered
+          p 記録
+        .navbar-item.has-text-centered
+          p 予定
         - if current_user.children.size > 1
           .navbar-item.has-text-centered
             = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
