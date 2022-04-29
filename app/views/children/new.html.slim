@@ -5,5 +5,5 @@ br/
 div
   = link_to 'Back to children', children_path
 
-if current_user.children
+- if current_user.children.size > 1
   = render 'global_nav'
