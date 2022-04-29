@@ -2,33 +2,21 @@
   .container
     nav class="navbar is-fixed-bottom" role="navigation"
       .navbar-end
-      div class="navbar-item has-dropdown is-hoverable has-dropdown-up"
-        a class="navbar-link"
-          p 記録
-        div class="navbar-dropdown"
-          p 子どもを選択
-          - current_user.children.each do |child|
-            a class="navbar-item"
-              = link_to "#{child.name}", child_histories_path(child), data: { 'turbolinks' => false }
-      div class="navbar-item has-dropdown is-hoverable has-dropdown-up"
-        a class="navbar-link"
-          p 予定
-        div class="navbar-dropdown"
-          p 子どもを選択
-          - current_user.children.each do |child|
-            a class="navbar-item"
-              = link_to "#{child.name}", child_schedules_path(child), data: { 'turbolinks' => false }
-      - if current_user.children.size > 1
         .navbar-item.has-text-centered
-          = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+          = link_to '記録', child_histories_path(@children[0]), data: { 'turbolinks' => false }
+        .navbar-item.has-text-centered
+          = link_to '予定', child_schedules_path(@children[0]), data: { 'turbolinks' => false }
+        - if current_user.children.size > 1
+          .navbar-item.has-text-centered
+            = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
       .navbar-end
-- elsif @child.birthday
+- elsif @child.created_at
   .container
     nav class="navbar is-fixed-bottom" role="navigation"
       .navbar-end
-        .navbar-item.has-text-centered.shrink__item
+        .navbar-item.has-text-centered
           = link_to '記録', child_histories_path(@child), data: { 'turbolinks' => false }
-        .navbar-item.has-text-centered.shrink__item
+        .navbar-item.has-text-centered
           = link_to '予定', child_schedules_path(@child), data: { 'turbolinks' => false }
         - if current_user.children.size > 1
           .navbar-item.has-text-centered
