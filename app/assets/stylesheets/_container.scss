@@ -1,0 +1,9 @@
+.container {
+  &.is-sm {
+    max-width: 30rem;
+  }
+  &:not(.is-max-desktop):not(.is-max-widescreen) {
+    max-width: 42.5rem;
+    padding: 0 1rem;
+  }
+}
