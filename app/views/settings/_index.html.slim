@@ -20,7 +20,7 @@ nav class="navbar is-fixed-top is-mobile" role="navigation" aria-label="main nav
         div class="navbar-dropdown"
           - current_user.children.each do |child|
             a class="navbar-item"
-              = link_to "#{child.name}", edit_child_path(child.id)
+              = link_to child.name.to_s, edit_child_path(child.id)
       hr class="navbar-divider"
       a class="navbar-item"
         = link_to 'ログアウト',
@@ -28,4 +28,3 @@ nav class="navbar is-fixed-top is-mobile" role="navigation" aria-label="main nav
           class: 'dropdown-item',
           method: :delete
     div class="navbar-end"
-
