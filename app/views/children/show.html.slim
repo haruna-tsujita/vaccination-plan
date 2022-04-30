@@ -1,7 +1,9 @@
-h1 Children#show
+= render 'settings/index'
+.page-main
+  h1 Children#show
 
-= render @child
-div
-  = link_to 'Edit this child', edit_child_path(@child)
-  |
-  | #{link_to 'Back to children', children_path}
+  = render @child
+  div
+    = link_to 'Edit this child', edit_child_path(@child)
+    |
+    | #{link_to 'Back to children', children_path}
