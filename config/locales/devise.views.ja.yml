@@ -94,9 +94,9 @@ ja:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       edit:
         are_you_sure: 本当によろしいですか？
-        cancel_my_account: アカウント削除
+        cancel_my_account: アカウント削除はこちら
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
-        leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
+        leave_blank_if_you_don_t_want_to_change_it: 入力がなければ変更しません
         title: "%{resource}編集"
         unhappy: 気に入りません
         update: 更新
