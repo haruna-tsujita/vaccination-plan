@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, path: ''
   resources :families, only: [:index]
+  resources :settings, only: [:index]
   resources :children do
     resources :histories
     resources :schedules, only: [:index]

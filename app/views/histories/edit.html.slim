@@ -1,8 +1,9 @@
-h1 Histories#edit
-= render 'form', child: @child, history: @history, vaccination_formal_name: Vaccination.vaccination_formal_name(@history)
-br/
+.page-main
+  h1 Histories#edit
+  = render 'form', child: @child, history: @history, vaccination_formal_name: Vaccination.vaccination_formal_name(@history)
+  br/
 
-div
-  = link_to 'Back to histories', child_histories_path
+  div
+    = link_to 'Back to histories', child_histories_path
 
-= render 'global_nav'
+  = render 'global_nav'
