@@ -27,5 +27,6 @@ nav class="navbar is-fixed-top is-mobile" role="navigation" aria-label="main nav
           = link_to 'ログアウト',
             destroy_user_session_path,
             class: 'dropdown-item',
+            data: { confirm: 'ログアウトしますか？'},
             method: :delete
       div class="navbar-end"
