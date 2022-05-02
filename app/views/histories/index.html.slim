@@ -1,34 +1,34 @@
 .page-main
   = render '/children/child', child: @child
-  table
-    tr
-      th ワクチン
-    tr
-      td きろく
-    - Vaccination::VACCINATION_NAME.each do |vaccination_name|
-      tr
-        th
-          = vaccination_name
-      tr
-        td
-          ul.history__items class="vaccinated_table"
-            - vaccination_ids = Vaccination.where(name: vaccination_name).map(&:id)
-            - case vaccination_ids.size
-            - when 2..4
-              - histories = @histories.select { |history| history if history.vaccination_id.between?(vaccination_ids.first, vaccination_ids.last) }
-            - when 1
-              - histories = @histories.select { |history| history if history.vaccination_id == vaccination_ids.first }
-            - count = 0
-            - histories.each do |history|
-              - default_number = ['①', '②', '③', '④']
-              - vaccinated_number = ['❶', '❷', '❸', '❹']
-              li.history__item
-                - if history.date || history.vaccinated
-                  div class="vaccinated"
+  h2.is-size-5.has-text-centered
+    | ワクチンの記録
+  table.table.is-striped
+    tbody
+      - Vaccination::VACCINATION_NAME.each do |vaccination_name|
+        tr
+          th.has-text-centered
+            = vaccination_name
+        tr
+          td
+            ul.history__items
+              - vaccination_ids = Vaccination.where(name: vaccination_name).map(&:id)
+              - case vaccination_ids.size
+              - when 2..4
+                - histories = @histories.select { |history| history if history.vaccination_id.between?(vaccination_ids.first, vaccination_ids.last) }
+              - when 1
+                - histories = @histories.select { |history| history if history.vaccination_id == vaccination_ids.first }
+              - count = 0
+              - histories.each do |history|
+                - default_number = ['①', '②', '③', '④']
+                - vaccinated_number = ['❶', '❷', '❸', '❹']
+                li.history__item
+                  - if history.date || history.vaccinated
                     = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id)
-                  div class="date" #{history.date}
-                - else
-                  = link_to default_number[count], edit_child_history_path(params[:child_id], history.id)
-              - count += 1
+                    .date.has-text-centered
+                      - if history.date
+                        = history.date.strftime('%y/%m/%d')
+                  - else
+                    = link_to default_number[count], edit_child_history_path(params[:child_id], history.id)
+                - count += 1
 
 = render 'global_nav'
