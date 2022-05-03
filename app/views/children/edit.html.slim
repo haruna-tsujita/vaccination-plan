@@ -1,9 +1,8 @@
 .page-main
-  h1 こどもの編集
+  h1.is-size-4.has-text-centered
+    | 子どもの編集
 
   = render 'form', child: @child
   br/
-  div
-    = link_to 'Back to children', children_path
 
   = render 'global_nav'

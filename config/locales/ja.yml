@@ -5,6 +5,10 @@ ja:
       user:
         sign_in: 'ログイン'
         sign_up: 'アカウント登録'
+      child:
+        name: 名前
+        birthday: 生年月日
+        avatar: アイコン
       history:
         date: '接種日時'
     errors:
