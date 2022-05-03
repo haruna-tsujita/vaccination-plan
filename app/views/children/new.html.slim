@@ -1,10 +1,9 @@
 .page-main
-  h1 子どもの登録
+  h1.is-size-4.has-text-centered
+    | 子どもの登録
 
   = render 'form', child: @child
   br/
-  div
-    = link_to 'Back to children', children_path
 
   - if current_user.children.size > 1
     = render 'global_nav'
