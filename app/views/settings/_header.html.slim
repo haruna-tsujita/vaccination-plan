@@ -9,25 +9,27 @@ nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
         span aria-hidden="true"
         span aria-hidden="true"
 
-  - if current_user
-    div id="navbarBasicExample" class="navbar-menu"
-      div class="navbar-start"
+  .navbar-end
+    - if current_user
+      div id="navbarBasicExample" class="navbar-menu"
         a class="navbar-item"
-          = link_to 'アカウント編集・削除', edit_user_registration_path(current_user)
+          = link_to edit_user_registration_path(current_user) do
+            i class="fa-solid fa-user"
+            | アカウント
 
-      - if current_user.children.size >= 1
-        div class="navbar-item has-dropdown is-hoverable"
-          a class="navbar-link"
-            p 子どもの編集・削除
-          div class="navbar-dropdown"
-            - current_user.children.each do |child|
-              a class="navbar-item"
-                = link_to child.name.to_s, edit_child_path(child.id)
-        hr class="navbar-divider"
-        a class="navbar-item"
-          = link_to 'ログアウト',
-            destroy_user_session_path,
-            class: 'dropdown-item',
-            data: { confirm: 'ログアウトしますか？' },
-            method: :delete
-      div class="navbar-end"
+        - if current_user.children.size >= 1
+          div class="navbar-item has-dropdown is-hoverable"
+            i class="fa-solid fa-child-reaching"
+            | 子ども
+            div class="navbar-dropdown"
+              - current_user.children.each do |child|
+                a class="navbar-item"
+                  = link_to child.name.to_s, edit_child_path(child.id)
+          hr class="navbar-divider"
+          div class="navbar-item"
+            = link_to destroy_user_session_path,
+              class: 'dropdown-item',
+              data: { confirm: 'ログアウトしますか？' },
+              method: :delete do
+              i class="fa-solid fa-right-from-bracket"
+              | ログアウト
