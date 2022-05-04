@@ -41,7 +41,7 @@ class Toptest < ApplicationSystemTestCase
   test 'redirect to new_child_path when login and user has many child' do
     setup_bob
     visit '/'
-    assert_text '現在接種可能'
+    assert_text '接種できるリスト'
     assert_no_text 'ログイン'
   end
 end
