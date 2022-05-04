@@ -14,9 +14,8 @@
               br
               = l(date.last, format: :long)
         - vacs.each_with_index do |vac, idx|
-          - if vac[:child].avatar.attached? && idx.zero? || idx != 0 && vacs[idx][:child] != vacs[idx - 1][:child]
-            = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture'
           - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
+            = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture' if vac[:child].avatar.attached?
             = vac[:child].name
           ul.schedule__items
             li.schedule__item
@@ -39,14 +38,12 @@
                 = '〜'
                 = l(date.last, format: :long)
           - vaccinations.each_with_index do |vac, idx|
-            -if vac[:child].avatar.attached? && idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
-              = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture'
             - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
+              = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture' if vac[:child].avatar.attached?
               = vac[:child].name
-          ul.schedule__items
-            - vaccinations.each_with_index do |vaccination, idx|
-              li.schedule__item
-                = vaccination[:name]
-                = vaccination[:period]
+            ul.schedule__items
+                li.schedule__item
+                  = vac[:name]
+                  = vac[:period]
 
   = render 'global_nav'
