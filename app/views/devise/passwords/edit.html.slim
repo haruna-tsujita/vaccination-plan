@@ -9,11 +9,11 @@
       - if @minimum_password_length
         = t('devise.shared.minimum_password_length', count: @minimum_password_length)
         br
-      = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: "input"
+      = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'input'
     .field
       = f.label :password_confirmation, t('.confirm_new_password')
       br
-      = f.password_field :password_confirmation, autocomplete: 'new-password', class: "input"
+      = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input'
     .has-text-centered
       button class="button" type="submit"
         = t('.change_my_password')

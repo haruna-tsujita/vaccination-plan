@@ -25,8 +25,7 @@
                   - if history.date || history.vaccinated
                     = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id)
                     .date.has-text-centered
-                      - if history.date
-                        = history.date.strftime('%y/%m/%d')
+                      = history.date&.strftime('%y/%m/%d')
                   - else
                     = link_to default_number[count], edit_child_history_path(params[:child_id], history.id)
                 - count += 1

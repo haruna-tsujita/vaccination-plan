@@ -5,7 +5,7 @@
     = render 'devise/shared/error_messages', resource: resource
     .field
       = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: "input"
+      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       div
         = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
@@ -13,16 +13,16 @@
       = f.label :password
       - if @minimum_password_length
         = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-    = f.password_field :password, autocomplete: 'new-password', class: "input", placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
+    = f.password_field :password, autocomplete: 'new-password', class: 'input', placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
     .field
       = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: 'new-password', class: "input", placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
+      = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input', placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
     .field
       = f.label :current_password
       | (
       = t('.we_need_your_current_password_to_confirm_your_changes')
       | )
-      = f.password_field :current_password, autocomplete: 'current-password', class: "input"
+      = f.password_field :current_password, autocomplete: 'current-password', class: 'input'
 
     .has-text-centered
       button class="button" type="submit"

@@ -11,15 +11,15 @@
       label.js-file-input__preview
         - if form.object.avatar.attached?
           .has-text-centered
-            = image_tag form.object.avatar_url, class:'new-img'
+            = image_tag form.object.avatar_url, class: 'new-img'
         = form.file_field :avatar
 
   div
     = form.label :name, style: 'display: block'
-    = form.text_field :name, class: "input"
+    = form.text_field :name, class: 'input'
   div
     = form.label :birthday, style: 'display: block'
-    = form.date_field :birthday, class: "input"
+    = form.date_field :birthday, class: 'input'
 
   .has-text-centered
     button class="button" type="submit"
