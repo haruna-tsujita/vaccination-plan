@@ -30,7 +30,7 @@ gem 'devise-i18n'
 gem 'html2slim'
 gem 'image_processing', '~> 1.2'
 gem 'jp_vaccination'
-gem 'net-smtp', require: false
+gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-ftp'
