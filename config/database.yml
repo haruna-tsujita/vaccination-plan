@@ -84,3 +84,6 @@ production:
   database: vaccination_plan_production
   username: vaccination_plan
   password: <%= ENV['VACCINATION_PLAN_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
