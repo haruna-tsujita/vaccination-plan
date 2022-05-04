@@ -9,14 +9,14 @@ ja:
         current_password: 現在のパスワード
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        email: Eメール
+        email: メールアドレス
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
         password: パスワード
-        password_confirmation: パスワード（確認用）
+        password_confirmation: もう一度パスワードを入力してください
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻
@@ -31,7 +31,8 @@ ja:
     confirmations:
       confirmed: メールアドレスが確認できました。
       new:
-        resend_confirmation_instructions: アカウント確認メール再送
+        resend_confirmation_instructions: アカウント確認メール
+        resend_mail: 送信する
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
@@ -78,12 +79,12 @@ ja:
     passwords:
       edit:
         change_my_password: パスワードを変更する
-        change_your_password: パスワードを変更
-        confirm_new_password: 確認用新しいパスワード
+        change_your_password: パスワード変更
+        confirm_new_password: もう一度、新しいパスワードを入力してください
         new_password: 新しいパスワード
       new:
-        forgot_your_password: パスワードを忘れましたか？
-        send_me_reset_password_instructions: パスワードの再設定方法を送信する
+        forgot_your_password: パスワード再設定
+        send_me_reset_password_instructions: 送信する
       no_token: このページにはアクセスできません。パスワード再設定メールのリンクからアクセスされた場合には、URL をご確認ください。
       send_instructions: パスワードの再設定について数分以内にメールでご連絡いたします。
       send_paranoid_instructions: メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。
@@ -93,9 +94,9 @@ ja:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       edit:
         are_you_sure: 本当によろしいですか？
-        cancel_my_account: アカウント削除
+        cancel_my_account: アカウント削除はこちら
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
-        leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
+        leave_blank_if_you_don_t_want_to_change_it: 入力がなければ変更しません
         title: "%{resource}編集"
         unhappy: 気に入りません
         update: 更新
@@ -118,13 +119,13 @@ ja:
     shared:
       links:
         back: 戻る
-        didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
+        didn_t_receive_confirmation_instructions: アカウント確認のメールが届かない方はこちら
         didn_t_receive_unlock_instructions: アカウントのロック解除方法のメールを受け取っていませんか？
-        forgot_your_password: パスワードを忘れましたか？
+        forgot_your_password: パスワードを忘れた方はこちら
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録
-      minimum_password_length: "（%{count}字以上）"
+      minimum_password_length: "（%{count}文字以上）"
     unlocks:
       new:
         resend_unlock_instructions: アカウントのロック解除方法を再送する

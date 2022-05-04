@@ -1,12 +1,11 @@
 .page-main
-  .hidden_box
-    label for="label1000"
-      = '現在接種可能'
-    input type="checkbox" id="label1000"
-    .hidden_show
-      - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), index|
-        .hidden_box
-          label for="label#{index}"
+  .has-text-centered
+    = '接種できるリスト'
+  - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), _index|
+    .card
+      .card-content
+        .content
+          .title.is-5
             - if date.instance_of?(Date)
               = l(date, format: :long)
             - else
@@ -14,44 +13,37 @@
               = '〜'
               br
               = l(date.last, format: :long)
-          - vacs.each_with_index do |vac, idx|
-            - if vac[:child].avatar.attached? && idx.zero? || idx != 0 && vacs[idx][:child] != vacs[idx - 1][:child]
-              = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture'
-          input type="checkbox" id="label#{index}"
-          .hidden_show
-            - vacs.each_with_index do |vac, idx|
-              - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
-                = vac[:child].name
-                br
-              ul.schedule__items
+        - vacs.each_with_index do |vac, idx|
+          - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
+            = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture' if vac[:child].avatar.attached?
+            = vac[:child].name
+          ul.schedule__items
+            li.schedule__item
+              = vac[:name]
+              = vac[:period]
+  .has-text-centered
+    = 'これからリスト'
+  - Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), _index|
+    - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+      .card
+        .card-content
+          .content
+            - if date.instance_of?(Date)
+              .title.is-5
+                = l(date, format: :long)
+            - else
+              .title.is-5
+                = l(date.first, format: :long)
+              .subtitle.is-7
+                = '〜'
+                = l(date.last, format: :long)
+          - vaccinations.each_with_index do |vac, idx|
+            - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
+              = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture' if vac[:child].avatar.attached?
+              = vac[:child].name
+            ul.schedule__items
                 li.schedule__item
                   = vac[:name]
                   = vac[:period]
-
-  - Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), index|
-    - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
-      .hidden_box
-        label for="label#{index}"
-          - if date.instance_of?(Date)
-            = l(date, format: :long)
-          - else
-            = l(date.first, format: :long)
-            = '〜'
-            br
-            = l(date.last, format: :long)
-        - vaccinations.each_with_index do |vac, idx|
-          -if vac[:child].avatar.attached? && idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
-              = image_tag vac[:child].avatar.variant(resize: '50x50^'), class: 'families_child__picture'
-        input type="checkbox" id="label#{index}"
-        .hidden_show
-          ul.schedule__items
-            - vaccinations.each_with_index do |vaccination, idx|
-              li.schedule__item
-                - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
-                  = vaccination[:child].name
-                  br
-                = vaccination[:name]
-                = vaccination[:period]
-            br
 
   = render 'global_nav'

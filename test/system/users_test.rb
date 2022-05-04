@@ -9,7 +9,7 @@ class Userstest < ApplicationSystemTestCase
     fill_in 'user[email]', with: 'test@example.com'
     fill_in 'user[password]', with: 'testtest'
     fill_in 'user[password_confirmation]', with: 'testtest'
-    click_on 'アカウント登録'
+    click_on '登録する'
     assert_text '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
   end
 end

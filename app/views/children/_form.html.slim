@@ -5,16 +5,22 @@
         - child.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :name, style: 'display: block'
-    = form.text_field :name
-  div
-    = form.label :birthday, style: 'display: block'
-    = form.date_field :birthday
-  div
-    = form.label :avatar, style: 'display: block'
-    = form.file_field :avatar
-    = image_tag child.avatar.variant(resize: '50x50^') if child.avatar.attached?
+  .has-text-left
+    = form.label :avatar, class: 'a-form-label'
+    .js-file-input
+      label.js-file-input__preview
+        - if form.object.avatar.attached?
+          .has-text-centered
+            = image_tag form.object.avatar_url, class: 'new-img'
+        = form.file_field :avatar
 
   div
-    = form.submit
+    = form.label :name, style: 'display: block'
+    = form.text_field :name, class: 'input'
+  div
+    = form.label :birthday, style: 'display: block'
+    = form.date_field :birthday, class: 'input'
+
+  .has-text-centered
+    button class="button" type="submit"
+      | 保存する

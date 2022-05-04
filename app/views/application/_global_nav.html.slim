@@ -2,32 +2,66 @@
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered
-        = link_to '記録', child_histories_path(@children[0]), data: { 'turbolinks' => false }
+        = link_to child_histories_path(@children[0]), data: { 'turbolinks' => false } do
+          i class="fa-solid fa-pen-to-square fa-lg"
+          br
+          .is-size-7
+            | 記録
       .navbar-item.has-text-centered
-        = link_to '予定', child_schedules_path(@children[0]), data: { 'turbolinks' => false }
+        = link_to child_schedules_path(@children[0]), data: { 'turbolinks' => false } do
+          i class="fa-solid fa-calendar-check fa-lg"
+          br
+          .is-size-7
+            | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered
-          = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+          = link_to families_path, data: { 'turbolinks' => false } do
+            i class="fa-solid fa-user-group fa-lg"
+            br
+            .is-size-7
+              | 全員
     .navbar-end
 - elsif @child.created_at
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered
-        = link_to '記録', child_histories_path(@child), data: { 'turbolinks' => false }
+        = link_to child_histories_path(@child), data: { 'turbolinks' => false } do
+          i class="fa-solid fa-pen-to-square fa-lg"
+          br
+          .is-size-7
+            | 記録
       .navbar-item.has-text-centered
-        = link_to '予定', child_schedules_path(@child), data: { 'turbolinks' => false }
+        = link_to child_schedules_path(@child), data: { 'turbolinks' => false } do
+          i class="fa-solid fa-calendar-check fa-lg"
+          br
+          .is-size-7
+            | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered
-          = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+          = link_to families_path, data: { 'turbolinks' => false } do
+            i class="fa-solid fa-user-group fa-lg"
+            br
+            .is-size-7
+              | 全員
     .navbar-end
 - else
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered.footer__item
-        p 記録
+        i class="fa-solid fa-pen-to-square fa-lg"
+          br
+          .is-size-7
+            | 記録
       .navbar-item.has-text-centered.footer__item
-        p 予定
+        i class="fa-solid fa-calendar-check fa-lg"
+          br
+          .is-size-7
+            | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered.footer__item
-          = link_to 'みんなの予定', families_path, data: { 'turbolinks' => false }
+          = link_to families_path, data: { 'turbolinks' => false } do
+            i class="fa-solid fa-user-group fa-lg"
+            br
+            .is-size-7
+              | 全員
     .navbar-end

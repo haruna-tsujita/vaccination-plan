@@ -9,6 +9,8 @@ import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 import '../modal'
 import '../navbar'
+import '../preview'
+import '../error_message'
 
 Rails.start()
 Turbolinks.start()

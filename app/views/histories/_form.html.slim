@@ -4,10 +4,11 @@
       ul
         - history.errors.each do |error|
           li = error.full_message
-  h2
+  h2.is-size-4.has-text-centered
     = vaccination_formal_name
   div
-    = form.label :date, 'ワクチンをうった日付'
-    = form.date_field :date
-  div
-    = form.submit
+    = form.label :date, '接種した日'
+    = form.date_field :date, class: 'input'
+  .has-text-centered
+    button class="button" type="submit"
+      | 登録する

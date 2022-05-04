@@ -1,19 +1,20 @@
 .page-main
-  h2
+  h2.is-size-4.has-text-centered
     = t('.sign_in')
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
       = f.label :email
       br
-      = f.email_field :email, autofocus: true, autocomplete: 'email'
+      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
     .field
       = f.label :password
       br
-      = f.password_field :password, autocomplete: 'current-password'
+      = f.password_field :password, autocomplete: 'current-password', class: 'input'
     - if devise_mapping.rememberable?
-      .field
+      .field.has-text-right
         = f.check_box :remember_me
         = f.label :remember_me
-    .actions
-      = f.submit t('.sign_in')
+    .has-text-centered
+      button class="button" type="submit"
+        = t('.sign_in')
   = render 'devise/shared/links'

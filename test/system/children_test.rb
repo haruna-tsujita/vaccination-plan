@@ -28,9 +28,9 @@ class Childrentest < ApplicationSystemTestCase
   test 'create_new_child' do
     setup
     visit new_child_path
-    fill_in 'Name', with: 'hanako'
-    fill_in 'Birthday', with: Date.parse('2022-03-01')
-    click_on '登録する'
+    fill_in '名前', with: 'hanako'
+    fill_in '生年月日', with: Date.parse('2022-03-01')
+    click_on '保存する'
     assert_text 'hanako'
     assert_text '2022年03月01日'
   end
@@ -38,9 +38,9 @@ class Childrentest < ApplicationSystemTestCase
   test 'update_new_child' do
     setup
     visit "/children/#{children(:carol).id}/edit"
-    fill_in 'Name', with: '桃子'
-    fill_in 'Birthday', with: Date.parse('2022-03-03')
-    click_on '更新する'
+    fill_in '名前', with: '桃子'
+    fill_in '生年月日', with: Date.parse('2022-03-03')
+    click_on '保存する'
     assert_text '桃子'
     assert_text '2022年03月03日'
   end
@@ -48,19 +48,19 @@ class Childrentest < ApplicationSystemTestCase
   test 'name_and_birthday_is_valid' do
     setup
     visit new_child_path
-    fill_in 'Name', with: nil
-    fill_in 'Birthday', with: nil
-    click_on '登録する'
-    assert_text 'Nameを入力してください'
-    assert_text 'Birthdayを入力してください'
+    fill_in '名前', with: nil
+    fill_in '生年月日', with: nil
+    click_on '保存する'
+    assert_text '名前を入力してください'
+    assert_text '生年月日を入力してください'
   end
 
   test 'birthday_is_not_after_today' do
     setup
     visit new_child_path
-    fill_in 'Name', with: 'alice'
-    fill_in 'Birthday', with: Date.current + 1.day
-    click_on '登録する'
-    assert_text 'Birthdayは今日以前の日付にしてください'
+    fill_in '名前', with: 'alice'
+    fill_in '生年月日', with: Date.current + 1.day
+    click_on '保存する'
+    assert_text '生年月日は今日以前の日付にしてください'
   end
 end
