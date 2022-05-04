@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.1'
+ruby '3.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
@@ -31,6 +31,7 @@ gem 'devise-i18n'
 gem 'html2slim'
 gem 'image_processing', '~> 1.2'
 gem 'jp_vaccination'
+gem 'net-smtp'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'time_difference', github: 'napple29/time_difference', branch: 'depfu/update/group/rails-6.1.5'
