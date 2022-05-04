@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Child < ApplicationRecord
-
   AVATAR_SIZE = '80x80>'
   has_many :histories, dependent: :destroy
   belongs_to :user

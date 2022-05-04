@@ -1,7 +1,7 @@
 .page-main
   .has-text-centered
     = '接種できるリスト'
-  - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), index|
+  - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), _index|
     .card
       .card-content
         .content
@@ -23,7 +23,7 @@
               = vac[:period]
   .has-text-centered
     = 'これからリスト'
-  - Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), index|
+  - Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), _index|
     - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .card
         .card-content
