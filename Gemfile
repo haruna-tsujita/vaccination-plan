@@ -33,6 +33,7 @@ gem 'jp_vaccination'
 gem 'net-smtp', require: false
 gem 'net-imap'
 gem 'net-pop'
+gem 'net-ftp'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'time_difference', github: 'napple29/time_difference', branch: 'depfu/update/group/rails-6.1.5'
