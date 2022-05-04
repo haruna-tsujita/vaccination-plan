@@ -25,6 +25,8 @@ nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
               - current_user.children.each do |child|
                 a class="navbar-item"
                   = link_to child.name.to_s, edit_child_path(child.id)
+              a class="navbar-item"
+                  = link_to '追加', new_child_path
           hr class="navbar-divider"
           div class="navbar-item"
             = link_to destroy_user_session_path,
