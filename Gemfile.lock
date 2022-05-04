@@ -98,6 +98,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.10.0)
       devise (>= 4.8.0)
+    digest (3.1.0)
     erubi (1.10.0)
     ffi (1.15.5)
     globalid (1.0.0)
@@ -143,6 +144,14 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.4.5)
+    net-imap (0.2.3)
+      digest
+      net-protocol
+      strscan
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
     net-protocol (0.1.1)
       io-wait
       timeout
@@ -268,6 +277,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    strscan (3.0.1)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
@@ -319,6 +329,8 @@ DEPENDENCIES
   listen (~> 3.3)
   minitest
   minitest-reporters
+  net-imap
+  net-pop
   net-smtp
   pg (~> 1.1)
   puma (~> 5.0)
