@@ -15,7 +15,7 @@
               = l(date.last, format: :long)
         - vacs.each_with_index do |vac, idx|
           - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
-            = image_tag vac[:child].avatar.variant(resize: '50x50^').processed.url, class: 'families_child__picture' if vac[:child].avatar.attached?
+            = image_tag vac[:child].avatar.url, class: 'families_child__picture' if vac[:child].avatar.attached?
             = vac[:child].name
           ul.schedule__items
             li.schedule__item
@@ -39,7 +39,7 @@
                 = l(date.last, format: :long)
           - vaccinations.each_with_index do |vac, idx|
             - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
-              = image_tag vac[:child].avatar.variant(resize: '50x50^').processed.url, class: 'families_child__picture' if vac[:child].avatar.attached?
+              = image_tag vac[:child].avatar.url, class: 'families_child__picture' if vac[:child].avatar.attached?
               = vac[:child].name
             ul.schedule__items
                 li.schedule__item

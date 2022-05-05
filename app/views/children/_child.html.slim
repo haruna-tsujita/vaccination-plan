@@ -1,7 +1,7 @@
 .child_infos id="#{dom_id child}"
   .child__items
     -if child.avatar.attached?
-      = image_tag child.avatar.variant(resize: '50x50^').processed.url, class: 'child__picture'
+      = image_tag child.avatar.url, class: 'child__picture'
   .child__items
       .name_age__items
         .name_age__item
