@@ -23,7 +23,7 @@ class ChildrenController < ApplicationController
     respond_to do |format|
       if @child.save
         (1..30).to_a.each { |num| History.create({ child_id: @child.id, vaccination_id: num }) }
-        format.html { redirect_to child_histories_path(@child), notice: 'Child was successfully created.' }
+        format.html { redirect_to child_histories_path(@child), notice: '家族が増えました！' }
         format.json { render :show, status: :created, location: @child }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,7 +37,7 @@ class ChildrenController < ApplicationController
 
     respond_to do |format|
       if @child.update(child_params)
-        format.html { redirect_to child_url(@child), notice: 'Child was successfully updated.' }
+        format.html { redirect_to child_histories_path(@child), notice: 'お子さんの情報を編集しました' }
         format.json { render :show, status: :ok, location: @child }
       else
         format.html { render :edit, status: :unprocessable_entity }
