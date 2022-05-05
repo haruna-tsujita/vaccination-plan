@@ -49,14 +49,14 @@
     .navbar-end
       .navbar-item.has-text-centered.footer__item
         i class="fa-solid fa-pen-to-square fa-lg"
-          br
-          .is-size-7
-            | 記録
+        br
+        .is-size-7
+          | 記録
       .navbar-item.has-text-centered.footer__item
         i class="fa-solid fa-calendar-check fa-lg"
-          br
-          .is-size-7
-            | 予定
+        br
+        .is-size-7
+          | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered.footer__item
           = link_to families_path, data: { 'turbolinks' => false } do
