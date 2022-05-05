@@ -27,7 +27,8 @@ class Toptest < ApplicationSystemTestCase
   test 'redirect to new_child_path when login and user has one child' do
     setup_alice
     visit '/'
-    assert_text "carol\n0才 3ヶ月\n2022年01月03日生まれ"
+    moon_age = Child.calc_moon_age(children(:carol).birthday, Date.current)
+    assert_text "carol\n#{moon_age}\n2022年01月03日生まれ"
     assert_no_text 'ログイン'
   end
 
