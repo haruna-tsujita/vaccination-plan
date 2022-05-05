@@ -5,7 +5,7 @@
     - flash.each do |name, msg|
       div class="notification"
         button class="delete"
-        = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+        = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
     .field
       = f.label :email
       br
