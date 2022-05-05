@@ -24,7 +24,7 @@ class Historiestest < ApplicationSystemTestCase
     visit edit_child_history_path(alice_child.id, histories(:carol_history_hib_first).id)
     fill_in '接種した日', with: Date.parse('2022-02-01')
     click_on '登録する'
-    visit child_histories_path(child_id: alice_child.id)
+    assert_text '接種日時が保存されました'
     assert_text '22/02/01'
     assert_text '❶'
   end
@@ -78,7 +78,7 @@ class Historiestest < ApplicationSystemTestCase
     visit edit_child_history_path(carol.id, histories(:carol_history_rotavirus_third).id)
     fill_in '接種した日', with: Date.current - 1.month + 1.day
     click_on '登録する'
-    assert_text 'History was successfully updated.'
+    assert_text '接種日時が保存されました'
   end
 
   test 'validation smaller than before history' do
@@ -98,7 +98,7 @@ class Historiestest < ApplicationSystemTestCase
     visit edit_child_history_path(carol.id, histories(:carol_history_rotavirus_second).id)
     fill_in '接種した日', with: Date.current - 1.month - 1.day
     click_on '登録する'
-    assert_text 'History was successfully updated.'
+    assert_text '接種日時が保存されました'
   end
 
   test 'automatically_vaccinated' do
