@@ -1,5 +1,8 @@
 .page-main
-  = notice
+  - if notice
+    .notification.is-success.is-light
+      button class="delete"
+      = notice
   = render '/children/child', child: @child
   h2.is-size-5.has-text-centered
     | ワクチンの記録
