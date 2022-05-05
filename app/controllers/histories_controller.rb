@@ -45,7 +45,7 @@ class HistoriesController < ApplicationController
     respond_to do |format|
       if @history.update(history_params)
         History.automatically_vaccinated(@history.vaccination_id, @history.child_id)
-        format.html { redirect_to child_histories_url, notice: 'History was successfully updated.' }
+        format.html { redirect_to child_histories_url, notice: '接種日時が保存されました' }
         format.json { render :show, status: :ok, location: @history }
       else
         format.html { render :edit, status: :unprocessable_entity }
