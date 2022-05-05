@@ -6,7 +6,7 @@
           li = error.full_message
 
   .has-text-left
-    = form.label :avatar, class: 'a-form-label'
+    = form.label :avatar, direct_upload: true, class: 'a-form-label'
     .js-file-input
       label.js-file-input__preview
         - if form.object.avatar.attached?

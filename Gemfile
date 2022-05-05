@@ -38,7 +38,7 @@ gem 'net-smtp'
 gem 'rails-i18n'
 gem 'slim-rails'
 gem 'time_difference', github: 'napple29/time_difference', branch: 'depfu/update/group/rails-6.1.5'
-gem 'cloudinary', require: true
+gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
 gem 'active_storage_validations'
 
