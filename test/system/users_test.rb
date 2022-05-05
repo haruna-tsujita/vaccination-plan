@@ -12,4 +12,12 @@ class Userstest < ApplicationSystemTestCase
     click_on '登録する'
     assert_text '本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。'
   end
+
+  test 'error message when login password' do
+    visit new_user_session_path
+    fill_in 'user[email]', with: users(:alice).email
+    fill_in 'user[password]', with: 'errorpass'
+    click_on 'ログイン'
+    assert_text 'メールアドレスまたはパスワードが違います。'
+  end
 end
