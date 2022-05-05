@@ -31,6 +31,7 @@ class Childrentest < ApplicationSystemTestCase
     fill_in '名前', with: 'hanako'
     fill_in '生年月日', with: Date.parse('2022-03-01')
     click_on '保存する'
+    assert_text '家族が増えました'
     assert_text 'hanako'
     assert_text '2022年03月01日'
   end
@@ -41,6 +42,7 @@ class Childrentest < ApplicationSystemTestCase
     fill_in '名前', with: '桃子'
     fill_in '生年月日', with: Date.parse('2022-03-03')
     click_on '保存する'
+    assert_text 'お子さんの情報を編集しました'
     assert_text '桃子'
     assert_text '2022年03月03日'
   end
