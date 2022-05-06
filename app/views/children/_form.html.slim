@@ -11,8 +11,7 @@
     .js-file-input.img__resize
       label.js-file-input__preview
         .has-text-centered
-          - if form.object.avatar.attached?
-            = image_tag form.object.avatar_url
+          = image_tag form.object.avatar_url
         = form.file_field :avatar
 
   div
