@@ -10,10 +10,10 @@
   .img__space.has-text-centered
     .js-file-input.img__resize
       label.js-file-input__preview
+        .has-text-centered
+          - if form.object.avatar.attached?
+            = image_tag form.object.avatar_url
         = form.file_field :avatar
-          .has-text-centered
-            - if form.object.avatar.attached?
-              = image_tag form.object.avatar_url
 
   div
     = form.label :name, style: 'display: block'
