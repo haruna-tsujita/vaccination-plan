@@ -25,9 +25,14 @@
   object-fit: cover;
 }
 
-.new-img{
+.img__resize img{
   border-radius: 50%;
   width: 80px;
   height: 80px;
   object-fit: cover;
+  text-align: center;
+}
+
+.img__space {
+  height: 120px;
 }
