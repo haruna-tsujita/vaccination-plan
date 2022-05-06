@@ -1,7 +1,6 @@
 .child_infos id="#{dom_id child}"
   .child__items
-    -if child.avatar.attached?
-      = image_tag child.avatar_url, class: 'child__picture'
+    = image_tag child.avatar_url, class: 'child__picture'
   .child__items
       .name_age__items
         .name_age__item
@@ -22,8 +21,7 @@
     .modal-content
       .box
         - current_user.children.each do |child|
-          -if child.avatar.attached?
-            = image_tag child.avatar_url, class: 'child__picture_modal'
+          = image_tag child.avatar_url, class: 'child__picture_modal'
           = link_to child.name, child_schedules_path(child)
           br
 
