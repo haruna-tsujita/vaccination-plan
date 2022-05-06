@@ -17,7 +17,11 @@ class Child < ApplicationRecord
   end
 
   def avatar_url
-    avatar.variant(resize: AVATAR_SIZE).processed if avatar.attached?
+    if avatar.attached?
+      avatar.variant(resize: AVATAR_SIZE).processed.url
+    else
+      'default.png'
+    end
   end
 
   def self.calc_moon_age(birthday, today)
