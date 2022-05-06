@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, if: :except_top_page
-  before_action :set_host_for_disk_storage
 
   def after_sign_in_path_for(resource)
     if resource.sign_in_count == 1 || current_user.children.size.zero?
@@ -16,12 +15,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(_resource)
     new_user_session_path # ログアウト後に遷移するpathを設定
-  end
-
-  def set_host_for_disk_storage
-    return unless %i[local test].include? Rails.application.config.active_storage.service
-
-    ActiveStorage::Current.host = request.base_url
   end
 
   private
