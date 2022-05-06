@@ -315,9 +315,6 @@ GEM
     time (0.2.0)
       date
     timeout (0.1.1)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -395,7 +392,6 @@ DEPENDENCIES
   slim_lint
   spring
   time_difference!
-  turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
