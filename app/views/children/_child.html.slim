@@ -24,7 +24,7 @@
         - current_user.children.each do |child|
           -if child.avatar.attached?
             = image_tag child.avatar_url, class: 'child__picture_modal'
-          = link_to child.name, child_schedules_path(child), data: { 'turbolinks' => false }
+          = link_to child.name, child_schedules_path(child)
           br
 
   button class="modal-close is-large" aria-label="close"
