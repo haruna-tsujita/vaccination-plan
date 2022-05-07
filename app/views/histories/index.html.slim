@@ -30,11 +30,13 @@
                   - vaccinated_number = ['❶', '❷', '❸', '❹']
                   li.history__item
                     - if history.date || history.vaccinated
-                      = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id)
+                      .vaccinated_num
+                        = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id)
                       .date.has-text-centered
                         = history.date&.strftime('%y/%m/%d')
                     - else
-                      = link_to default_number[count], edit_child_history_path(params[:child_id], history.id)
+                      .non_vaccinated_num
+                        = link_to default_number[count], edit_child_history_path(params[:child_id], history.id)
                   - count += 1
 
 = render 'global_nav'
