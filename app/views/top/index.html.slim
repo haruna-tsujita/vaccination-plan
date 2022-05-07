@@ -1,5 +1,37 @@
 .page-main
-  h2
-    top#index
-  = link_to User.human_attribute_name('sign_in'), new_user_session_url
-  = link_to User.human_attribute_name('sign_up'), new_user_registration_url
+  = image_tag('top/logo.png')
+  p.subtitle.is-6.has-text-centered.has-text-weight-bold
+    | お子さんの予防接種の予定を自動で計算
+
+  .buttons.is-centered
+    .button.is-danger
+      = link_to User.human_attribute_name('sign_up'), new_user_registration_url, class: 'has-text-white'
+
+  .has-text-centered.is-size-6
+    = link_to "#{User.human_attribute_name('sign_in')}はこちら", new_user_session_url, class: 'has-text-grey is-underlined'
+
+  .card
+    .card-content.has-text-centered
+      h3.title.is-5
+        | 用意するもの
+      .columns
+        .column
+          = image_tag 'top/book.jpeg', size: '50'
+          br
+          | 母子手帳
+        .column
+          = image_tag 'top/heart.jpeg', size: '50'
+          br
+          | 全て接種する気合い
+.has-text-centered.is-size-7
+  = link_to '利用規約', tos_path
+  = ' '
+  = link_to 'プライバシーポリシー', pp_path
+  = ' '
+  = link_to 'https://github.com/napple29/vaccination-plan' do
+    i class="fa-brands fa-github"
+  .content.has-text-centered.mt-5
+    i.far.fa-copyright
+    span
+      = Time.current.year
+      |  napple29
