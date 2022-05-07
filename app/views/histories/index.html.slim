@@ -9,6 +9,13 @@
     .card-content
       p.title.is-size-5.has-text-centered
         | ワクチンの記録
+      p.subtitle.is-size-6.has-text-centered.pt-4
+        | 各ワクチンの直近の期数から
+        br/
+        | 日付を記録してください
+      p.subtitle.is-size-7.has-text-centered
+        i class="fa-solid fa-check"
+        | 入力した期以前は接種済みになります
     table.table.is-striped
       tbody
         - Vaccination::VACCINATION_NAME.each do |vaccination_name|
