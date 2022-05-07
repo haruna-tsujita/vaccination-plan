@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   private
 
   def except_top_page
-    true unless controller_name == 'top' && (action_name == 'index' || 'tos' || 'pp')
+    true unless controller_name == 'top'
   end
 
   def set_active_storage_host
