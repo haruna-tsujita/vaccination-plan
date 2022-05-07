@@ -1,6 +1,6 @@
 nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
   div class="navbar-brand"
-    a class="navbar-item"
+    div class="navbar-item"
       = image_tag('header_logo.png', class: 'navbar-brand__logo-image')
 
     - if current_user
@@ -13,25 +13,28 @@ nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
     - if current_user
       div id="navbarBasicExample" class="navbar-menu"
         div class="navbar-start"
-          a class="navbar-item"
+          div class="navbar-item"
             = link_to edit_user_registration_path(current_user) do
               i class="fa-solid fa-user"
               | アカウント
 
         - if current_user.children.size >= 1
+          hr class="dropdown-divider"
           div class="navbar-item has-dropdown is-hoverable"
+            div class="navbar-item"
               i class="fa-solid fa-child-reaching"
               | 子ども
-              div class="navbar-dropdown"
-                - current_user.children.each do |child|
-                  a class="navbar-item"
-                    = link_to child.name.to_s, edit_child_path(child.id)
-                a class="navbar-item"
-                    = link_to '追加', new_child_path
-          div class="navbar-item"
-            = link_to destroy_user_session_path,
-            class: 'dropdown-item',
-            data: { confirm: 'ログアウトしますか？' },
-              method: :delete do
-              i class="fa-solid fa-right-from-bracket"
-              | ログアウト
+            div class="navbar-dropdown"
+              - current_user.children.each do |child|
+                div class="navbar-item"
+                  = link_to child.name.to_s, edit_child_path(child.id)
+              div class="navbar-item"
+                  = link_to '追加', new_child_path
+        hr class="dropdown-divider"
+        div class="navbar-item"
+          = link_to destroy_user_session_path,
+          class: 'dropdown-item',
+          data: { confirm: 'ログアウトしますか？' },
+            method: :delete do
+            i class="fa-solid fa-right-from-bracket"
+            | ログアウト
