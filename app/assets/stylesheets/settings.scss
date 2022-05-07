@@ -2,3 +2,20 @@
   object-fit: cover;
   width: 190px;
 }
+
+.navbar-text {
+  display:inline;
+}
+
+.dropdown__child :link{
+  color: gray;
+}
+
+.dropdown__child :visited {
+  color: gray;
+}
+
+.item__border {
+  border-bottom: 2px solid;
+  border-color: #f2f2f2b1;
+}
