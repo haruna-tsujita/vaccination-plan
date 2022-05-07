@@ -23,3 +23,12 @@
           = image_tag 'top/heart.jpeg', size:'50'
           br
           | 全て接種する気合い
+.has-text-centered.is-size-7
+    = link_to '利用規約', tos_path
+    = link_to 'プライバシーポリシー', pp_path
+    = link_to 'GitHub Progect', 'https://github.com/napple29/vaccination-plan'
+  .content.has-text-centered
+    i.far.fa-copyright
+    span
+      = Time.current.year
+      | napple29
