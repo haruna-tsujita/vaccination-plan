@@ -1,6 +1,6 @@
 .page-main
   = image_tag ('top/logo.png')
-  p.subtitle.is-6.has-text-centered
+  p.subtitle.is-6.has-text-centered.has-text-weight-bold
     | お子さんの予防接種の予定を自動で計算
 
   .buttons.is-centered
@@ -8,7 +8,7 @@
       = link_to User.human_attribute_name('sign_up'), new_user_registration_url, class:'has-text-white'
 
   .has-text-centered.is-size-6
-    = link_to User.human_attribute_name('sign_in') + 'はこちら', new_user_session_url, class:'has-text-grey is-7'
+    = link_to User.human_attribute_name('sign_in') + 'はこちら', new_user_session_url, class:'has-text-grey is-underlined'
 
   .card
     .card-content.has-text-centered
@@ -23,4 +23,3 @@
           = image_tag 'top/heart.jpeg', size:'50'
           br
           | 全て接種する気合い
-
