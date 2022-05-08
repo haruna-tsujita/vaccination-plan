@@ -1,36 +1,36 @@
 .page-main
   = render 'settings/header'
-  .has-text-centered
-  - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), _index|
+
+  - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), index|
+    .has-text-centered
+      = '接種できるリスト' if index.zero?
     - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
-      .has-text-centered
-        = '接種できるリスト'
-    .card
-      .card-content
-        .content
-          .title.is-5.has-text-centered
-            - if date.instance_of?(Date)
-              = l(date, format: :long)
-            - else
-              = l(date.first, format: :long)
-              = '〜'
-              br
-              = l(date.last, format: :long)
-        - vacs.each_with_index do |vac, idx|
-          - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
-            = image_tag vac[:child].avatar_url, class: 'families_child__picture'
-            = vac[:child].name
-          ul.schedule__items
-            li.is-inline-flex.pb-3
-              .pr-3
-                - if Vaccination.regular?(vac[:name])
-                  .regular__item.is-size-7
-                    | 定期
-                - else
-                  .voluntary__item.is-size-7
-                    | 任意
-              = vac[:name]
-              = vac[:period]
+      .card
+        .card-content
+          .content
+            .title.is-5.has-text-centered
+              - if date.instance_of?(Date)
+                = l(date, format: :long)
+              - else
+                = l(date.first, format: :long)
+                = '〜'
+                br
+                = l(date.last, format: :long)
+          - vacs.each_with_index do |vac, idx|
+            - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
+              = image_tag vac[:child].avatar_url, class: 'families_child__picture'
+              = vac[:child].name
+            ul.schedule__items
+              li.is-inline-flex.pb-3
+                .pr-3
+                  - if Vaccination.regular?(vac[:name])
+                    .regular__item.is-size-7
+                      | 定期
+                  - else
+                    .voluntary__item.is-size-7
+                      | 任意
+                = vac[:name]
+                = vac[:period]
   .has-text-centered
     = 'これからリスト'
   - Family.family_schedule(@children, @histories).each_with_index do |(date, vaccinations), _index|

@@ -2,40 +2,10 @@
   = render 'settings/header'
   = render '/children/child', child: @child
 
-  p
-    .has-text-centered
-    - Schedule.future_plans(@histories, @child).each do |(date, names)|
-      - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
-        = '接種できるリスト'
-        .card
-          .card-content
-            .content
-              - if date.instance_of?(Date)
-                .title.is-5.has-text-centered
-                  = l(date, format: :long)
-              - else
-                .title.is-5.has-text-centered
-                  p 小学校入学前1年間
-                .subtitle.is-7.has-text-centered
-                  = l(date.first, format: :default)
-                  = '〜'
-                  = l(date.last, format: :default)
-            ul.schedule__items
-              - names.each do |name|
-                li.is-inline-flex.pb-3
-                  .pr-3
-                    - if Vaccination.regular?(name[:name])
-                      .regular__item.is-size-7
-                        | 定期
-                    - else
-                      .voluntary__item.is-size-7
-                        | 任意
-                  - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
-                  - history = History.find_by(vaccination_id: vaccination.id, child_id: @child.id)
-                  = link_to "#{name[:name]} #{name[:period]}", edit_child_history_path(@child, history.id)
-                br/
-        - next
-
+  - Schedule.future_plans(@histories, @child).each_with_index do |(date, names), index|
+    - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+      .has-text-centered
+        = '接種できるリスト' if index.zero?
       .card
         .card-content
           .content
@@ -49,7 +19,6 @@
                 = l(date.first, format: :default)
                 = '〜'
                 = l(date.last, format: :default)
-
           ul.schedule__items
             - names.each do |name|
               li.is-inline-flex.pb-3
@@ -60,7 +29,37 @@
                   - else
                     .voluntary__item.is-size-7
                       | 任意
-                = "#{name[:name]} #{name[:period]}"
+                - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
+                - history = History.find_by(vaccination_id: vaccination.id, child_id: @child.id)
+                = link_to "#{name[:name]} #{name[:period]}", edit_child_history_path(@child, history.id)
               br/
+      - next
+
+    .card
+      .card-content
+        .content
+          - if date.instance_of?(Date)
+            .title.is-5.has-text-centered
+              = l(date, format: :long)
+          - else
+            .title.is-5.has-text-centered
+              p 小学校入学前1年間
+            .subtitle.is-7.has-text-centered
+              = l(date.first, format: :default)
+              = '〜'
+              = l(date.last, format: :default)
+
+        ul.schedule__items
+          - names.each do |name|
+            li.is-inline-flex.pb-3
+              .pr-3
+                - if Vaccination.regular?(name[:name])
+                  .regular__item.is-size-7
+                    | 定期
+                - else
+                  .voluntary__item.is-size-7
+                    | 任意
+              = "#{name[:name]} #{name[:period]}"
+            br/
 
   = render 'global_nav'
