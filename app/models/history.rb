@@ -19,17 +19,18 @@ class History < ApplicationRecord
   def bigger_than_before_history
     return if date.nil?
 
-    vaccination = Vaccination.find(vaccination_id)
+    vaccination = History.find(id).vaccination
     last_letter = vaccination.key[-1]
     return if last_letter == '1'
 
-    before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
-    before_vac_id = Vaccination.find_by(key: before_vac_key).id
-    before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
+    vaccinations = Vaccination.where(name: vaccination.name).order(:id)
+    vaccinations.each do |vac|
+      next if vac.id < vaccination.id
 
-    return if before_history.date.nil?
-
-    errors.add(:date, 'が前回の期より前の日付になっています') if before_history.date > date
+      history = History.find_by(child_id: child, vaccination_id: vac.id)
+      next if history.date.nil?
+      return errors.add(:date, 'が前回の期より前の日付になっています') if history.date > date
+    end
   end
 
   def smaller_than_after_history
