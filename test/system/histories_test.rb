@@ -40,7 +40,7 @@ class Historiestest < ApplicationSystemTestCase
     setup_alice
     bob_child = children(:dave)
     visit edit_child_history_path(bob_child.id, histories(:dave_history_hib_first).id)
-    assert_text 'Children#index'
+    assert_text '子どもの登録'
   end
 
   test 'validation history before today' do

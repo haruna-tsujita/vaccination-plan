@@ -14,15 +14,15 @@ class Childrentest < ApplicationSystemTestCase
 
   test 'after_login_visit_children_index' do
     setup
-    visit children_path
-    assert_text 'Children#index'
+    visit new_child_path
+    assert_text '子どもの登録'
   end
 
   test 'not_login_do_not_visit_children_index' do
     setup
     logout
-    visit children_path
-    assert_text 'ログイン'
+    visit new_child_path
+    assert_text 'ログインもしくはアカウント登録してください。'
   end
 
   test 'create_new_child' do
