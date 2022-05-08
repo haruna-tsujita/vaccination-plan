@@ -20,7 +20,14 @@
       tbody
         - Vaccination::VACCINATION_NAME.each do |vaccination_name|
           tr
-            th.has-text-centered
+            th.has-text-centered.table__items
+              - if Vaccination.regular?(vaccination_name)
+                .regular__item
+                  p.is-size-7 定期
+              - else
+                .voluntary__item
+                  p.is-size-7 任意
+              .pr-4
               = vaccination_name
           tr
             td
