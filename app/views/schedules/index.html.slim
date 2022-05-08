@@ -4,9 +4,9 @@
 
   p
     .has-text-centered
-      = '接種できるリスト'
-    - Schedule.future_plans(@histories, @child).each_with_index do |(date, names), _idx|
+    - Schedule.future_plans(@histories, @child).each do |(date, names)|
       - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+        = '接種できるリスト'
         .card
           .card-content
             .content

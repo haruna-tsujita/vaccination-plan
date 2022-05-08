@@ -1,8 +1,10 @@
 .page-main
   = render 'settings/header'
   .has-text-centered
-    = '接種できるリスト'
   - Family.vaccination_date_before_today(@children, @histories).each_with_index do |(date, vacs), _index|
+    - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+      .has-text-centered
+        = '接種できるリスト'
     .card
       .card-content
         .content
