@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 class ChildrenController < ApplicationController
-  before_action :set_child, only: %i[show edit update]
-
-  def index; end
-
-  def show; end
+  before_action :set_child, only: %i[edit update]
 
   def new
     @child = Child.new
