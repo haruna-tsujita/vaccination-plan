@@ -5,22 +5,24 @@
         - child.errors.each do |error|
           li = error.full_message
 
-  .has-text-left
-    = form.label :avatar, direct_upload: true, class: 'a-form-label'
-  .img__space.has-text-centered
-    .js-file-input.img__resize
-      label.js-file-input__preview
-        .has-text-centered
-          = image_tag form.object.avatar_url
-        = form.file_field :avatar
+  .card
+    .card-content
+      .has-text-left
+        = form.label :avatar, direct_upload: true, class: 'a-form-label'
+      .img__space.has-text-centered
+        .js-file-input.img__resize
+          label.js-file-input__preview
+            .has-text-centered
+              = image_tag form.object.avatar_url
+            = form.file_field :avatar
 
-  div
-    = form.label :name, style: 'display: block'
-    = form.text_field :name, class: 'input'
-  div
-    = form.label :birthday, style: 'display: block'
-    = form.date_field :birthday, class: 'input'
+      div
+        = form.label :name, style: 'display: block'
+        = form.text_field :name, class: 'input'
+      div
+        = form.label :birthday, style: 'display: block'
+        = form.date_field :birthday, class: 'input'
 
-  .has-text-centered
-    button class="button" type="submit"
-      | 保存する
+      .has-text-centered
+        button class="button" type="submit"
+          | 保存する
