@@ -1,33 +1,36 @@
 .page-main
   = render 'settings/header'
-  h2.is-size-4.has-text-centered
-    | アカウント編集
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = render 'devise/shared/error_messages', resource: resource
-    .field
-      = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
-    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      div
-        = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
-    .field
-      = f.label :password
-      - if @minimum_password_length
-        = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-    = f.password_field :password, autocomplete: 'new-password', class: 'input', placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
-    .field
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input', placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
-    .field
-      = f.label :current_password
-      | (
-      = t('.we_need_your_current_password_to_confirm_your_changes')
-      | )
-      = f.password_field :current_password, autocomplete: 'current-password', class: 'input'
+  .pt-4
+    .card
+      .card-content
+        h2.is-size-4.has-text-centered
+          | アカウント編集
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = render 'devise/shared/error_messages', resource: resource
+          .field
+            = f.label :email
+            = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            div
+              = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
+          .field
+            = f.label :password
+            - if @minimum_password_length
+              = t('devise.shared.minimum_password_length', count: @minimum_password_length)
+          = f.password_field :password, autocomplete: 'new-password', class: 'input', placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
+          .field
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input', placeholder: t('.leave_blank_if_you_don_t_want_to_change_it')
+          .field
+            = f.label :current_password
+            | (
+            = t('.we_need_your_current_password_to_confirm_your_changes')
+            | )
+            = f.password_field :current_password, autocomplete: 'current-password', class: 'input'
 
-    .has-text-centered
-      button class="button" type="submit"
-        = t('.update')
+          .has-text-centered
+            button class="button" type="submit"
+              = t('.update')
 
   p
     = link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete

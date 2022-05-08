@@ -1,25 +1,28 @@
 .page-main
   = render 'settings/header'
-  h2.is-size-4.has-text-centered
-    = t('.sign_in')
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    - flash.each do |name, msg|
-      div class="notification"
-        button class="delete"
-        = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
-    .field
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
-    .field
-      = f.label :password
-      br
-      = f.password_field :password, autocomplete: 'current-password', class: 'input'
-    - if devise_mapping.rememberable?
-      .field.has-text-right
-        = f.check_box :remember_me
-        = f.label :remember_me
-    .has-text-centered
-      button class="button" type="submit"
-        = t('.sign_in')
+  .pt-4
+    .card
+      .card-content
+        h2.is-size-4.has-text-centered
+          = t('.sign_in')
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          - flash.each do |name, msg|
+            div class="notification"
+              button class="delete"
+              = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
+          .field
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
+          .field
+            = f.label :password
+            br
+            = f.password_field :password, autocomplete: 'current-password', class: 'input'
+          - if devise_mapping.rememberable?
+            .field.has-text-right
+              = f.check_box :remember_me
+              = f.label :remember_me
+          .has-text-centered
+            button class="button" type="submit"
+              = t('.sign_in')
   = render 'devise/shared/links'

@@ -1,14 +1,17 @@
 .page-main
   = render 'settings/header'
-  h2.is-size-4.has-text-centered
-    = t('.resend_confirmation_instructions')
-  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-    = render 'devise/shared/error_messages', resource: resource
-    .field
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'input'
-    .has-text-centered
-      button class="button" type="submit"
-        = t('.resend_mail')
+  .pt-4
+    .card
+      .card-content
+        h2.is-size-4.has-text-centered
+          = t('.resend_confirmation_instructions')
+        = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+          = render 'devise/shared/error_messages', resource: resource
+          .field
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'input'
+          .has-text-centered
+            button class="button" type="submit"
+              = t('.resend_mail')
   = render 'devise/shared/links'
