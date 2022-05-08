@@ -1,5 +1,5 @@
 - if @children
-  nav class="navbar is-fixed-bottom is-warning" role="navigation"
+  nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered
         = link_to child_histories_path(@children[0]) do
@@ -47,18 +47,18 @@
 - else
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
-      .navbar-item.has-text-centered.footer__item
+      .navbar-item.has-text-centered
         i class="fa-solid fa-pen-to-square fa-lg"
         br
         .is-size-7
           | 記録
-      .navbar-item.has-text-centered.footer__item
+      .navbar-item.has-text-centered
         i class="fa-solid fa-calendar-check fa-lg"
         br
         .is-size-7
           | 予定
       - if current_user.children.size > 1
-        .navbar-item.has-text-centered.footer__item
+        .navbar-item.has-text-centered
           = link_to families_path do
             i class="fa-solid fa-user-group fa-lg"
             br
