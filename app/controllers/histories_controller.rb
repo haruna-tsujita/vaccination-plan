@@ -63,6 +63,6 @@ class HistoriesController < ApplicationController
   def show_page_own_children_only
     return if current_user == Child.find(params[:child_id]).user
 
-    redirect_to children_path
+    redirect_to new_child_path
   end
 end
