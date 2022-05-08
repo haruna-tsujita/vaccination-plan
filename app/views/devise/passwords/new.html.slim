@@ -1,14 +1,17 @@
 .page-main
   = render 'settings/header'
-  h2.is-size-4.has-text-centered
-    = t('.forgot_your_password')
-  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-    = render 'devise/shared/error_messages', resource: resource
-    .field
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
-    .has-text-centered
-      button class="button" type="submit"
-        = t('.send_me_reset_password_instructions')
+  .pt-4
+    .card
+      .card-content
+        h2.is-size-4.has-text-centered
+          = t('.forgot_your_password')
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = render 'devise/shared/error_messages', resource: resource
+          .field
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
+          .has-text-centered
+            button class="button" type="submit"
+              = t('.send_me_reset_password_instructions')
   = render 'devise/shared/links'
