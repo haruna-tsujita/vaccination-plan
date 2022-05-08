@@ -50,7 +50,7 @@ ja:
     - 土曜日
     formats:
       default: "%Y/%m/%d"
-      long: "%Y年%m月%d日(%a)"
+      long: "%Y年%m月%d日（%a）"
       short: "%m/%d"
     month_names:
     -
