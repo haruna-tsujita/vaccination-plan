@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, path: ''
   resources :families, only: [:index]
   resources :settings, only: [:index]
-  resources :children do
-    resources :histories
+  resources :children , only: %i[edit new create update] do
+    resources :histories, only: %i[edit update index]
     resources :schedules, only: [:index]
   end
   root 'top#index'
