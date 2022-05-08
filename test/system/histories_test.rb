@@ -71,6 +71,16 @@ class Historiestest < ApplicationSystemTestCase
     assert_text '接種日時が前回の期より前の日付になっています'
   end
 
+  test 'validation bigger than before before history' do
+    setup_alice
+    carol = children(:carol)
+    histories(:carol_history_rotavirus_first).update(date: Date.current - 2.months)
+    visit edit_child_history_path(carol.id, histories(:carol_history_rotavirus_third).id)
+    fill_in '接種日', with: Date.current - 2.months - 1.day
+    click_on '登録する'
+    assert_text '接種日時が前回の期より前の日付になっています'
+  end
+
   test 'validation not update bigger than before history' do
     setup_alice
     carol = children(:carol)
@@ -91,7 +101,17 @@ class Historiestest < ApplicationSystemTestCase
     assert_text '接種日時が次回の期より後の日付になっています'
   end
 
-  test 'validation not update smaller than before history' do
+  test 'validation smaller than before before history' do
+    setup_alice
+    carol = children(:carol)
+    histories(:carol_history_hib_force).update(date: Date.current - 1.month)
+    visit edit_child_history_path(carol.id, histories(:carol_history_hib_first).id)
+    fill_in '接種日', with: Date.current - 1.month + 1.day
+    click_on '登録する'
+    assert_text '接種日時が次回の期より後の日付になっています'
+  end
+
+  test 'validation update smaller than before history' do
     setup_alice
     carol = children(:carol)
     histories(:carol_history_rotavirus_third).update(date: Date.current - 1.month)
