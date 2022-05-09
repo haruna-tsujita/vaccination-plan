@@ -18,8 +18,8 @@ class History < ApplicationRecord
 
   def bigger_than_before_history
     return if date.nil?
-
-    vaccination = History.find(id).vaccination
+    # binding.ir
+    vaccination = Vaccination.find(vaccination_id)
     last_letter = vaccination.key[-1]
     return if last_letter == '1'
 
@@ -28,6 +28,7 @@ class History < ApplicationRecord
       next unless vac.id < vaccination.id
 
       history = History.find_by(child_id: child, vaccination_id: vac.id)
+      next unless history
       next if history.date.nil?
 
       return errors.add(:date, 'が前回の期より前の日付になっています') if history.date >= date
@@ -46,6 +47,7 @@ class History < ApplicationRecord
       next unless vac.id > vaccination.id
 
       history = History.find_by(child_id: child, vaccination_id: vac.id)
+      next unless history
       next if history.date.nil?
       return errors.add(:date, 'が次回の期より後の日付になっています') if history.date <= date
     end
