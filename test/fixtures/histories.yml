@@ -67,12 +67,12 @@ dave_history_hib_fourth:
 dave_history_rotavirus_first:
   child: dave
   date: null
-  vaccinated: null
+  vaccinated: true
   vaccination: rotavirus_1
 
 dave_history_rotavirus_second:
   child: dave
-  date: Date.current - 2.months
+  date: Date.parse('2021-10-21')
   vaccinated: null
   vaccination: rotavirus_2
 
