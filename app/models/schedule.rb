@@ -10,7 +10,7 @@ class Schedule < ApplicationRecord
       combined_name_and_date = sort_by_date_vaccination_days.each_with_object({}) do |day, ret|
         ret[day[:vaccinations]] = day[:date]
       end
-      combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value { |ary| ary.sort_by { |hash| hash[:name] } }
+      combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value { |ary| ary.sort_by! { |hash| hash[:name] } }
     end
 
     private
@@ -38,7 +38,9 @@ class Schedule < ApplicationRecord
       if before_history.nil? || (before_history.date.nil? && before_history.vaccinated.nil?)
         calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
       else
-        calc_date(vaccination: vaccination, date: before_history.date, birthday: child.birthday)
+        next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime('%Y-%m-%d'))[:date]
+        next_day.instance_of?(String) ? pre_school_year(child.birthday) : next_day
+
       end
     end
 

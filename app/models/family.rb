@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Family
-  def self.family_schedule(_children, histories)
+  def self.family_schedule(histories)
     all_histories = histories.map do |child_histories|
       child = child_histories[0].child
       Schedule.future_plans(child_histories, child)
@@ -12,15 +12,15 @@ class Family
       [Date, String].include?(date.class) ? date : date.first
     end.to_h
     sort_plan.each_value do |vaccinations|
-      vaccinations.sort_by do |vaccination|
+      vaccinations.sort_by! do |vaccination|
         vaccination[:child]
         vaccination[:name]
       end
     end.to_h
   end
 
-  def self.vaccination_date_before_today(children, histories)
-    Family.family_schedule(children, histories).select do |date, vaccination|
+  def self.vaccination_date_before_today(histories)
+    Family.family_schedule(histories).select do |date, vaccination|
       { date => vaccination } if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
     end
   end
