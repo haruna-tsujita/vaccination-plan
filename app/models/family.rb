@@ -12,7 +12,7 @@ class Family
       [Date, String].include?(date.class) ? date : date.first
     end.to_h
     sort_plan.each_value do |vaccinations|
-      vaccinations.sort_by do |vaccination|
+      vaccinations.sort_by! do |vaccination|
         vaccination[:child]
         vaccination[:name]
       end
