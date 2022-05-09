@@ -18,7 +18,6 @@ class ChildrenController < ApplicationController
 
     respond_to do |format|
       if @child.save
-        (1..30).to_a.each { |num| History.create({ child_id: @child.id, vaccination_id: num }) }
         format.html { redirect_to child_histories_path(@child), notice: '家族が増えました！' }
         format.json { render :show, status: :created, location: @child }
       else
