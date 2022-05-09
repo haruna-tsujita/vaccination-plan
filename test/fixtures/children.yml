@@ -5,10 +5,10 @@ carol:
 
 dave:
   name: dave
-  birthday: Date.parse('2021-07-28')
+  birthday: Date.parse('2021-07-21')
   user: bob
 
 frank:
   name: frank
-  birthday: Date.parse('2020-01-28')
+  birthday: Date.parse('2019-09-10')
   user: bob
