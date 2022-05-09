@@ -18,7 +18,7 @@ class History < ApplicationRecord
 
   def bigger_than_before_history
     return if date.nil?
-    # binding.ir
+
     vaccination = Vaccination.find(vaccination_id)
     last_letter = vaccination.key[-1]
     return if last_letter == '1'
@@ -58,11 +58,15 @@ class History < ApplicationRecord
     return if vaccination.key[-1] == '1'
 
     vaccinations = Vaccination.where(name: vaccination.name)
-    the_vaccination_histories = vaccinations.collect do |vac|
-      History.find_by(vaccination_id: vac.id, child_id: child_id) if vac.id < vaccination_id
-    end
-    the_vaccination_histories.compact.each do |history|
-      history.update(vaccinated: true) unless History.find_by(id: history.id, child_id: child_id).date
+
+    vaccinations.each do |vac|
+      next unless vac.id < vaccination_id
+
+      history = History.find_by(vaccination_id: vac.id, child_id: child_id)
+      if history.nil?
+        history = History.new
+        history.update(vaccination_id: vac.id, vaccinated: true, child_id: child_id)
+      end
     end
   end
 end
