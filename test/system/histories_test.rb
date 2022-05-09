@@ -104,7 +104,7 @@ class Historiestest < ApplicationSystemTestCase
   test 'validation smaller than before before history' do
     setup_alice
     carol = children(:carol)
-    histories(:carol_history_hib_force).update(date: Date.current - 1.month)
+    histories(:carol_history_hib_fourth).update(date: Date.current - 1.month)
     visit edit_child_history_path(carol.id, histories(:carol_history_hib_first).id)
     fill_in '接種日', with: Date.current - 1.month + 1.day
     click_on '登録する'
