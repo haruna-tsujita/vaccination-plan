@@ -58,9 +58,8 @@ class History < ApplicationRecord
     return if vaccination.key[-1] == '1'
 
     vaccinations = Vaccination.where(name: vaccination.name)
-
     vaccinations.each do |vac|
-      next unless vac.id < vaccination_id
+      next unless vac.key < vaccination.key
 
       history = History.find_by(vaccination_id: vac.id, child_id: child_id)
       if history.nil?
