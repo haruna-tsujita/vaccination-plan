@@ -18,6 +18,30 @@ class Historiestest < ApplicationSystemTestCase
     login_as(@bob, scope: :user)
   end
 
+  test 'create history when user logged in' do
+    setup_alice
+    alice_child = children(:carol)
+    visit new_child_history_path(alice_child.id, vaccination_id: vaccinations(:BCG_1))
+    fill_in '接種日', with: Date.parse('2022-02-01')
+    click_on '登録する'
+    assert_text '接種日時が保存されました'
+    assert_text '❶'
+  end
+
+  test 'not create history when user logged in' do
+    setup_alice
+    alice_child = children(:carol)
+    visit new_child_history_path(alice_child.id, vaccination_id: vaccinations(:BCG_1))
+    'ログインもしくはアカウント登録してください。'
+  end
+
+  test 'not create any child other than their own' do
+    setup_alice
+    bob_child = children(:dave)
+    visit new_child_history_path(bob_child.id, vaccination_id: vaccinations(:MR_1))
+    assert_text '子どもの登録'
+  end
+
   test 'edit history when user logged in' do
     setup_alice
     alice_child = children(:carol)
