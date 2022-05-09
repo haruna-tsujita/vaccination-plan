@@ -38,9 +38,9 @@ class Schedule < ApplicationRecord
       if before_history.nil? || (before_history.date.nil? && before_history.vaccinated.nil?)
         calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
       else
-        next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime("%Y-%m-%d"))[:date]
-        next_day.class == String ? pre_school_year(child.birthday) : next_day
-        
+        next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime('%Y-%m-%d'))[:date]
+        next_day.instance_of?(String) ? pre_school_year(child.birthday) : next_day
+
       end
     end
 
