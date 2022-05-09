@@ -17,41 +17,35 @@
         i class="fa-solid fa-check"
         | 入力した期以前は接種済みになります
     table.table.is-striped
-      tbody
-        - @vaccinations.each_with_index do |vaccination, idx|
-          tr
-            - if @vaccinations[idx].name != @vaccinations[idx - 1].name
-              - count = 0
-              th.has-text-centered.table__items
-                - if Vaccination.regular?(vaccination.name)
-                  .regular__item
-                    p.is-size-7 定期
-                - else
-                  .voluntary__item
-                    p.is-size-7 任意
-                .pr-4
-                = vaccination.name
-            - else
+      - count = 0
+      - @vaccinations.each_with_index do |vaccination, idx|
+        tr
+          - if @vaccinations[idx].name != @vaccinations[idx - 1].name
+            - count = 0
+            th.has-text-centered.table__items
+              - if Vaccination.regular?(vaccination.name)
+                .regular__item
+                  p.is-size-7 定期
+              - else
+                .voluntary__item
+                  p.is-size-7 任意
+              .pr-4
               = vaccination.name
-              = vaccination.period
-              - count =+ 1
-              = count
-          tr
-            td
-              ul.history__items
+        tr
+          td
+            ul.history__items
+              li.history__item
                 - default_number = ['①', '②', '③', '④']
                 - vaccinated_number = ['❶', '❷', '❸', '❹']
-                li.history__item
-                  - history = History.find_by(vaccination_id: vaccination.id, child_id: @child)
-                  - if history && history&.date || history&.vaccinated
-                    .vaccinated_num
-                      = count
-                      = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id, vaccination_id: vaccination.id)
-                    .date.has-text-centered
-                      = vaccination.history.date&.strftime('%y/%m/%d')
-                  - else
-                    .non_vaccinated_num
-                      = count
-                      = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vaccination.id)
+                - history = History.find_by(vaccination_id: vaccination.id, child_id: @child)
+                - if history && history&.date || history&.vaccinated
+                  .vaccinated_num
+                    = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id, vaccination_id: vaccination.id)
+                  .date.has-text-centered
+                    = vaccination.history.date&.strftime('%y/%m/%d')
+                - else
+                  .non_vaccinated_num
+                    = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vaccination.id)
+                - count += 1
 
   = render 'global_nav'
