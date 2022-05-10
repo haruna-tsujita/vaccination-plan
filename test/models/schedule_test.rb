@@ -6,14 +6,18 @@ class ScheduleTest < ActiveSupport::TestCase
   test 'future_plans when no vaccinated history' do
     carol = children(:carol)
     vaccinations = Vaccination.all.order(:id)
-    expected = { Date.parse('2022-03-03') => [{ name: 'ヒブ', period: '第1期', child: carol }, { name: 'ロタウイルス', period: '1回目', child: carol }, { name: '小児用肺炎球菌', period: '1回目', child: carol }, { name: 'Ｂ型肝炎', period: '1回目', child: carol }],
-                 Date.parse('2022-04-03') => [{ name: 'ヒブ', period: '第2期', child: carol }, { name: 'ロタウイルス', period: '2回目', child: carol }, { name: '小児用肺炎球菌', period: '2回目', child: carol },
+    expected = { Date.parse('2022-03-03') => [{ name: 'ヒブ', period: '第1期', child: carol }, { name: 'ロタウイルス', period: '1回目', child: carol },
+                                              { name: '小児用肺炎球菌', period: '1回目', child: carol }, { name: 'Ｂ型肝炎', period: '1回目', child: carol }],
+                 Date.parse('2022-04-03') => [{ name: 'ヒブ', period: '第2期', child: carol }, { name: 'ロタウイルス', period: '2回目', child: carol },
+                                              { name: '小児用肺炎球菌', period: '2回目', child: carol },
                                               { name: '４種混合', period: '1回目', child: carol }, { name: 'Ｂ型肝炎', period: '2回目', child: carol }],
-                 Date.parse('2022-05-03') => [{ name: 'ヒブ', period: '第3期', child: carol }, { name: 'ロタウイルス', period: '3回目', child: carol }, { name: '小児用肺炎球菌', period: '3回目', child: carol },
+                 Date.parse('2022-05-03') => [{ name: 'ヒブ', period: '第3期', child: carol }, { name: 'ロタウイルス', period: '3回目', child: carol },
+                                              { name: '小児用肺炎球菌', period: '3回目', child: carol },
                                               { name: '４種混合', period: '2回目', child: carol }],
                  Date.parse('2022-06-03') => [{ name: '４種混合', period: '3回目', child: carol }, { name: 'ＢＣＧ', period: 'nil', child: carol }],
                  Date.parse('2022-08-03') => [{ name: 'Ｂ型肝炎', period: '3回目', child: carol }],
-                 Date.parse('2023-01-03') => [{ name: 'おたふくかぜ', period: '1回目', child: carol }, { name: 'ヒブ', period: '第4期', child: carol }, { name: '小児用肺炎球菌', period: '4回目', child: carol },
+                 Date.parse('2023-01-03') => [{ name: 'おたふくかぜ', period: '1回目', child: carol }, { name: 'ヒブ', period: '第4期', child: carol },
+                                              { name: '小児用肺炎球菌', period: '4回目', child: carol },
                                               { name: '水痘', period: '1回目', child: carol }, { name: '麻しん・風しん混合', period: '第1期', child: carol }],
                  Date.parse('2023-06-03') => [{ name: '４種混合', period: '4回目', child: carol }],
                  Date.parse('2023-07-03') => [{ name: '水痘', period: '2回目', child: carol }],
@@ -30,7 +34,8 @@ class ScheduleTest < ActiveSupport::TestCase
   test 'future_plans when vaccinated history' do
     dave = children(:dave)
     vaccinations = Vaccination.all.order(:id)
-    expected = { Date.parse('2021-09-21') => [{ name: 'ヒブ', period: '第1期', child: dave }, { name: '小児用肺炎球菌', period: '1回目', child: dave }, { name: 'Ｂ型肝炎', period: '1回目', child: dave }],
+    expected = { Date.parse('2021-09-21') => [{ name: 'ヒブ', period: '第1期', child: dave }, { name: '小児用肺炎球菌', period: '1回目', child: dave },
+                                              { name: 'Ｂ型肝炎', period: '1回目', child: dave }],
                  Date.parse('2021-10-21') => [{ name: 'ヒブ', period: '第2期', child: dave }, { name: '小児用肺炎球菌', period: '2回目', child: dave },
                                               { name: '４種混合', period: '1回目', child: dave }, { name: 'Ｂ型肝炎', period: '2回目', child: dave }],
                  Date.parse('2021-11-18') => [{ name: 'ロタウイルス', period: '3回目', child: dave }],
@@ -38,7 +43,8 @@ class ScheduleTest < ActiveSupport::TestCase
                                               { name: '４種混合', period: '2回目', child: dave }],
                  Date.parse('2021-12-21') => [{ name: '４種混合', period: '3回目', child: dave }, { name: 'ＢＣＧ', period: 'nil', child: dave }],
                  Date.parse('2022-02-21') => [{ name: 'Ｂ型肝炎', period: '3回目', child: dave }],
-                 Date.parse('2022-07-21') => [{ name: 'おたふくかぜ', period: '1回目', child: dave }, { name: 'ヒブ', period: '第4期', child: dave }, { name: '小児用肺炎球菌', period: '4回目', child: dave },
+                 Date.parse('2022-07-21') => [{ name: 'おたふくかぜ', period: '1回目', child: dave }, { name: 'ヒブ', period: '第4期', child: dave },
+                                              { name: '小児用肺炎球菌', period: '4回目', child: dave },
                                               { name: '水痘', period: '1回目', child: dave }, { name: '麻しん・風しん混合', period: '第1期', child: dave }],
                  Date.parse('2022-12-21') => [{ name: '４種混合', period: '4回目', child: dave }],
                  Date.parse('2023-01-21') => [{ name: '水痘', period: '2回目', child: dave }],
@@ -56,7 +62,7 @@ class ScheduleTest < ActiveSupport::TestCase
     dave = children(:dave)
     vaccinations = Vaccination.all.order(:id)
 
-    hib_second = vaccinations(:'hib_2')
+    hib_second = vaccinations(:"#{hib_2}")
     history = History.new(child: dave, vaccination: hib_second, date: Date.parse('2021-10-22'))
     history.save
     History.automatically_vaccinated(hib_second.id, dave.id)
@@ -69,7 +75,8 @@ class ScheduleTest < ActiveSupport::TestCase
                                               { name: '４種混合', period: '2回目', child: dave }],
                  Date.parse('2021-12-21') => [{ name: '４種混合', period: '3回目', child: dave }, { name: 'ＢＣＧ', period: 'nil', child: dave }],
                  Date.parse('2022-02-21') => [{ name: 'Ｂ型肝炎', period: '3回目', child: dave }],
-                 Date.parse('2022-07-21') => [{ name: 'おたふくかぜ', period: '1回目', child: dave }, { name: 'ヒブ', period: '第4期', child: dave }, { name: '小児用肺炎球菌', period: '4回目', child: dave },
+                 Date.parse('2022-07-21') => [{ name: 'おたふくかぜ', period: '1回目', child: dave }, { name: 'ヒブ', period: '第4期', child: dave },
+                                              { name: '小児用肺炎球菌', period: '4回目', child: dave },
                                               { name: '水痘', period: '1回目', child: dave }, { name: '麻しん・風しん混合', period: '第1期', child: dave }],
                  Date.parse('2022-12-21') => [{ name: '４種混合', period: '4回目', child: dave }],
                  Date.parse('2023-01-21') => [{ name: '水痘', period: '2回目', child: dave }],
