@@ -131,7 +131,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jp_vaccination (1.0.0)
+    jp_vaccination (1.1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.8.1)
@@ -362,7 +362,7 @@ DEPENDENCIES
   html2slim
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  jp_vaccination (= 1.0.0)
+  jp_vaccination (= 1.1.0)
   letter_opener_web
   listen (~> 3.3)
   minitest
