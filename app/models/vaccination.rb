@@ -9,9 +9,4 @@ class Vaccination < ApplicationRecord
     key = Vaccination.find_by(name: vaccination_name).key
     JpVaccination.find(key).regular
   end
-
-  def self.vaccination_formal_name(history)
-    vaccination = Vaccination.find(history.vaccination_id)
-    "#{vaccination.name} #{vaccination.period}"
-  end
 end

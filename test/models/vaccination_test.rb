@@ -14,9 +14,4 @@ class VaccinationTest < ActiveSupport::TestCase
     not_regular_vaccination = vaccinations(:"#{vaccination}").name # rubocopに指摘されるので
     assert_not Vaccination.regular?(not_regular_vaccination)
   end
-
-  test 'output formal_name' do
-    history = histories(:dave_history_chickenpox_second)
-    assert_equal '水痘 2回目', Vaccination.vaccination_formal_name(history)
-  end
 end
