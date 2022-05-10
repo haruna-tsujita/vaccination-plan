@@ -3,6 +3,6 @@
 class FamiliesController < ApplicationController
   def index
     @children = current_user.children
-    @histories = @children.map(&:histories)
+    @vaccinations = Vaccination.all.order(:id)
   end
 end

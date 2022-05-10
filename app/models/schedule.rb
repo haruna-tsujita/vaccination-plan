@@ -17,7 +17,6 @@ class Schedule < ApplicationRecord
 
     def new_schedules(vaccinations, child)
       vaccinations.map do |vaccination|
-
         next if History.find_by(vaccination_id: vaccination.id, child_id: child)
 
         last_letter = vaccination.key[-1]
@@ -32,7 +31,6 @@ class Schedule < ApplicationRecord
                end
         { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: date }
       end.compact
-
     end
 
     def schedules(vaccinations, child)
@@ -58,9 +56,8 @@ class Schedule < ApplicationRecord
       if before_history.nil? || (before_history.date.nil? && before_history.vaccinated.nil?)
         calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
       else
-        next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime('%Y-%m-%d'))[:date]
+        next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime('%Y-%m-%d'), child.birthday.strftime('%Y-%m-%d'))[:date]
         next_day.instance_of?(String) ? pre_school_year(child.birthday) : next_day
-
       end
     end
 
