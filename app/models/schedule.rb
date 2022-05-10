@@ -2,9 +2,9 @@
 
 class Schedule < ApplicationRecord
   class << self
-    def future_plans(histories, child)
+    def future_plans(vaccinations, child)
       sort_by_date_vaccination_days =
-        schedules(histories, child).sort_by do |day|
+        new_schedules(vaccinations, child).sort_by do |day|
           [Date, String].include?(day[:date].class) ? day[:date] : day[:date].first
         end
       combined_name_and_date = sort_by_date_vaccination_days.each_with_object({}) do |day, ret|
@@ -15,11 +15,31 @@ class Schedule < ApplicationRecord
 
     private
 
-    def schedules(histories, child)
-      histories.map do |history|
-        next if history.vaccinated || history.date
+    def new_schedules(vaccinations, child)
+      vaccinations.map do |vaccination|
 
-        vaccination = Vaccination.find(history.vaccination_id)
+        next if History.find_by(vaccination_id: vaccination.id, child_id: child)
+
+        last_letter = vaccination.key[-1]
+        date = case last_letter
+               when '1'
+                 calc_date(vaccination: vaccination, date: child.birthday, birthday: child.birthday)
+               else
+                 before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
+                 before_vac_id = Vaccination.find_by(key: before_vac_key).id
+                 before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
+                 calc_for_each_vaccinated_status(before_history: before_history, vaccination: vaccination, child: child)
+               end
+        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: date }
+      end.compact
+
+    end
+
+    def schedules(vaccinations, child)
+      vaccinations.map do |vaccination|
+        next if vaccination.history && (vaccination.history.vaccinated || vaccination.history.date)
+
+        vaccination = Vaccination.find(vaccination.history.vaccination_id)
         last_letter = vaccination.key[-1]
         date = case last_letter
                when '1'

@@ -2,7 +2,7 @@
   = render 'settings/header'
   = render '/children/child', child: @child
 
-  - Schedule.future_plans(@histories, @child).each_with_index do |(date, names), index|
+  - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names), index|
     - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .has-text-centered
         = '接種できるリスト' if index.zero?
@@ -30,8 +30,7 @@
                     .voluntary__item.is-size-7
                       | 任意
                 - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
-                - history = History.find_by(vaccination_id: vaccination.id, child_id: @child.id)
-                = link_to "#{name[:name]} #{name[:period]}", edit_child_history_path(@child, history.id)
+                = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
               br/
       - next
 
