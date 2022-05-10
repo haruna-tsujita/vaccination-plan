@@ -12,3 +12,8 @@ frank:
   name: frank
   birthday: Date.parse('2019-09-10')
   user: bob
+
+eve:
+  name: eve
+  birthday: Date.parse('2020-02-29')
+  user: alice
