@@ -24,22 +24,29 @@ class Toptest < ApplicationSystemTestCase
     login_as(@bob, scope: :user)
   end
 
-  test 'redirect to new_child_path when login and user has one child' do
-    setup_alice
+  def setup_ivan
+    Warden.test_mode!
+    @ivan = users(:ivan)
+    login_as(@ivan, scope: :user)
+  end
+
+  test 'redirect to histories_path when login and user has one child' do
+    setup_ellen
     visit '/'
-    moon_age = Child.calc_moon_age(children(:carol).birthday, Date.current)
-    assert_text "carol\n#{moon_age}\n2022年01月03日生まれ"
+    moon_age = Child.calc_moon_age(children(:issac).birthday, Date.current)
+    assert_text "issac\n#{moon_age}\n2018年10月29日生まれ"
+    assert_text 'ワクチンの記録'
     assert_no_text 'ログイン'
   end
 
   test 'redirect to new_child_path when login and user has no child' do
-    setup_ellen
+    setup_ivan
     visit '/'
     assert_text '子どもの登録'
     assert_no_text 'ログイン'
   end
 
-  test 'redirect to new_child_path when login and user has many child' do
+  test 'redirect to families_path when login and user has many child' do
     setup_bob
     visit '/'
     assert_text '接種できるリスト'
