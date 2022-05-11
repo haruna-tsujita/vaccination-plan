@@ -1,6 +1,6 @@
-.page-main
+header
   = render 'settings/header'
-
+.page-main
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
     .has-text-centered
       = '接種できるリスト' if index.zero?

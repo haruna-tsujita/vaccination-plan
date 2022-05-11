@@ -1,6 +1,6 @@
 - if resource.errors.any?
   #error_explanation
-    div class="notification"
+    div class="notification is-danger is-light"
       button class="delete"
       ul
         - resource.errors.full_messages.each do |message|

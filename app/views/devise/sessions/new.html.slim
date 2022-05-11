@@ -1,15 +1,16 @@
-.page-main
+header
   = render 'settings/header'
+.page-main
+  - flash.each do |name, msg|
+    div class="notification is-danger is-light"
+      button class="delete"
+      = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
   .pt-4
     .card
       .card-content
         h2.is-size-4.has-text-centered
           = t('.sign_in')
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          - flash.each do |name, msg|
-            div class="notification"
-              button class="delete"
-              = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
           .field
             = f.label :email
             br
