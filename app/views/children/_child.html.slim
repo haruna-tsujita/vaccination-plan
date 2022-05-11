@@ -20,10 +20,12 @@
       .modal-background
 
       .modal-content
-        .box
-          - current_user.children.each do |child|
-            = image_tag child.avatar_url, class: 'child__picture_modal'
-            = link_to child.name, child_schedules_path(child)
-            br
+        .box.modal__items
+          .modal__item
+            .ul
+              - current_user.children.each do |child|
+                .li
+                  = image_tag child.avatar_url, class: 'child__picture_modal'
+                  = link_to child.name, child_schedules_path(child)
 
     button class="modal-close is-large" aria-label="close"
