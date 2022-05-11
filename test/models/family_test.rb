@@ -86,6 +86,7 @@ class FamilyTest < ActiveSupport::TestCase
                  Date.parse('2021-12-21') => [{ name: '４種混合', period: '3回目', child: dave }, { name: 'ＢＣＧ', period: 'nil', child: dave }],
                  Date.parse('2022-02-21') => [{ name: 'Ｂ型肝炎', period: '3回目', child: dave }] }
 
-    assert_equal expected, Family.vaccination_date_before_today(vaccinations, children)
+    today = Date.parse('2022-04-05')
+    assert_equal expected, Family.vaccination_date_before_today(vaccinations, children, today)
   end
 end
