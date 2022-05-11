@@ -6,11 +6,6 @@ GIT
     time_difference (0.7.0)
       activesupport (~> 6.1)
 
-PATH
-  remote: /Users/harunakanno/gem/jp_vaccination
-  specs:
-    jp_vaccination (1.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -136,6 +131,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jp_vaccination (1.2.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.8.1)
@@ -366,7 +362,7 @@ DEPENDENCIES
   html2slim
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  jp_vaccination!
+  jp_vaccination (= 1.2.0)
   letter_opener_web
   listen (~> 3.3)
   minitest
