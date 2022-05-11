@@ -1,3 +1,6 @@
-.Notification
-  - flash.each do |key, value|
-    = content_tag :div, value, class: key
+.page-main
+  .Notification
+    - flash.each do |key, value|
+      .notification.is-primary.is-light
+        button class="delete"
+        = content_tag :div, value, class: key
