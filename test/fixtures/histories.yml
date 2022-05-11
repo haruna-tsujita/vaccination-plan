@@ -6,7 +6,7 @@ eve_history_rotavirus_first:
 
 eve_history_rotavirus_second:
   child: eve
-  date: Date.parse('2022-03-')
+  date: Date.parse('2022-03-01')
   vaccinated: null
   vaccination: rotavirus_2
 
