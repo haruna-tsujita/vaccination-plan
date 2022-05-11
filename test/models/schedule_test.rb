@@ -61,8 +61,8 @@ class ScheduleTest < ActiveSupport::TestCase
   test 'future_plans when plus vaccinated history' do
     dave = children(:dave)
     vaccinations = Vaccination.all.order(:id)
-
-    hib_second = vaccinations(:"#{hib_2}")
+    vaccination = 'hib_2'
+    hib_second = vaccinations(:"#{vaccination}")
     history = History.new(child: dave, vaccination: hib_second, date: Date.parse('2021-10-22'))
     history.save
     History.automatically_vaccinated(hib_second.id, dave.id)
