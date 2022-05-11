@@ -9,6 +9,7 @@ class History < ApplicationRecord
   validate :history_before_today
   validate :bigger_than_before_history
   validate :smaller_than_after_history
+  validate :date_or_vaccinatied
 
   def history_before_today
     return if date.nil?
@@ -51,6 +52,10 @@ class History < ApplicationRecord
       next if history.date.nil?
       return errors.add(:date, 'が次回の期より後の日付になっています') if history.date <= date
     end
+  end
+
+  def date_or_vaccinatied
+    errors.add(:date, 'が入力されていません') if date.nil? && vaccinated.nil?
   end
 
   def self.automatically_vaccinated(vaccination_id, child_id)
