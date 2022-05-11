@@ -1,8 +1,8 @@
-.page-main
+header
   = render 'settings/header'
   = render '/children/child', child: @child
-  .main__contents
-    = render 'form', child: @child, history: @history, vaccination: @vaccination
-    br/
+.page-main.main__contents
+  = render 'form', child: @child, history: @history, vaccination: @vaccination
+  br/
 
   = render 'global_nav'
