@@ -5,5 +5,6 @@ class SchedulesController < ApplicationController
     @user = current_user
     @child = Child.find(params[:child_id])
     @histories = History.where(child_id: @child.id).order(vaccination_id: :asc)
+    @vaccinations = Vaccination.all.order(:id)
   end
 end

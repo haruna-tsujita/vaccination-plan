@@ -1,68 +1,20 @@
-carol_history_hib_first:
-  child: carol
+eve_history_rotavirus_first:
+  child: eve
   date: null
-  vaccinated: null
-  vaccination: hib_1
-
-carol_history_hib_second:
-  child: carol
-  date: null
-  vaccinated: null
-  vaccination: hib_2
-
-carol_history_hib_third:
-  child: carol
-  date: null
-  vaccinated: null
-  vaccination: hib_3
-
-carol_history_hib_fourth:
-  child: carol
-  date: null
-  vaccinated: null
-  vaccination: hib_4
-
-carol_history_rotavirus_first:
-  child: carol
-  date: null
-  vaccinated: null
+  vaccinated: true
   vaccination: rotavirus_1
 
-carol_history_rotavirus_second:
-  child: carol
-  date: Date.current - 2.months
+eve_history_rotavirus_second:
+  child: eve
+  date: Date.parse('2022-03-01')
   vaccinated: null
   vaccination: rotavirus_2
 
-carol_history_rotavirus_third:
-  child: carol
+eve_history_rotavirus_third:
+  child: eve
   date: null
   vaccinated: null
   vaccination: rotavirus_3
-
-dave_history_hib_first:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: hib_1
-
-dave_history_hib_second:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: hib_2
-
-dave_history_hib_third:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: hib_3
-
-dave_history_hib_fourth:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: hib_4
 
 dave_history_rotavirus_first:
   child: dave
@@ -75,123 +27,3 @@ dave_history_rotavirus_second:
   date: Date.parse('2021-10-21')
   vaccinated: null
   vaccination: rotavirus_2
-
-dave_history_rotavirus_third:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: rotavirus_3
-
-dave_history_pneumococcus_first:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_1
-
-dave_history_pneumococcus_second:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_2
-
-dave_history_pneumococcus_third:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_3
-
-dave_history_pneumococcus_fourth:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_4
-
-dave_history_chickenpox_first:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: chickenpox_1
-
-dave_history_chickenpox_second:
-  child: dave
-  date: null
-  vaccinated: null
-  vaccination: chickenpox_2
-
-frank_history_hib_first:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: hib_1
-
-frank_history_hib_second:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: hib_2
-
-frank_history_hib_third:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: hib_3
-
-frank_history_hib_fourth:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: hib_4
-
-frank_history_rotavirus_first:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: rotavirus_1
-
-frank_history_rotavirus_second:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: rotavirus_2
-
-frank_history_rotavirus_third:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: rotavirus_3
-
-frank_history_pneumococcus_first:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_1
-
-frank_history_pneumococcus_second:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_2
-
-frank_history_pneumococcus_third:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_3
-
-frank_history_pneumococcus_fourth:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: pneumococcus_4
-
-frank_history_chickenpox_first:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: chickenpox_1
-
-frank_history_chickenpox_second:
-  child: frank
-  date: null
-  vaccinated: null
-  vaccination: chickenpox_2
