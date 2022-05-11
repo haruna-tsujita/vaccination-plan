@@ -1,5 +1,6 @@
 .page-main
   = render 'settings/header'
+  = render '/children/child', child: @child
   = render 'form', child: @child, history: @history, vaccination: @vaccination
   br/
 
