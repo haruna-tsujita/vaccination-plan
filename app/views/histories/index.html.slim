@@ -5,54 +5,55 @@
       button class="delete"
       = notice
   = render '/children/child', child: @child
-  .card
-    .card-content
-      p.title.is-size-5.has-text-centered
-        | ワクチンの記録
-      p.subtitle.is-size-6.has-text-centered.pt-4
-        | 各ワクチンの直近の期数から
-        br/
-        | 日付を記録してください
-      p.subtitle.is-size-7.has-text-centered
-        i class="fa-solid fa-check"
-        | 入力した期以前は接種済みになります
-    table.table.is-striped
-      - count = 0
-      - vacs = []
-      - @vaccinations.each_with_index do |vaccination, idx|
-        tr
-          - if @vaccinations[idx].name != @vaccinations[idx - 1].name
-            - vacs = []
-            - vacs << vaccination
-            th.has-text-centered.table__items
-              - if Vaccination.regular?(vaccination.name)
-                .regular__item
-                  p.is-size-7 定期
-              - else
-                .voluntary__item
-                  p.is-size-7 任意
-              .pr-4
-                = vaccination.name
-              - count = 0
-          - else
-            - vacs << vaccination
-        - if (@vaccinations[idx] == @vaccinations[-1]) || (@vaccinations[idx.next].key[-1] == '1')
+  .main__contents
+    .card
+      .card-content
+        p.title.is-size-5.has-text-centered
+          | ワクチンの記録
+        p.subtitle.is-size-6.has-text-centered.pt-4
+          | 各ワクチンの直近の期数から
+          br/
+          | 日付を記録してください
+        p.subtitle.is-size-7.has-text-centered
+          i class="fa-solid fa-check"
+          | 入力した期以前は接種済みになります
+      table.table.is-striped
+        - count = 0
+        - vacs = []
+        - @vaccinations.each_with_index do |vaccination, idx|
           tr
-            td
-              ul.history__items
-                - vacs.each do |vac|
-                  li.history__item
-                    - history = History.find_by(vaccination_id: vac.id, child_id: @child)
-                    - if history && (history.date || history.vaccinated)
-                      .vaccinated_num
-                        - vaccinated_number = ['❶', '❷', '❸', '❹']
-                        = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id, vaccination_id: vac.id)
-                      .date.has-text-centered
-                          = history&.date&.strftime('%y/%m/%d')
-                    - else
-                      .non_vaccinated_num
-                        - default_number = ['①', '②', '③', '④']
-                        = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vac.id)
-                    - count += 1
+            - if @vaccinations[idx].name != @vaccinations[idx - 1].name
+              - vacs = []
+              - vacs << vaccination
+              th.has-text-centered.table__items
+                - if Vaccination.regular?(vaccination.name)
+                  .regular__item
+                    p.is-size-7 定期
+                - else
+                  .voluntary__item
+                    p.is-size-7 任意
+                .pr-4
+                  = vaccination.name
+                - count = 0
+            - else
+              - vacs << vaccination
+          - if (@vaccinations[idx] == @vaccinations[-1]) || (@vaccinations[idx.next].key[-1] == '1')
+            tr
+              td
+                ul.history__items
+                  - vacs.each do |vac|
+                    li.history__item
+                      - history = History.find_by(vaccination_id: vac.id, child_id: @child)
+                      - if history && (history.date || history.vaccinated)
+                        .vaccinated_num
+                          - vaccinated_number = ['❶', '❷', '❸', '❹']
+                          = link_to vaccinated_number[count], edit_child_history_path(params[:child_id], history.id, vaccination_id: vac.id)
+                        .date.has-text-centered
+                            = history&.date&.strftime('%y/%m/%d')
+                      - else
+                        .non_vaccinated_num
+                          - default_number = ['①', '②', '③', '④']
+                          = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vac.id)
+                      - count += 1
 
   = render 'global_nav'

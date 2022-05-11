@@ -1,3 +1,11 @@
+.child_infos {
+  position: fixed;
+    z-index: 999;
+    top: 50px;
+    width: 100%;
+    background-color: #FFFFEF
+}
+
 .child__items {
   display: inline-block;
   text-align: center;
