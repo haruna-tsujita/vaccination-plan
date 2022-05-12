@@ -18,7 +18,7 @@ header
       p.subtitle.is-size-7.has-text-centered
         i class="fa-solid fa-check"
         | 入力した期以前は接種済みになります
-    table.table.is-striped
+    table.table
       - count = 0
       - vacs = []
       - @vaccinations.each_with_index do |vaccination, idx|
@@ -26,14 +26,14 @@ header
           - if @vaccinations[idx].name != @vaccinations[idx - 1].name
             - vacs = []
             - vacs << vaccination
-            th.has-text-centered.table__items
+            th.has-text-centered.table__items.has-background-warning-light
               - if Vaccination.regular?(vaccination.name)
                 .regular__item
                   p.is-size-7 定期
               - else
                 .voluntary__item
                   p.is-size-7 任意
-              .pr-4
+              .pl-4
                 = vaccination.name
               - count = 0
           - else
