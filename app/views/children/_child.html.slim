@@ -1,31 +1,29 @@
-.columns.is-centered
-  .child_infos.has-text-centered id="#{dom_id child}"
-    .child__items
-      = image_tag child.avatar_url, class: 'child__picture'
-    .child__items
-      .name_age__items
-        .name_age__item
-        p
+.pt-4
+  .pt-6
+    .columns.is-mobile.is-gapless.is-vcentered.is-centered
+      .column.is-3
+        .has-text-centered
+          = image_tag child.avatar_url, class: 'child__picture'
+      .column.is-6.is-multiline
+        .has-text-centered
           = child.name
-      .name_age__items
-        p
+          = ' '
           = Child.calc_moon_age(child.birthday, Date.current)
-      .birthday__item
-        p
+          br/
+        .has-text-centered
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
-
-    button class="js-modal-trigger" data-target="modal-js-example"
-      | ▼
-    div id="modal-js-example" class="modal"
-      .modal-background
-
-      .modal-content
-        .box.modal__items
-          .modal__item
-            .ul
-              - current_user.children.each do |child|
-                .li
-                  = image_tag child.avatar_url, class: 'child__picture_modal'
-                  = link_to child.name, child_schedules_path(child)
-
-    button class="modal-close is-large" aria-label="close"
+      .column.is-narrow
+        .has-text-centered
+          button class="js-modal-trigger" data-target="modal-js-example"
+            | ▼
+div id="modal-js-example" class="modal"
+  .modal-background
+  .modal-content
+    .box.modal__items
+      .modal__item
+        .ul
+          - current_user.children.each do |child|
+            .li
+              = image_tag child.avatar_url, class: 'child__picture_modal'
+              = link_to child.name, child_schedules_path(child)
+button class="modal-close is-large" aria-label="close"

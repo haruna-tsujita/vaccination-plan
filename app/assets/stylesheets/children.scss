@@ -1,17 +1,15 @@
-.child_infos {
-  position: fixed;
-  top: 52px;
-  width: 320px;
-  height: 80px;
-  z-index:1;
-  background-color: #FFFFEF
-}
+// .child__info {
+//   position: fixed;
+//   top: 52px;
+//   margin: auto;
+//   z-index: 1;
+//   background-color: #FFFFEF;
+// }
 
-.child__items {
-  display: inline-block;
-  text-align: center;
-  vertical-align: center;
-}
+// .columns.is-mobile.is-gapless.is-vcentered.is-centered {
+//   text-align: center;
+//   vertical-align: center;
+// }
 
 .child__picture {
   border-radius: 50%;
@@ -20,12 +18,12 @@
   object-fit: cover;
 }
 
-.name_age__items {
-  display: inline-block;
-  height: 50px;
-  padding-left: 10px;
-  margin-bottom: -25px;
-}
+// .name_age__items {
+//   display: inline-block;
+//   height: 50px;
+//   padding-left: 10px;
+//   margin-bottom: -25px;
+// }
 
 .child__picture_modal {
   border-radius: 50%;
