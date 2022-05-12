@@ -8,11 +8,12 @@ header
           = t('.forgot_your_password')
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
           = render 'devise/shared/error_messages', resource: resource
-          .field
+          .field.mt-4
             = f.label :email
             br
             = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
-          .has-text-centered
-            button class="button" type="submit"
-              = t('.send_me_reset_password_instructions')
+          .has-text-centered.mt-5
+            button class="button has-background-danger-light" type="submit"
+              .has-text-grey
+                = t('.send_me_reset_password_instructions')
   = render 'devise/shared/links'
