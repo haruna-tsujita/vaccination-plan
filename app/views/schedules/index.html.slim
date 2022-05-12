@@ -54,7 +54,7 @@ header
               .title.is-5.has-text-centered
                 = l(date, format: :long)
               .subtitle.is-6.has-text-centered.pt-2
-                =  Schedule.how_many_more_days(date)
+                =  Schedule.how_many_days_within_a_week(date)
             - else
               .title.is-5.has-text-centered
                 p 小学校入学前1年間
@@ -63,7 +63,7 @@ header
                 = '〜'
                 = l(date.last, format: :default)
               .subtitle.is-6.has-text-centered.pt-2
-                =  Schedule.how_many_more_days(date.first)
+                =  Schedule.how_many_days_within_a_week(date.first)
           ul.schedule__items
             - names.each do |name|
               li.is-inline-flex.pb-3
