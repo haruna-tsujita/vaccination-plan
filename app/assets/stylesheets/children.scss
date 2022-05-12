@@ -1,15 +1,12 @@
-// .child__info {
-//   position: fixed;
-//   top: 52px;
-//   margin: auto;
-//   z-index: 1;
-//   background-color: #FFFFEF;
-// }
-
-// .columns.is-mobile.is-gapless.is-vcentered.is-centered {
-//   text-align: center;
-//   vertical-align: center;
-// }
+.child__info {
+  position: fixed;
+  top: 52px;
+  z-index: 1;
+  width: 100%;
+  left: 5px;
+  right: 5px;
+  background-color: #FFFFEF;
+}
 
 .child__picture {
   border-radius: 50%;
@@ -17,13 +14,6 @@
   height: 60px;
   object-fit: cover;
 }
-
-// .name_age__items {
-//   display: inline-block;
-//   height: 50px;
-//   padding-left: 10px;
-//   margin-bottom: -25px;
-// }
 
 .child__picture_modal {
   border-radius: 50%;
