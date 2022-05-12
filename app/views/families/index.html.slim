@@ -7,19 +7,24 @@ header
       = notice
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
     .has-text-centered
-      = '接種できるリスト' if index.zero?
+      = '現在接種できるもの' if index.zero?
     - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .card
         .card-content
           .content
-            .title.is-5.has-text-centered
-              - if date.instance_of?(Date)
+            - if date.instance_of?(Date)
+              .title.is-5.has-text-centered
                 = l(date, format: :long)
-              - else
+              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
+                = Schedule.number_of_days_elapsed(date)
+            - else
+              .title.is-5.has-text-centered
                 = l(date.first, format: :long)
                 = '〜'
                 br
                 = l(date.last, format: :long)
+              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
+                =  Schedule.number_of_days_elapsed(date.first)
           - vacs.each_with_index do |vac, idx|
             - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
               = image_tag vac[:child].avatar_url, class: 'families_child__picture'
@@ -36,7 +41,7 @@ header
                 = vac[:name]
                 = vac[:period]
   .has-text-centered
-    = 'これからリスト'
+    = 'まだ接種できないもの'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
     - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .card
@@ -45,12 +50,16 @@ header
             - if date.instance_of?(Date)
               .title.is-5.has-text-centered
                 = l(date, format: :long)
+              .subtitle.is-6.has-text-centered.pt-2
+                = Schedule.how_many_more_days(date)
             - else
               .title.is-5.has-text-centered
                 = l(date.first, format: :long)
               .subtitle.is-7.has-text-centered
                 = '〜'
                 = l(date.last, format: :long)
+              .subtitle.is-6.has-text-centered.pt-2
+                = Schedule.how_many_more_days(date.first)
           - vaccinations.each_with_index do |vac, idx|
             - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
               = image_tag vac[:child].avatar_url, class: 'families_child__picture'
