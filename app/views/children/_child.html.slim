@@ -1,10 +1,10 @@
-.pt-4
-  .pt-6
+.has-text-centered
+  .child__info
     .columns.is-mobile.is-gapless.is-vcentered.is-centered
-      .column.is-3
+      .column.is-3-mobile
         .has-text-centered
           = image_tag child.avatar_url, class: 'child__picture'
-      .column.is-6.is-multiline
+      .column.is-6-mobile.is-multiline
         .has-text-centered
           = child.name
           = ' '
@@ -12,18 +12,18 @@
           br/
         .has-text-centered
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
-      .column.is-narrow
+      .column
         .has-text-centered
           button class="js-modal-trigger" data-target="modal-js-example"
             | ▼
-div id="modal-js-example" class="modal"
-  .modal-background
-  .modal-content
-    .box.modal__items
-      .modal__item
-        .ul
-          - current_user.children.each do |child|
-            .li
-              = image_tag child.avatar_url, class: 'child__picture_modal'
-              = link_to child.name, child_schedules_path(child)
-button class="modal-close is-large" aria-label="close"
+    div id="modal-js-example" class="modal"
+      .modal-background
+      .modal-content
+        .box.modal__items
+          .modal__item
+            .ul
+              - current_user.children.each do |child|
+                .li
+                  = image_tag child.avatar_url, class: 'child__picture_modal'
+                  = link_to child.name, child_schedules_path(child)
+    button class="modal-close is-large" aria-label="close"
