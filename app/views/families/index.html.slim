@@ -6,8 +6,8 @@ header
       button class="delete"
       = notice
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
-    .has-text-centered
-      = '現在接種できるもの' if index.zero?
+    .has-text-centered.is-size-6.has-text-weight-medium
+      = '予定日を過ぎています' if index.zero?
     - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .card
         .card-content
@@ -27,21 +27,23 @@ header
                 =  Schedule.number_of_days_elapsed(date.first)
           - vacs.each_with_index do |vac, idx|
             - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
-              = image_tag vac[:child].avatar_url, class: 'families_child__picture'
-              = vac[:child].name
+              .pb-3
+                = image_tag vac[:child].avatar_url, class:'families_child__picture'
+                = vac[:child].name
             ul.schedule__items
               li.is-inline-flex.pb-3
                 .pr-3
                   - if Vaccination.regular?(vac[:name])
-                    .regular__item.is-size-7
-                      | 定期
+                    .regular__item
+                      p.is-size-7 定期
                   - else
-                    .voluntary__item.is-size-7
-                      | 任意
+                    .voluntary__item
+                      p.is-size-7 任意
                 = vac[:name]
+                = ' '
                 = vac[:period]
-  .has-text-centered
-    = 'まだ接種できないもの'
+  .has-text-centered.is-size-6.has-text-weight-medium
+    = 'まだ予定日になっていません'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
     - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .card
@@ -62,10 +64,11 @@ header
                 = Schedule.how_many_more_days(date.first)
           - vaccinations.each_with_index do |vac, idx|
             - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
-              = image_tag vac[:child].avatar_url, class: 'families_child__picture'
-              = vac[:child].name
+              .pb-3
+                = image_tag vac[:child].avatar_url, class: 'families_child__picture'
+                = vac[:child].name
             ul.schedule__items
-                li.is-inline-flex.pb-3
+                li.is-inline-flex.pb-2
                   .pr-3
                     - if Vaccination.regular?(vac[:name])
                       .regular__item
@@ -74,6 +77,7 @@ header
                       .voluntary__item
                         p.is-size-7 任意
                   = vac[:name]
+                  = ' '
                   = vac[:period]
 
   = render 'global_nav'
