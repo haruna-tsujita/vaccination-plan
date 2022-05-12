@@ -28,7 +28,7 @@ header
           - vacs.each_with_index do |vac, idx|
             - if idx.zero? || (idx != 0) && (vacs[idx][:child] != vacs[idx - 1][:child])
               .pb-3
-                = image_tag vac[:child].avatar_url, class:'families_child__picture'
+                = image_tag vac[:child].avatar_url, class: 'families_child__picture'
                 = vac[:child].name
             ul.schedule__items
               li.is-inline-flex.pb-3
