@@ -13,6 +13,18 @@ class Schedule < ApplicationRecord
       combined_name_and_date.each_key.group_by { |date| combined_name_and_date[date] }.each_value { |ary| ary.sort_by! { |hash| hash[:name] } }
     end
 
+    def number_of_days_elapsed(start_day)
+      if TimeDifference.between(start_day, Date.current).in_days > 30
+        "#{TimeDifference.between(start_day, Date.current).in_months.floor}ヶ月経過"
+      else
+        "#{TimeDifference.between(start_day, Date.current).in_days.floor}日経過"
+      end
+    end
+
+    def how_many_more_days(date)
+      "接種日まであと#{date.day - Date.current.day}日です" if date < (Date.current + 7.days)
+    end
+
     private
 
     def new_schedules(vaccinations, child)
