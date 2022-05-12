@@ -89,4 +89,24 @@ class ScheduleTest < ActiveSupport::TestCase
                  Date.parse('2032-07-21') => [{ name: '２種混合', period: '1回目', child: dave }] }
     assert_equal expected, Schedule.future_plans(vaccinations, dave)
   end
+
+  test 'number_of_days_elapsed when months' do
+    start_day = Date.current + 31.days
+    assert_equal '1ヶ月経過', Schedule.number_of_days_elapsed(start_day)
+  end
+
+  test 'number_of_days_elapsed when days' do
+    start_day = Date.current + 30.days
+    assert_equal '30日経過', Schedule.number_of_days_elapsed(start_day)
+  end
+
+  test 'how_many_more_days within one week' do
+    date = Date.current + 7.days
+    assert_equal 'あと7日', Schedule.how_many_more_days(date)
+  end
+
+  test 'how_many_more_days not within one week' do
+    date = Date.current + 8.days
+    assert_nil Schedule.how_many_more_days(date)
+  end
 end
