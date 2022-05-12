@@ -49,7 +49,7 @@ class Toptest < ApplicationSystemTestCase
   test 'redirect to families_path when login and user has many child' do
     setup_bob
     visit '/'
-    assert_text '接種できるリスト'
+    assert_text '予定日を過ぎています'
     assert_no_text 'ログイン'
   end
 end
