@@ -3,11 +3,15 @@ header
   = render '/children/child', child: @child
 
 .page-main.main__contents
+  - if notice
+    .notification.is-success.is-light
+      button class="delete"
+      = notice
   - count = 0
   - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first <= Date.current) || (date.instance_of?(Date) && date <= Date.current)
-      .has-text-centered
-        = '現在接種できるもの' if count.zero?
+      .has-text-centered.is-size-6.has-text-weight-medium
+        = '予定日を過ぎています' if count.zero?
         - count += 1
       .card
         .card-content
@@ -41,8 +45,8 @@ header
   - count = 0
   - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
-      .has-text-centered
-        = 'まだ接種できないもの' if count.zero?
+      .has-text-centered.is-size-6.has-text-weight-medium
+        = 'まだ予定日になっていません' if count.zero?
       .card
         .card-content
           .content
@@ -71,7 +75,6 @@ header
                     .voluntary__item.is-size-7
                       | 任意
                 = "#{name[:name]} #{name[:period]}"
-              br/
       - count += 1
 
   = render 'global_nav'

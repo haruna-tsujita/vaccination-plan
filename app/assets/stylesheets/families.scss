@@ -42,9 +42,14 @@
 
 .families_child__picture {
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
+  vertical-align: middle;
+}
+
+.families_child__name {
+  vertical-align: middle;
 }
 
 .subtitle.is-6.has-text-centered.pt-2 {
