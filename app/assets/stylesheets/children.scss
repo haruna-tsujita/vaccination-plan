@@ -1,16 +1,11 @@
-.child_infos {
+.child__info {
   position: fixed;
   top: 52px;
-  width: 320px;
-  height: 80px;
-  z-index:1;
-  background-color: #FFFFEF
-}
-
-.child__items {
-  display: inline-block;
-  text-align: center;
-  vertical-align: center;
+  z-index: 1;
+  width: 100%;
+  left: 5px;
+  right: 5px;
+  background-color: #FFFFEF;
 }
 
 .child__picture {
@@ -18,13 +13,6 @@
   width: 60px;
   height: 60px;
   object-fit: cover;
-}
-
-.name_age__items {
-  display: inline-block;
-  height: 50px;
-  padding-left: 10px;
-  margin-bottom: -25px;
 }
 
 .child__picture_modal {

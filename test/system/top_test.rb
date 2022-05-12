@@ -34,7 +34,7 @@ class Toptest < ApplicationSystemTestCase
     setup_ellen
     visit '/'
     moon_age = Child.calc_moon_age(children(:issac).birthday, Date.current)
-    assert_text "issac\n#{moon_age}\n2018年10月29日生まれ"
+    assert_text "issac #{moon_age}\n2018年10月29日生まれ"
     assert_text 'ワクチンの記録'
     assert_no_text 'ログイン'
   end
