@@ -102,11 +102,11 @@ class ScheduleTest < ActiveSupport::TestCase
 
   test 'how_many_more_days within one week' do
     date = Date.current + 7.days
-    assert_equal 'あと7日', Schedule.how_many_more_days(date)
+    assert_equal 'あと7日', Schedule.how_many_days_within_a_week(date)
   end
 
   test 'how_many_more_days not within one week' do
     date = Date.current + 8.days
-    assert_nil Schedule.how_many_more_days(date)
+    assert_nil Schedule.how_many_days_within_a_week(date)
   end
 end

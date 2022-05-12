@@ -21,7 +21,7 @@ class Schedule < ApplicationRecord
       end
     end
 
-    def how_many_more_days(date)
+    def how_many_days_within_a_week(date)
       "あと#{date.day - Date.current.day}日" if date <= (Date.current + 7.days)
     end
 
