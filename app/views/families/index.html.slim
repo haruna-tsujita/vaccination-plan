@@ -6,8 +6,8 @@ header
       button class="delete"
       = notice
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
-    .has-text-centered.is-size-6.has-text-weight-medium
-      = '予定日を過ぎています' if index.zero?
+    .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
+      = '予定日を過ぎました' if index.zero?
     - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
       .card
         .card-content
@@ -43,7 +43,7 @@ header
                 = ' '
                 = vac[:period]
               br/
-  .has-text-centered.is-size-6.has-text-weight-medium
+  .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
     = 'まだ予定日になっていません'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
     - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
@@ -53,7 +53,7 @@ header
             - if date.instance_of?(Date)
               .title.is-5.has-text-centered
                 = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.pt-2
+              .subtitle.is-6.has-text-centered.pt-1
                 = Schedule.how_many_days_within_a_week(date)
             - else
               .title.is-5.has-text-centered
@@ -61,7 +61,7 @@ header
               .subtitle.is-7.has-text-centered
                 = '〜'
                 = l(date.last, format: :long)
-              .subtitle.is-6.has-text-centered.pt-2
+              .subtitle.is-6.has-text-centered.pt-1
                 = Schedule.how_many_days_within_a_week(date.first)
           - vaccinations.each_with_index do |vac, idx|
             - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
