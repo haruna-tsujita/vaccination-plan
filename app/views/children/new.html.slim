@@ -2,11 +2,22 @@ header
   = render 'settings/header'
 
 .page-main
+  - if notice
+    .notification.is-success.is-light
+      button class="delete"
+      = notice
+  - if current_user.sign_in_count.zero?
+    .has-text-centered
+      span class="icon-text mb-3"
+        span
+          i class="fa-solid fa-pencil has-text-primary"
+        span
+          | お子さんの登録をしましょう。
   h1.is-size-4.has-text-centered
     | 子どもの登録
 
   = render 'form', child: @child
   br/
 
-  - if current_user.children.size > 1
+  - if current_user.children.size >= 1
     = render 'global_nav'

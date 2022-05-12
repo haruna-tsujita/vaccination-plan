@@ -8,11 +8,12 @@ header
           = t('.resend_confirmation_instructions')
         = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
           = render 'devise/shared/error_messages', resource: resource
-          .field
+          .field.mt-4
             = f.label :email
             br
             = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'input'
-          .has-text-centered
-            button class="button" type="submit"
-              = t('.resend_mail')
+          .has-text-centered.mt-5
+            button class="button has-background-danger-light" type="submit"
+              .has-text-grey
+                = t('.resend_mail')
   = render 'devise/shared/links'
