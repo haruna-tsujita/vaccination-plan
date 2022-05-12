@@ -10,8 +10,8 @@ header
   - count = 0
   - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first <= Date.current) || (date.instance_of?(Date) && date <= Date.current)
-      .has-text-centered.is-size-6.has-text-weight-medium
-        = '予定日を過ぎています' if count.zero?
+      .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
+        = '予定日を過ぎました' if count.zero?
         - count += 1
       .card
         .card-content
@@ -19,15 +19,16 @@ header
             - if date.instance_of?(Date)
               .title.is-5.has-text-centered
                 = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
-                = Schedule.number_of_days_elapsed(date)
+              - unless Schedule.number_of_days_elapsed(date).nil?
+                .subtitle.is-6.has-text-centered.has-text-danger.pt-1
+                  = Schedule.number_of_days_elapsed(date)
             - else
               .title.is-5.has-text-centered
                 p 小学校入学前1年間
                 = l(date.first, format: :default)
                 = '〜'
                 = l(date.last, format: :default)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
+              .subtitle.is-6.has-text-centered.has-text-danger.pt-1
                 =  Schedule.number_of_days_elapsed(date.first)
           ul.schedule__items
             - names.each do |name|
@@ -45,7 +46,7 @@ header
   - count = 0
   - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
-      .has-text-centered.is-size-6.has-text-weight-medium
+      .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
         = 'まだ予定日になっていません' if count.zero?
       .card
         .card-content
@@ -53,7 +54,7 @@ header
             - if date.instance_of?(Date)
               .title.is-5.has-text-centered
                 = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.pt-2
+              .subtitle.is-6.has-text-centered.pt-1
                 =  Schedule.how_many_days_within_a_week(date)
             - else
               .title.is-5.has-text-centered
@@ -62,7 +63,7 @@ header
                 = l(date.first, format: :default)
                 = '〜'
                 = l(date.last, format: :default)
-              .subtitle.is-6.has-text-centered.pt-2
+              .subtitle.is-6.has-text-centered.pt-1
                 =  Schedule.how_many_days_within_a_week(date.first)
           ul.schedule__items
             - names.each do |name|
