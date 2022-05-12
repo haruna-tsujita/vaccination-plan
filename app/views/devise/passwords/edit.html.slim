@@ -9,17 +9,18 @@ header
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
           = render 'devise/shared/error_messages', resource: resource
           = f.hidden_field :reset_password_token
-          .field
+          .field.mt-4
             = f.label :password, t('.new_password')
             - if @minimum_password_length
               = t('devise.shared.minimum_password_length', count: @minimum_password_length)
               br
             = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'input'
-          .field
+          .field.mt-4
             = f.label :password_confirmation, t('.confirm_new_password')
             br
             = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input'
-          .has-text-centered
-            button class="button" type="submit"
-              = t('.change_my_password')
+          .has-text-centered.mt-5
+            button class="button has-background-danger-light" type="submit"
+              .has-text-grey
+                = t('.change_my_password')
   = render 'devise/shared/links'
