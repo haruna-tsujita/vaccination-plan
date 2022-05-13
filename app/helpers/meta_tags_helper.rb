@@ -14,7 +14,7 @@ module MetaTagsHelper
         type: 'website',
         site_name: 'ワクチンプラン',
         description: :description,
-        image: image_url('ogp.png'),
+        image: image_url('ogp.jpg'),
         url: 'https://vaccination-plan.herokuapp.com/'
       },
       twitter: {
