@@ -377,18 +377,12 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
   rails-i18n
->>>>>>> a66a94f (devise外で作成したslimのi18nを設定)
   rubocop
   rubocop-fjord (~> 0.2.0)
   rubocop-minitest
   rubocop-performance
   rubocop-rails
->>>>>>> bfebf0b (Gemfileを変更、無駄な空白を削除)
   sass-rails (>= 6)
   selenium-webdriver
   slim-rails
