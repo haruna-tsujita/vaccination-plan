@@ -22,19 +22,14 @@ class HistoriesController < ApplicationController
   end
 
   def create
-    @history = History.new
-    @history.child_id = @child.id
+    @history = @child.histories.new(history_params)
     @history.vaccination_id = @vaccination.id
 
-    respond_to do |format|
-      if @history.update(history_params)
-        History.automatically_vaccinated(@vaccination.id, @child.id)
-        format.html { redirect_to child_histories_url, notice: '接種日時が保存されました' }
-        format.json { render :show, status: :ok, location: @history }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @history.errors, status: :unprocessable_entity }
-      end
+    if @history.save
+      History.automatically_vaccinated(@vaccination.id, @child.id)
+      redirect_to child_histories_url, notice: '接種日時が保存されました'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
