@@ -18,10 +18,10 @@ class HistoriesController < ApplicationController
   end
 
   def create
-    @history = @child.histories.new
+    @history = @child.histories.new(history_params)
     @history.vaccination_id = @vaccination.id
 
-    if @history.update(history_params)
+    if @history.save
       History.automatically_vaccinated(@vaccination.id, @child.id)
       redirect_to child_histories_url, notice: '接種日時が保存されました'
     else
