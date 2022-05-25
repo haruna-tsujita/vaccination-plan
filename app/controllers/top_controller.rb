@@ -2,12 +2,6 @@
 
 class TopController < ApplicationController
   def index
-    redirect_path_before_login
-  end
-
-  private
-
-  def redirect_path_before_login
     return unless current_user
 
     if current_user.children.size.zero?
