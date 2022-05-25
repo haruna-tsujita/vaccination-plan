@@ -28,7 +28,7 @@ nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
               .navbar-dropdown
                 - current_user.children.each do |child|
                   .navbar-item.dropdown__child
-                    = link_to child.name.to_s, edit_child_path(child.id)
+                    = link_to_if child.id, child.name.to_s, controller: :children, action: :edit, id: child&.id
                 .navbar-item.dropdown__child
                   = link_to new_child_path do
                     i class="fa-solid fa-plus"
