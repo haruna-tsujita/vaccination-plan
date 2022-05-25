@@ -18,6 +18,14 @@ class Historiestest < ApplicationSystemTestCase
     login_as(@bob, scope: :user)
   end
 
+  setup do
+    @raise_server_errors = Capybara.raise_server_errors
+  end
+
+  teardown do
+    Capybara.raise_server_errors = @raise_server_errors
+  end
+
   test 'create history when user logged in' do
     setup_alice
     alice_child = children(:carol)
@@ -37,11 +45,12 @@ class Historiestest < ApplicationSystemTestCase
   end
 
   test 'not create any child other than their own' do
+    Capybara.raise_server_errors = false
     setup_alice
     bob_child = children(:dave)
     vaccination_key = 'MR_1'
     visit new_child_history_path(bob_child.id, vaccination_id: vaccinations(:"#{vaccination_key}"))
-    assert_text '子どもの登録'
+    assert_text 'ActiveRecord::RecordNotFound'
   end
 
   test 'edit history when user logged in' do
@@ -63,11 +72,12 @@ class Historiestest < ApplicationSystemTestCase
   end
 
   test 'not edit any child other than their own' do
+    Capybara.raise_server_errors = false
     setup_bob
     alice_child = children(:eve)
     vaccination_key = 'rotavirus_1'
     visit edit_child_history_path(alice_child.id, histories(:eve_history_rotavirus_first).id, vaccination_id: vaccinations(:"#{vaccination_key}"))
-    assert_text '子どもの登録'
+    assert_text 'ActiveRecord::RecordNotFound'
   end
 
   test 'validation history before today' do
