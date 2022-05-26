@@ -4,7 +4,6 @@ class History < ApplicationRecord
   belongs_to :child
   belongs_to :vaccination
 
-  validates :child_id, presence: true
   validates :vaccination_id, presence: true, uniqueness: { scope: :child }
   validate :history_before_today
   validate :bigger_than_before_history
