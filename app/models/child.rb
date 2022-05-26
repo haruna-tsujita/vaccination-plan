@@ -24,7 +24,7 @@ class Child < ApplicationRecord
     end
   end
 
-  def self.calc_moon_age(birthday, today)
+  def calc_moon_age(today)
     moon_age = TimeDifference.between(birthday, today).in_months
     "#{(moon_age / 12).floor}才 #{(moon_age % 12).floor}ヶ月"
   end
