@@ -10,6 +10,26 @@ class History < ApplicationRecord
   validate :smaller_than_after_history
   validate :date_or_vaccinatied
 
+  class << self
+    def automatically_vaccinated(vaccination_id, child_id)
+      vaccination = Vaccination.find(vaccination_id)
+      return if vaccination.key[-1] == '1'
+
+      vaccinations = Vaccination.where(name: vaccination.name)
+      vaccinations.each do |vac|
+        next unless vac.key < vaccination.key
+
+        history = History.find_by(vaccination_id: vac.id, child_id: child_id)
+        if history.nil?
+          history = History.new
+          history.update(vaccination_id: vac.id, vaccinated: true, child_id: child_id)
+        end
+      end
+    end
+  end
+
+  private
+
   def history_before_today
     return if date.nil?
 
@@ -55,21 +75,5 @@ class History < ApplicationRecord
 
   def date_or_vaccinatied
     errors.add(:date, 'が入力されていません') if date.nil? && vaccinated.nil?
-  end
-
-  def self.automatically_vaccinated(vaccination_id, child_id)
-    vaccination = Vaccination.find(vaccination_id)
-    return if vaccination.key[-1] == '1'
-
-    vaccinations = Vaccination.where(name: vaccination.name)
-    vaccinations.each do |vac|
-      next unless vac.key < vaccination.key
-
-      history = History.find_by(vaccination_id: vac.id, child_id: child_id)
-      if history.nil?
-        history = History.new
-        history.update(vaccination_id: vac.id, vaccinated: true, child_id: child_id)
-      end
-    end
   end
 end
