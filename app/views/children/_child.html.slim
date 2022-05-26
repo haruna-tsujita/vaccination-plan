@@ -8,7 +8,7 @@
         .has-text-centered
           = child.name
           = ' '
-          = Child.calc_moon_age(child.birthday, Date.current)
+          = child.calc_moon_age(Date.current)
           br/
         .has-text-centered
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
