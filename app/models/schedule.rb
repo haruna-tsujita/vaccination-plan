@@ -22,7 +22,7 @@ class Schedule < ApplicationRecord
     end
 
     def how_many_days_within_a_week(date)
-      "あと#{date.day - Date.current.day}日" if date <= (Date.current + 7.days)
+      "あと#{TimeDifference.between(date, Date.current).in_days.floor}日" if date <= (Date.current + 7.days)
     end
 
     private

@@ -8,7 +8,7 @@ header
       button class="delete"
       = notice
   - count = 0
-  - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names)|
+  - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first <= Date.current) || (date.instance_of?(Date) && date <= Date.current)
       .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
         = '予定日を過ぎました' if count.zero?
@@ -44,7 +44,7 @@ header
                 = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
               br/
   - count = 0
-  - Schedule.future_plans(@vaccinations, @child).each_with_index do |(date, names)|
+  - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
       .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
         = 'まだ予定日になっていません' if count.zero?

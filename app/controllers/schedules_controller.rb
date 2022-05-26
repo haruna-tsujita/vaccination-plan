@@ -2,9 +2,8 @@
 
 class SchedulesController < ApplicationController
   def index
-    @user = current_user
-    @child = Child.find(params[:child_id])
-    @histories = History.where(child_id: @child.id).order(vaccination_id: :asc)
-    @vaccinations = Vaccination.all.order(:id)
+    @child = current_user.children.find(params[:child_id])
+    vaccinations = Vaccination.all.order(:id)
+    @schedules = Schedule.future_plans(vaccinations, @child)
   end
 end

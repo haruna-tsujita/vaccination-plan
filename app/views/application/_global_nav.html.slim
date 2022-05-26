@@ -21,7 +21,7 @@
             .is-size-7.has-text-warning-dark
               | 全員
     .navbar-end
-- elsif @child.id || current_user.children
+- elsif @child.id || current_user.children[0].id
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered
