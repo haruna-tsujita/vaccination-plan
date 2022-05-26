@@ -20,7 +20,7 @@ class Family
     end
 
     def vaccination_date_before_today(vaccinations, children, today)
-      Family.family_schedule(vaccinations, children).select do |date, vaccination|
+      family_schedule(vaccinations, children).select do |date, vaccination|
         { date => vaccination } if (date.instance_of?(Range) && date.first <= today) || (date.instance_of?(Date) && date <= today)
       end
     end
