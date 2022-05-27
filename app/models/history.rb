@@ -4,12 +4,30 @@ class History < ApplicationRecord
   belongs_to :child
   belongs_to :vaccination
 
-  validates :child_id, presence: true
   validates :vaccination_id, presence: true, uniqueness: { scope: :child }
   validate :history_before_today
   validate :bigger_than_before_history
   validate :smaller_than_after_history
   validate :date_or_vaccinatied
+
+  class << self
+    def automatically_vaccinated(vaccination, child)
+      return if vaccination.key[-1] == '1'
+
+      vaccinations = Vaccination.where(name: vaccination.name)
+      vaccinations.each do |vac|
+        next unless vac.key < vaccination.key
+
+        history = History.find_by(vaccination_id: vac.id, child_id: child.id)
+        if history.nil?
+          new_history = History.new
+          new_history.update(vaccination_id: vac.id, vaccinated: true, child_id: child.id)
+        end
+      end
+    end
+  end
+
+  private
 
   def history_before_today
     return if date.nil?
@@ -20,11 +38,10 @@ class History < ApplicationRecord
   def bigger_than_before_history
     return if date.nil?
 
-    vaccination = Vaccination.find(vaccination_id)
     last_letter = vaccination.key[-1]
     return if last_letter == '1'
 
-    vaccinations = Vaccination.where(name: vaccination.name).order(:id)
+    vaccinations = Vaccination.where(name: vaccination.name).order(:key)
     vaccinations.each do |vac|
       next unless vac.id < vaccination.id
 
@@ -39,8 +56,7 @@ class History < ApplicationRecord
   def smaller_than_after_history
     return if date.nil?
 
-    vaccination = Vaccination.find(vaccination_id)
-    vaccinations = Vaccination.where(name: vaccination.name).order(:id)
+    vaccinations = Vaccination.where(name: vaccination.name).order(:key)
 
     return if vaccinations.size == 1
 
@@ -56,21 +72,5 @@ class History < ApplicationRecord
 
   def date_or_vaccinatied
     errors.add(:date, 'が入力されていません') if date.nil? && vaccinated.nil?
-  end
-
-  def self.automatically_vaccinated(vaccination_id, child_id)
-    vaccination = Vaccination.find(vaccination_id)
-    return if vaccination.key[-1] == '1'
-
-    vaccinations = Vaccination.where(name: vaccination.name)
-    vaccinations.each do |vac|
-      next unless vac.key < vaccination.key
-
-      history = History.find_by(vaccination_id: vac.id, child_id: child_id)
-      if history.nil?
-        history = History.new
-        history.update(vaccination_id: vac.id, vaccinated: true, child_id: child_id)
-      end
-    end
   end
 end

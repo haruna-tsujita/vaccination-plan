@@ -33,7 +33,8 @@ class Toptest < ApplicationSystemTestCase
   test 'redirect to histories_path when login and user has one child' do
     setup_ellen
     visit '/'
-    moon_age = Child.calc_moon_age(children(:issac).birthday, Date.current)
+    child = children(:issac)
+    moon_age = child.calc_moon_age(Date.current)
     assert_text "issac #{moon_age}\n2018年10月29日生まれ"
     assert_text 'ワクチンの記録'
     assert_no_text 'ログイン'

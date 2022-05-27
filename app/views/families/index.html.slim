@@ -8,7 +8,7 @@ header
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
     .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
       = '予定日を過ぎました' if index.zero?
-    - if (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+    - if Family.scheldule_before_today?(date)
       .card
         .card-content
           .content
@@ -33,7 +33,7 @@ header
             ul.schedule__items
               li.is-inline-flex.pb-3
                 .pr-3
-                  - if Vaccination.regular?(vac[:name])
+                  - if Vaccination.find_by(name: vac[:name]).regular?
                     .regular__item
                       p.is-size-7 定期
                   - else
@@ -46,7 +46,7 @@ header
   .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
     = 'まだ予定日になっていません'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
-    - unless (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+    - unless Family.scheldule_before_today?(date)
       .card
         .card-content
           .content
@@ -71,7 +71,7 @@ header
             ul.schedule__items
                 li.is-inline-flex.pb-2
                   .pr-3
-                    - if Vaccination.regular?(vac[:name])
+                    - if Vaccination.find_by(name: vac[:name]).regular?
                       .regular__item
                         p.is-size-7 定期
                     - else

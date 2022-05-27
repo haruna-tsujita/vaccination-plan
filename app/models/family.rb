@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
 class Family
-  def self.family_schedule(vaccinations, children)
-    all_schedules = children.map do |child|
-      Schedule.future_plans(vaccinations, child)
+  class << self
+    def family_schedule(vaccinations, children)
+      all_schedules = children.map do |child|
+        Schedule.future_plans(vaccinations, child)
+      end
+
+      merge_history = {}.merge(*all_schedules) { |_key, schedules1, schedules2| schedules1 + schedules2 }
+      merge_history.sort_by do |date, _vaccination|
+        [Date, String].include?(date.class) ? date : date.first
+      end.to_h
     end
 
-    merge_history = {}.merge(*all_schedules) { |_key, schedules1, schedules2| schedules1 + schedules2 }
-    sort_plan = merge_history.sort_by do |date, _vaccination|
-      [Date, String].include?(date.class) ? date : date.first
-    end.to_h
-    sort_plan.each_value do |vacs|
-      vacs.sort_by! do |vac|
-        vac[:child]
-        vac[:name]
+    def vaccination_date_before_today(vaccinations, children, today)
+      family_schedule(vaccinations, children).select do |date, vaccination|
+        { date => vaccination } if (date.instance_of?(Range) && date.first <= today) || (date.instance_of?(Date) && date <= today)
       end
-    end.to_h
-  end
+    end
 
-  def self.vaccination_date_before_today(vaccinations, children, today)
-    Family.family_schedule(vaccinations, children).select do |date, vaccination|
-      { date => vaccination } if (date.instance_of?(Range) && date.first <= today) || (date.instance_of?(Date) && date <= today)
+    def scheldule_before_today?(date)
+      (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
     end
   end
 end

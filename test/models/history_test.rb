@@ -9,7 +9,7 @@ class HistoryTest < ActiveSupport::TestCase
     vaccination = vaccinations(:"#{vaccination_key}")
     history = History.new(child: carol, vaccination: vaccination, date: Date.current)
     history.save
-    History.automatically_vaccinated(vaccination.id, carol.id)
+    History.automatically_vaccinated(vaccination, carol)
     pneumococcus_first = 'pneumococcus_1'
     pneumococcus_second = 'pneumococcus_2'
     pneumococcus_fourth = 'pneumococcus_4'
