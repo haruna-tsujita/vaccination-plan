@@ -8,14 +8,8 @@ class Family
       end
 
       merge_history = {}.merge(*all_schedules) { |_key, schedules1, schedules2| schedules1 + schedules2 }
-      sort_plan = merge_history.sort_by do |date, _vaccination|
+      merge_history.sort_by do |date, _vaccination|
         [Date, String].include?(date.class) ? date : date.first
-      end.to_h
-      sort_plan.each_value do |vacs|
-        vacs.sort_by! do |vac|
-          vac[:child]
-          vac[:name]
-        end
       end.to_h
     end
 
