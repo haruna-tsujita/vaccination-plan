@@ -10,7 +10,7 @@ class HistoriesController < ApplicationController
   end
 
   def index
-    @vaccinations = Vaccination.all.order(:key)
+    @vaccinations = Vaccination.all.order(:id)
   end
 
   def edit
