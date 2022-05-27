@@ -33,7 +33,7 @@ header
             ul.schedule__items
               li.is-inline-flex.pb-3
                 .pr-3
-                  - if Vaccination.regular?(vac[:name])
+                  - if Vaccination.find_by(name: vac[:name]).regular?
                     .regular__item
                       p.is-size-7 定期
                   - else
@@ -71,7 +71,7 @@ header
             ul.schedule__items
                 li.is-inline-flex.pb-2
                   .pr-3
-                    - if Vaccination.regular?(vac[:name])
+                    - if Vaccination.find_by(name: vac[:name]).regular?
                       .regular__item
                         p.is-size-7 定期
                     - else
