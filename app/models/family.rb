@@ -18,5 +18,9 @@ class Family
         { date => vaccination } if (date.instance_of?(Range) && date.first <= today) || (date.instance_of?(Date) && date <= today)
       end
     end
+
+    def scheldule_before_today?(date)
+      (date.instance_of?(Range) && date.first <= Time.current) || (date.instance_of?(Date) && date <= Time.current)
+    end
   end
 end
