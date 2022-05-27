@@ -3,8 +3,7 @@
 class Vaccination < ApplicationRecord
   has_many :history, dependent: :destroy
 
-  def self.regular?(vaccination_name)
-    key = Vaccination.find_by(name: vaccination_name).key
+  def regular?
     JpVaccination.find(key).regular
   end
 end
