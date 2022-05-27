@@ -34,7 +34,7 @@ header
             - names.each do |name|
               li.is-inline-flex.pb-3
                 .pr-3
-                  - if Vaccination.regular?(name[:name])
+                  - if Vaccination.find_by(name: name[:name]).regular?
                     .regular__item.is-size-7
                       | 定期
                   - else
@@ -69,7 +69,7 @@ header
             - names.each do |name|
               li.is-inline-flex.pb-3
                 .pr-3
-                  - if Vaccination.regular?(name[:name])
+                  - if Vaccination.find_by(name: name[:name]).regular?
                     .regular__item.is-size-7
                       | 定期
                   - else

@@ -27,7 +27,7 @@ header
             - vacs = []
             - vacs << vaccination
             th.has-text-centered.table__items.has-background-warning-light
-              - if Vaccination.regular?(vaccination.name)
+              - if vaccination.regular?
                 .regular__item
                   p.is-size-7 定期
               - else
