@@ -11,6 +11,7 @@ class HistoriesController < ApplicationController
 
   def index
     @vaccinations = Vaccination.all.order(:id)
+    @histories = @child.histories
   end
 
   def edit

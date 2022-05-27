@@ -45,7 +45,6 @@ header
                 - vacs.each do |vac|
                   li.history__item
                     - history = @histories.find { |his| his.vaccination_id == vac.id && his.child_id == @child.id }
-
                     - if history && (history.date || history.vaccinated)
                       .vaccinated_num
                         - vaccinated_number = ['❶', '❷', '❸', '❹']
