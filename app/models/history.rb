@@ -11,18 +11,17 @@ class History < ApplicationRecord
   validate :date_or_vaccinatied
 
   class << self
-    def automatically_vaccinated(vaccination_id, child_id)
-      vaccination = Vaccination.find(vaccination_id)
+    def automatically_vaccinated(vaccination, child)
       return if vaccination.key[-1] == '1'
 
       vaccinations = Vaccination.where(name: vaccination.name)
       vaccinations.each do |vac|
         next unless vac.key < vaccination.key
 
-        history = History.find_by(vaccination_id: vac.id, child_id: child_id)
+        history = History.find_by(vaccination_id: vac.id, child_id: child.id)
         if history.nil?
-          history = History.new
-          history.update(vaccination_id: vac.id, vaccinated: true, child_id: child_id)
+          new_history = History.new
+          new_history.update(vaccination_id: vac.id, vaccinated: true, child_id: child.id)
         end
       end
     end
@@ -39,11 +38,10 @@ class History < ApplicationRecord
   def bigger_than_before_history
     return if date.nil?
 
-    vaccination = Vaccination.find(vaccination_id)
     last_letter = vaccination.key[-1]
     return if last_letter == '1'
 
-    vaccinations = Vaccination.where(name: vaccination.name).order(:id)
+    vaccinations = Vaccination.where(name: vaccination.name).order(:key)
     vaccinations.each do |vac|
       next unless vac.id < vaccination.id
 
@@ -58,8 +56,7 @@ class History < ApplicationRecord
   def smaller_than_after_history
     return if date.nil?
 
-    vaccination = Vaccination.find(vaccination_id)
-    vaccinations = Vaccination.where(name: vaccination.name).order(:id)
+    vaccinations = Vaccination.where(name: vaccination.name).order(:key)
 
     return if vaccinations.size == 1
 
