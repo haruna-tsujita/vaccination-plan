@@ -46,25 +46,6 @@ class Schedule < ApplicationRecord
       end.compact
     end
 
-    def schedules(vaccinations, child)
-      vaccinations.map do |vaccination|
-        next if vaccination.history && (vaccination.history.vaccinated || vaccination.history.date)
-
-        vaccination = Vaccination.find(vaccination.history.vaccination_id)
-        last_letter = vaccination.key[-1]
-        date = case last_letter
-               when '1'
-                 calc_recommended_date(vaccination: vaccination, birthday: child.birthday)
-               else
-                 before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
-                 before_vac_id = Vaccination.find_by(key: before_vac_key).id
-                 before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
-                 calc_for_each_vaccinated_status(before_history: before_history, vaccination: vaccination, child: child)
-               end
-        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: date }
-      end.compact
-    end
-
     def calc_for_each_vaccinated_status(before_history:, vaccination:, child:)
       if before_history.nil? || (before_history.date.nil? && before_history.vaccinated.nil?)
         calc_recommended_date(vaccination: vaccination, birthday: child.birthday)
