@@ -397,7 +397,6 @@ DEPENDENCIES
   slim_lint
   spring
   time_difference!
-  tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
