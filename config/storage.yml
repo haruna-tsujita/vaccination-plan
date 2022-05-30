@@ -11,6 +11,8 @@ cloudinary:
   cloud_name: <%= ENV["CLOUD_NAME"] %>
   api_key:    <%= ENV["CLOUD_API_KEY"] %>
   api_secret: <%= ENV["CLOUD_API_SECLET"] %>
+  enhance_image_tag: true
+  static_file_support: false
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
