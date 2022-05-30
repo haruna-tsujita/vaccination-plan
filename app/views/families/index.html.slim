@@ -20,8 +20,8 @@ header
             - else
               .title.is-5.has-text-centered
                 = l(date.first, format: :long)
+              .subtitle.is-7.has-text-centered
                 = '〜'
-                br
                 = l(date.last, format: :long)
               .subtitle.is-6.has-text-centered.has-text-danger.pt-2
                 =  Schedule.number_of_days_elapsed(date.first)
@@ -42,7 +42,6 @@ header
                 = vac[:name]
                 = ' '
                 = vac[:period]
-              br/
   .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
     = 'まだ予定日になっていません'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
@@ -80,6 +79,5 @@ header
                   = vac[:name]
                   = ' '
                   = vac[:period]
-                br/
 
   = render 'global_nav', child: nil, children: @children
