@@ -17,7 +17,6 @@ header
     | 子どもの登録
 
   = render 'form', child: @child
-  br/
 
   - if current_user.children.size >= 1
     = render 'global_nav', child: @child, children: nil

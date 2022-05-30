@@ -13,11 +13,9 @@ header
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .field.mt-4
             = f.label :email
-            br
             = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
           .field.mt-4
             = f.label :password
-            br
             = f.password_field :password, autocomplete: 'current-password', class: 'input'
           - if devise_mapping.rememberable?
             .field.has-text-right

@@ -10,17 +10,14 @@ header
           = render 'devise/shared/error_messages', resource: resource
           .field.mt-4
             = f.label :email
-            br
             = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input'
           .field.mt-4
             = f.label :password
             - if @minimum_password_length
               = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-            br
             = f.password_field :password, autocomplete: 'new-password', class: 'input'
           .field.mt-4
             = f.label :password_confirmation
-            br
             = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input'
           .has-text-centered.mt-5
             button class="button has-background-danger-light" type="submit"
