@@ -13,7 +13,7 @@ nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
     - if current_user
       div id="navbarBasicExample" class="navbar-menu"
         .navbar-item
-          = link_to edit_user_registration_path(current_user) do
+          = link_to edit_user_registration_path do
             i class="fa-solid fa-user has-text-danger"
             .has-text-grey.navbar-text
               |  アカウント
