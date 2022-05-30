@@ -9,7 +9,7 @@ local:
 cloudinary:
   service: Cloudinary
   cloud_name: <%= ENV["CLOUD_NAME"] %>
-  api_key:    <%= ENV["CLOUD_API_KEY"] %>
+  api_key:    <%= ENV["CLOUD_API_KEY"].to_s %>
   api_secret: <%= ENV["CLOUD_API_SECLET"] %>
   enhance_image_tag: true
   static_file_support: false
