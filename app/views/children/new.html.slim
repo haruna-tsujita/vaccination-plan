@@ -6,7 +6,7 @@ header
     .notification.is-success.is-light
       button class="delete"
       = notice
-  - if current_user.children.size.zero?
+  - if current_user.children.size == 1 && @child.id.nil?
     .has-text-centered
       span class="icon-text mb-3"
         span
