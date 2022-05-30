@@ -20,4 +20,4 @@ header
   br/
 
   - if current_user.children.size >= 1
-    = render 'global_nav'
+    = render 'global_nav', child: @child, children: nil
