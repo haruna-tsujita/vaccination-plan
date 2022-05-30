@@ -18,21 +18,20 @@ nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
             .has-text-grey.navbar-text
               |  アカウント
 
-        - if current_user.children.size >= 1
-          hr class="dropdown-divider"
-          .navbar-item.has-dropdown.is-hoverable
-            .navbar-item
-              i class="fa-solid fa-children has-text-warning"
-              .has-text-grey.navbar-text
-                |  子ども
-              .navbar-dropdown
-                - current_user.children.each do |child|
-                  .navbar-item.dropdown__child
-                    = link_to_if child.id, child.name.to_s, controller: '/children', action: 'edit', id: child.id
+        hr class="dropdown-divider"
+        .navbar-item.has-dropdown.is-hoverable
+          .navbar-item
+            i class="fa-solid fa-children has-text-warning"
+            .has-text-grey.navbar-text
+              |  子ども
+            .navbar-dropdown
+              - current_user.children.each do |child|
                 .navbar-item.dropdown__child
-                  = link_to new_child_path do
-                    i class="fa-solid fa-plus"
-                    |  新規登録
+                  = link_to_if child.id, child.name.to_s, controller: '/children', action: 'edit', id: child.id
+              .navbar-item.dropdown__child
+                = link_to new_child_path do
+                  i class="fa-solid fa-plus"
+                  |  新規登録
         hr class="dropdown-divider"
         .navbar-item
           = link_to destroy_user_session_path,
