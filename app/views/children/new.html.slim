@@ -2,10 +2,7 @@ header
   = render 'settings/header'
 
 .page-main
-  - if notice
-    .notification.is-success.is-light
-      button class="delete"
-      = notice
+  = render 'layouts/notice'
   - if current_user.children.size == 1 && @child.id.nil?
     .has-text-centered
       span class="icon-text mb-3"
