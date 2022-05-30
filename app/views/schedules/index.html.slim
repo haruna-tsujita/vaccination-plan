@@ -3,10 +3,7 @@ header
   = render '/children/child', child: @child
 
 .page-main.main__contents
-  - if notice
-    .notification.is-success.is-light
-      button class="delete"
-      = notice
+  = render 'layouts/notice'
   - count = 0
   - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first <= Date.current) || (date.instance_of?(Date) && date <= Date.current)

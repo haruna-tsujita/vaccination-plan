@@ -1,10 +1,7 @@
 header
   = render 'settings/header'
 .page-main
-  - if notice
-    .notification.is-success.is-light
-      button class="delete"
-      = notice
+  = render 'layouts/notice'
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
     .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
       = '予定日を過ぎました' if index.zero?
