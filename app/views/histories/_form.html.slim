@@ -1,7 +1,7 @@
 = form_with(model: [child, history]) do |form|
   = hidden_field_tag :vaccination_id, vaccination.id
   - if history.errors.any?
-    div style=('color: red')
+    div class="notification is-danger is-light"
       ul
         - history.errors.each do |error|
           li = error.full_message

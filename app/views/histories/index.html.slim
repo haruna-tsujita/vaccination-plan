@@ -3,10 +3,7 @@ header
   = render '/children/child', child: @child
 
 .page-main.main__contents
-  - if notice
-    .notification.is-success.is-light
-      button class="delete"
-      = notice
+  = render 'layouts/notice'
   .card
     .card-content
       p.title.is-size-5.has-text-centered
@@ -57,4 +54,4 @@ header
                         = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vac.id)
                     - count += 1
 
-  = render 'global_nav'
+  = render 'global_nav', child: @child, children: nil

@@ -1,46 +1,40 @@
-- if @children
+- if children
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered
-        = link_to child_histories_path(@children[0]) do
+        = link_to child_histories_path(children[0]) do
           i class="fa-solid fa-pen-to-square fa-lg has-text-warning-dark"
-          br
           .is-size-7.has-text-warning-dark
             | 記録
       .navbar-item.has-text-centered
-        = link_to child_schedules_path(@children[0]) do
+        = link_to child_schedules_path(children[0]) do
           i class="fa-solid fa-calendar-check fa-lg has-text-warning-dark"
-          br
           .is-size-7.has-text-warning-dark
             | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered
           = link_to families_path do
             i class="fa-solid fa-user-group fa-lg has-text-warning-dark"
-            br
             .is-size-7.has-text-warning-dark
               | 全員
     .navbar-end
-- elsif @child.id || current_user.children[0].id
+- elsif child.id || current_user.children[0].id
   nav class="navbar is-fixed-bottom" role="navigation"
     .navbar-end
       .navbar-item.has-text-centered
-        = link_to child_histories_path(@child.id ||= current_user.children[0]) do
+        = link_to child_histories_path(child.id ||= current_user.children[0]) do
           i class="fa-solid fa-pen-to-square fa-lg has-text-warning-dark"
-          br
           .is-size-7.has-text-warning-dark
             | 記録
       .navbar-item.has-text-centered
-        = link_to child_schedules_path(@child.id ||= current_user.children[0]) do
+        = link_to child_schedules_path(child.id ||= current_user.children[0]) do
           i class="fa-solid fa-calendar-check fa-lg has-text-warning-dark"
-          br
           .is-size-7.has-text-warning-dark
             | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered
           = link_to families_path do
             i class="fa-solid fa-user-group fa-lg has-text-warning-dark"
-            br
             .is-size-7.has-text-warning-dark
               | 全員
     .navbar-end
@@ -49,19 +43,16 @@
     .navbar-end
       .navbar-item.has-text-centered
         i class="fa-solid fa-pen-to-square fa-lg has-text-warning-dark"
-        br
         .is-size-7.has-text-warning-dark
           | 記録
       .navbar-item.has-text-centered
         i class="fa-solid fa-calendar-check fa-lg has-text-warning-dark"
-        br
         .is-size-7.has-text-warning-dark
           | 予定
       - if current_user.children.size > 1
         .navbar-item.has-text-centered
           = link_to families_path do
             i class="fa-solid fa-user-group fa-lg has-text-warning-dark"
-            br
             .is-size-7.has-text-warning-dark
               | 全員
     .navbar-end

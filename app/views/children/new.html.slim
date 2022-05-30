@@ -2,11 +2,8 @@ header
   = render 'settings/header'
 
 .page-main
-  - if notice
-    .notification.is-success.is-light
-      button class="delete"
-      = notice
-  - if current_user.children.size.zero?
+  = render 'layouts/notice'
+  - if current_user.children.size == 1 && @child.id.nil?
     .has-text-centered
       span class="icon-text mb-3"
         span
@@ -17,7 +14,6 @@ header
     | 子どもの登録
 
   = render 'form', child: @child
-  br/
 
   - if current_user.children.size >= 1
-    = render 'global_nav'
+    = render 'global_nav', child: @child, children: nil
