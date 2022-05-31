@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_active_storage_host
-    ActiveStorage::Current.host = 'http://localhost:3000' if ActiveStorage::Current.host.blank?
-    true
+    return unless %i[local test].include? Rails.application.config.active_storage.service
+
+    ActiveStorage::Current.host = request.base_url
   end
 end
