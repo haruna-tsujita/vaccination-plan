@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path: ''
+  devise_for :users
   resources :families, only: [:index]
   resources :settings, only: [:index]
   resources :children , only: %i[edit new create update] do
