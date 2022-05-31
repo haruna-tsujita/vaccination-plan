@@ -31,9 +31,8 @@ gem 'active_storage_validations'
 gem 'cloudinary'
 gem 'devise'
 gem 'devise-i18n'
-gem 'html2slim'
 gem 'image_processing', '~> 1.2'
-gem 'jp_vaccination', '1.3.0'
+gem 'jp_vaccination'
 gem 'meta-tags'
 gem 'net-ftp'
 gem 'net-imap'
@@ -67,6 +66,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'slim_lint'
+  gem 'html2slim'
   gem 'spring'
 end
 
