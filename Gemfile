@@ -8,7 +8,7 @@ ruby '3.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '= 6.1.5'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 1.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -31,9 +31,8 @@ gem 'active_storage_validations'
 gem 'cloudinary'
 gem 'devise'
 gem 'devise-i18n'
-gem 'html2slim'
 gem 'image_processing', '~> 1.2'
-gem 'jp_vaccination', '1.3.0'
+gem 'jp_vaccination'
 gem 'meta-tags'
 gem 'net-ftp'
 gem 'net-imap'
@@ -61,6 +60,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'html2slim'
   gem 'rubocop', require: false
   gem 'rubocop-fjord', '~> 0.2.0', require: false
   gem 'rubocop-minitest', require: false

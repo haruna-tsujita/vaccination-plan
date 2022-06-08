@@ -370,7 +370,7 @@ DEPENDENCIES
   html2slim
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  jp_vaccination (= 1.3.0)
+  jp_vaccination
   letter_opener_web
   listen (~> 3.3)
   meta-tags
@@ -380,7 +380,7 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
-  pg (~> 1.1)
+  pg (~> 1.3)
   postmark-rails
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
