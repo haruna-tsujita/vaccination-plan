@@ -71,6 +71,6 @@ class History < ApplicationRecord
   end
 
   def date_or_vaccinatied
-    errors.add(:date, 'が入力されていません') if date.nil? && vaccinated.nil?
+    errors.add(:date, 'が入力されていません') if date.nil? && !vaccinated
   end
 end
