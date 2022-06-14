@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_25_072943) do
+ActiveRecord::Schema.define(version: 2022_06_14_114324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_05_25_072943) do
   create_table "children", force: :cascade do |t|
     t.string "name", null: false
     t.date "birthday", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_children_on_user_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_05_25_072943) do
     t.bigint "vaccination_id", null: false
     t.bigint "child_id", null: false
     t.date "date"
-    t.boolean "vaccinated"
+    t.boolean "vaccinated", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["child_id", "vaccination_id"], name: "index_histories_on_child_id_and_vaccination_id", unique: true
