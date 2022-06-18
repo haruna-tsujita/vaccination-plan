@@ -53,5 +53,3 @@ header
                         - default_number = ['①', '②', '③', '④']
                         = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vac.id)
                     - count += 1
-
-  = render 'global_nav', child: @child, children: nil

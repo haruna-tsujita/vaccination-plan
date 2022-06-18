@@ -45,5 +45,3 @@ header
               .subtitle.is-6.has-text-centered.pt-1
                 = Schedule.how_many_days_within_a_week(date.first)
           = render 'families/form', vaccinations: vaccinations, today: false
-
-  = render 'global_nav', child: nil, children: @children
