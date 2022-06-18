@@ -1,10 +1,10 @@
 .has-text-centered
   .child__info
     .columns.is-mobile.is-gapless.is-vcentered.is-centered
-      .column.is-3-mobile
+      a.column.is-3-mobile href=child_schedules_url(child)
         .has-text-centered
           = image_tag child.avatar_url, class: 'child__picture'
-      .column.is-6-mobile
+      a.column.is-6-mobile href=child_schedules_url(child)
         .has-text-centered
           = child.name
           = ' '
