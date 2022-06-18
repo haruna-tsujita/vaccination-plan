@@ -1,6 +1,21 @@
 .has-text-centered
   .child__info
-    .columns.is-mobile.is-gapless.is-vcentered.is-centered
+    .columns.is-mobile.is-vcentered.is-centered
+      .column.is-narrow-mobile
+        .has-text-centered
+          button class="js-modal-trigger" data-target="modal-js-example"
+            | ▼
+        div id="modal-js-example" class="modal"
+          .modal-background
+          .modal-content
+            .box.modal__items
+              .modal__item
+                .ul
+                  - current_user.children.each do |child|
+                    .li
+                      = image_tag child.avatar_url, class: 'child__picture_modal'
+                      = link_to child.name, child_schedules_path(child)
+      button class="modal-close is-large" aria-label="close"
       a.column.is-3-mobile href=child_schedules_url(child)
         .has-text-centered
           = image_tag child.avatar_url, class: 'child__picture'
@@ -11,18 +26,3 @@
           = child.calc_moon_age(Date.current)
         .has-text-centered
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
-      .column
-        .has-text-centered
-          button class="js-modal-trigger" data-target="modal-js-example"
-            | ▼
-    div id="modal-js-example" class="modal"
-      .modal-background
-      .modal-content
-        .box.modal__items
-          .modal__item
-            .ul
-              - current_user.children.each do |child|
-                .li
-                  = image_tag child.avatar_url, class: 'child__picture_modal'
-                  = link_to child.name, child_schedules_path(child)
-    button class="modal-close is-large" aria-label="close"
