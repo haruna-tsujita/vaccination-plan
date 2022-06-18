@@ -1,8 +1,9 @@
 - vaccinations.each_with_index do |vac, idx|
   - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
     .pb-3
-      = image_tag vac[:child].avatar_url, class: 'families_child__picture'
-      = vac[:child].name
+      a href=child_schedules_url(vac[:child])
+        = image_tag vac[:child].avatar_url, class: 'families_child__picture'
+        = vac[:child].name
   ul.schedule__items
       li.is-inline-flex.pb-2
         .pr-3
