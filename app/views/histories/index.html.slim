@@ -53,3 +53,7 @@ header
                         - default_number = ['①', '②', '③', '④']
                         = link_to default_number[count], new_child_history_path(params[:child_id], vaccination_id: vac.id)
                     - count += 1
+
+  .has-text-centered.mt-6
+    a.button.is-fullwidth href=child_schedules_path(@child)
+      | 予定を見る
