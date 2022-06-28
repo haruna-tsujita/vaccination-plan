@@ -1,3 +1,12 @@
 .notification {
   position: fixed;
 }
+
+.navbar.is-fixed-top {
+  background-color:  #FFFFEF;
+}
+
+.navbar-end {
+  display: flex;
+  justify-content: space-around;
+}
