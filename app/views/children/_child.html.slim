@@ -1,6 +1,6 @@
 .has-text-centered
   .child__info
-    .columns.is-mobile.is-vcentered.is-centered
+    .columns.is-mobile.is-vcentered.is-centered.is-gapless
       .column.is-narrow-mobile
         .has-text-centered
           button class="js-modal-trigger" data-target="modal-js-example"
@@ -19,10 +19,23 @@
       a.column.is-3-mobile href=child_schedules_url(child)
         .has-text-centered
           = image_tag child.avatar_url, class: 'child__picture'
-      a.column.is-6-mobile href=child_schedules_url(child)
+      a.column.is-5-mobile href=child_schedules_url(child)
         .has-text-centered
-          = child.name
-          = ' '
-          = child.calc_moon_age(Date.current)
-        .has-text-centered
+          .is-size-6.is-inline-block
+            = child.name + '　'
+          .is-size-7.is-inline-block
+            = child.calc_moon_age(Date.current)
+        .has-text-centered.is-size-7
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
+      - unless current_page?(child_histories_url(child))
+        a.column.is-narrow-mobile href=child_histories_url(child)
+          .square__item.has-text-centered
+            .record__items
+              i.fa-solid.fa-pen-to-square.fa-lg
+              br
+              p.is-size-7
+                | 記録
+      - else
+        a.column.is-narrow-mobile
+          .has-text-centered
+          | 　　　
