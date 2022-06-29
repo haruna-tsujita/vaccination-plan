@@ -10,11 +10,22 @@
           .modal-content
             .box.modal__items
               .modal__item
-                .ul
-                  - current_user.children.each do |child|
-                    .li
+                .columns.is-vcentered.is-gapless.is-mobile.border
+                  .column.is-1
+                  .column.is-2.has-text-centered.is-size-5
+                    | 全員
+                  .column.is-11
+                - current_user.children.each do |child|
+                  .columns.is-vcentered.is-gapless.is-mobile.border
+                    .column.is-1
+                    .column.is-2.has-text-centered.is-vcentered
                       = image_tag child.avatar_url, class: 'child__picture_modal'
-                      = link_to child.name, child_schedules_path(child)
+                    .column.is-1.is-size-5
+                      =link_to child.name, child_schedules_path(child)
+                    .column.is-1
+                    .column.is-5
+                      = link_to child.calc_moon_age(Date.current), child_schedules_path(child)
+                    .column.is-4
       button class="modal-close is-large" aria-label="close"
       a.column.is-3-mobile href=child_schedules_url(child)
         .has-text-centered
