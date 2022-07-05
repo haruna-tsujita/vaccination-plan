@@ -33,3 +33,24 @@
 .img__space {
   height: 120px;
 }
+
+.record__items {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 2px;
+  left: 2.5px;
+}
+
+.square__item {
+  background-color: #EC635E;
+  color: white;
+  width: 45px;
+  height: 45px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.border {
+  border-bottom: 1px solid #CCCCCC;
+}

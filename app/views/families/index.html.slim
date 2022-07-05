@@ -22,7 +22,7 @@ header
                 = l(date.last, format: :long)
               .subtitle.is-6.has-text-centered.has-text-danger.pt-2
                 =  Schedule.number_of_days_elapsed(date.first)
-          = render 'families/form', vaccinations: vacs
+          = render 'families/form', vaccinations: vacs, today: true
 
   .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
     = 'まだ予定日になっていません'
@@ -44,6 +44,4 @@ header
                 = l(date.last, format: :long)
               .subtitle.is-6.has-text-centered.pt-1
                 = Schedule.how_many_days_within_a_week(date.first)
-          = render 'families/form', vaccinations: vaccinations
-
-  = render 'global_nav', child: nil, children: @children
+          = render 'families/form', vaccinations: vaccinations, today: false
