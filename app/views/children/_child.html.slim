@@ -12,7 +12,7 @@
               .modal__item
                 .columns.is-vcentered.is-gapless.is-mobile.border
                   .column.is-1
-                  .column.is-2.has-text-centered.is-size-5
+                  .column.is-2.has-text-centered.is-size-5.has-text-grey
                     | 全員
                   .column.is-11
                 - current_user.children.each do |child|
@@ -20,10 +20,10 @@
                     .column.is-1
                     .column.is-2.has-text-centered.is-vcentered
                       = image_tag child.avatar_url, class: 'child__picture_modal'
-                    .column.is-1.is-size-5
-                      =link_to child.name, child_schedules_path(child)
+                    .column.is-1.is-size-5.child_info_font
+                      = link_to child.name, child_schedules_path(child)
                     .column.is-1
-                    .column.is-5
+                    .column.is-5.child_info_font
                       = link_to child.calc_moon_age(Date.current), child_schedules_path(child)
                     .column.is-4
       button class="modal-close is-large" aria-label="close"
@@ -32,11 +32,11 @@
           = image_tag child.avatar_url, class: 'child__picture'
       a.column.is-5-mobile href=child_schedules_url(child)
         .has-text-centered
-          .is-size-6.is-inline-block
+          .is-size-6.is-inline-block.has-text-grey-dark
             = child.name + '　'
-          .is-size-7.is-inline-block
+          .is-size-7.is-inline-block.has-text-grey-dark
             = child.calc_moon_age(Date.current)
-        .has-text-centered.is-size-7
+        .has-text-centered.is-size-7.has-text-grey-dark
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
       - unless current_page?(child_histories_url(child))
         a.column.is-narrow-mobile href=child_histories_url(child)
