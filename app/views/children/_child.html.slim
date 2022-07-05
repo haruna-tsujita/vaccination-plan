@@ -33,12 +33,16 @@
       a.column.is-5-mobile href=child_schedules_url(child)
         .has-text-centered
           .is-size-6.is-inline-block.has-text-grey-dark
-            = child.name + '　'
+            = "#{child.name}　"
           .is-size-7.is-inline-block.has-text-grey-dark
             = child.calc_moon_age(Date.current)
         .has-text-centered.is-size-7.has-text-grey-dark
           = "#{child.birthday.strftime('%Y年%m月%d日')}生まれ"
-      - unless current_page?(child_histories_url(child))
+      - if current_page?(child_histories_url(child))
+        a.column.is-narrow-mobile
+          .has-text-centered
+          | 　　　
+      - else
         a.column.is-narrow-mobile href=child_histories_url(child)
           .square__item.has-text-centered
             .record__items
@@ -46,7 +50,3 @@
               br
               p.is-size-7
                 | 記録
-      - else
-        a.column.is-narrow-mobile
-          .has-text-centered
-          | 　　　
