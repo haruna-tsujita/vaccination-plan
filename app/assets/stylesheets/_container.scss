@@ -2,8 +2,8 @@
   &.is-sm {
     max-width: 30rem;
   }
-  &:not(.is-max-desktop):not(.is-max-widescreen) {
-    max-width: 42.5rem;
+  &:not(.is-max-desktop):not(.is-max-widescreen):not(.is-max-fullhd) {
+    max-width: 40rem;
     padding: 0 1rem;
   }
 }

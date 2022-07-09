@@ -1,29 +1,27 @@
-.history__items {
-  list-style: none;
-  padding-left: 0;
-}
-
-.history__item {
-  float: left;
-  width: 60px;
-  height: 40px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-size: 22px;
-}
-
-.date {
-  font-size: 9px;
+.vaccinated_date {
+  font-size: 8px;
   white-space: nowrap;
+  color: #EC635E;
+}
+
+.button.vaccinated_num.mx-1 {
+  background-color: #EC635E;
+  border: #EC635E;
+  width: 60px;
+  height: 25px;
 }
 
 .vaccinated_num :link{
-  color: #7d7d7d;
+  color: #fff;
 }
 
 .vaccinated_num :visited{
-  color: #7d7d7d;
+  color: #fff;
+}
+
+.button.non_vaccinated_num.mx-1 {
+  width: 60px;
+  height: 25px;
 }
 
 .non_vaccinated_num :link {
@@ -40,24 +38,32 @@
 
 .regular__item {
   width: 40px;
-  height: 25px;
-  line-height: 25px;
-  background-color: hsl(174, 100%, 40%);
-  border-radius: 50%;
+  height: 22px;
+  line-height: 22px;
+  background-color: #807d7d;
+  border-radius:27%/50%;
   color: #fff;
   text-align: center;
 }
 
 .voluntary__item {
   width: 40px;
-  height: 25px;
-  line-height: 25px;
-  background-color: hsl(48, 100%, 67%);
-  border-radius: 50%;
+  height: 22px;
+  line-height: 22px;
+  background-color: #a3a1a1;
+  border-radius:27%/50%;
   color: #fff;
   text-align: center;
 }
 
 .table {
   width: 100%;
+}
+
+.period__bigsize {
+  font-size: 14px;
+}
+
+.period__smallsize {
+  font-size: 9px;
 }
