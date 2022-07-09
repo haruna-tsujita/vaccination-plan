@@ -1,29 +1,27 @@
-.history__items {
-  list-style: none;
-  padding-left: 0;
-}
-
-.history__item {
-  float: left;
-  width: 60px;
-  height: 40px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-size: 22px;
-}
-
-.date {
-  font-size: 9px;
+.vaccinated_date {
+  font-size: 8px;
   white-space: nowrap;
+  color: #EC635E;
+}
+
+.button.vaccinated_num.mx-1 {
+  background-color: #EC635E;
+  border: #EC635E;
+  width: 55px;
+  height: 22px;
 }
 
 .vaccinated_num :link{
-  color: #7d7d7d;
+  color: #fff;
 }
 
 .vaccinated_num :visited{
-  color: #7d7d7d;
+  color: #fff;
+}
+
+.button.non_vaccinated_num.mx-1 {
+  width: 55px;
+  height: 22px;
 }
 
 .non_vaccinated_num :link {
@@ -60,4 +58,12 @@
 
 .table {
   width: 100%;
+}
+
+.period__bigsize {
+  font-size: 14px;
+}
+
+.period__smallsize {
+  font-size: 9px;
 }
