@@ -1,0 +1,12 @@
+- if period.empty?
+  .period__bigsize.is-inline-block
+    = '１'
+  .period__smallsize.is-inline-block
+    = '回目'
+- period.chars.each do |str|
+  - if str.match?(/[０-４]/)
+    .period__bigsize.is-inline-block
+      = str
+  - else
+    .period__smallsize.is-inline-block
+      = str

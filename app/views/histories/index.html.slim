@@ -50,36 +50,14 @@ header
                               span class="icon has-text-white period__smallsize"
                                 i class="fa-solid fa-check"
                                 = link_to edit_child_history_path(params[:child_id], history.id, vaccination_id: vac.id) do
-                                  - if period.empty?
-                                    .period__bigsize.is-inline-block
-                                      = '１'
-                                    .period__smallsize.is-inline-block
-                                      = '回目'
-                                  - period.chars.each do |str|
-                                    - if str.match?(/[０-４]/)
-                                      .period__bigsize.is-inline-block
-                                        = str
-                                    - else
-                                      .period__smallsize.is-inline-block
-                                        = str
+                                  = render 'display_period', period: period
                             .ml-3.vaccinated_date
                               = history&.date&.strftime('%y/%m/%d')
                         - else
                           .column
                             button.button.non_vaccinated_num.mx-1
                               = link_to new_child_history_path(params[:child_id], vaccination_id: vac.id) do
-                                - if period.empty?
-                                  .period__bigsize.is-inline-block
-                                    = '１'
-                                  .period__smallsize.is-inline-block
-                                    = '回目'
-                                - period.chars.each do |str|
-                                  - if str.match?(/[０-４]/)
-                                    .period__bigsize.is-inline-block
-                                      = str
-                                  - else
-                                    .period__smallsize.is-inline-block
-                                      = str
+                                = render 'display_period', period: period
                 .column
   .has-text-centered.mt-6
     a.button.is-fullwidth href=child_schedules_path(@child)
