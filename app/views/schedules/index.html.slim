@@ -13,32 +13,39 @@ header
       .card
         .card-content
           .content
-            - if date.instance_of?(Date)
-              .title.is-5.has-text-centered
-                = l(date, format: :long)
-              - unless Schedule.number_of_days_elapsed(date).nil?
-                .subtitle.is-6.has-text-centered.has-text-danger.pt-1
-                  = Schedule.number_of_days_elapsed(date)
-            - else
-              .title.is-5.has-text-centered
-                p 小学校入学前1年間
-                = l(date.first, format: :default)
-                = '〜'
-                = l(date.last, format: :default)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-1
-                =  Schedule.number_of_days_elapsed(date.first)
-          ul.schedule__items
-            - names.each do |name|
-              li.is-inline-flex.pb-3
-                .pr-3
-                  - if Vaccination.find_by(name: name[:name]).regular?
-                    .regular__item.is-size-7
-                      | 定期
-                  - else
-                    .voluntary__item.is-size-7
-                      | 任意
-                - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
-                = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
+            table
+              thead
+                tr
+                  th
+                    .is-inline-flex
+                      - if date.instance_of?(Date)
+                        .is-5
+                          = l(date, format: :long)
+                        - unless Schedule.number_of_days_elapsed(date).nil?
+                          .is-6.has-text-danger
+                            = Schedule.number_of_days_elapsed(date)
+                      - else
+                        .is-5
+                          p 小学校入学前1年間
+                          = l(date.first, format: :default)
+                          = '〜'
+                          = l(date.last, format: :default)
+                        .is-6.has-text-danger.pt-1
+                          =  Schedule.number_of_days_elapsed(date.first)
+              tbody
+                .schedule__items
+                  - names.each do |name|
+                    tr
+                      td
+                        .is-inline-flex
+                          - if Vaccination.find_by(name: name[:name]).regular?
+                            .regular__item.is-size-7
+                              | 定期
+                          - else
+                            .voluntary__item.is-size-7
+                              | 任意
+                        - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
+                        = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
   - count = 0
   - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
@@ -47,30 +54,35 @@ header
       .card
         .card-content
           .content
-            - if date.instance_of?(Date)
-              .title.is-5.has-text-centered
-                = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.pt-1
-                =  Schedule.how_many_days_within_a_week(date)
-            - else
-              .title.is-5.has-text-centered
-                p 小学校入学前1年間
-              .subtitle.is-7.has-text-centered
-                = l(date.first, format: :default)
-                = '〜'
-                = l(date.last, format: :default)
-              .subtitle.is-6.has-text-centered.pt-1
-                =  Schedule.how_many_days_within_a_week(date.first)
-          ul.schedule__items
-            - names.each do |name|
-              li.is-inline-flex.pb-3
-                .pr-3
-                  - if Vaccination.find_by(name: name[:name]).regular?
-                    .regular__item.is-size-7
-                      | 定期
-                  - else
-                    .voluntary__item.is-size-7
-                      | 任意
-                = "#{name[:name]} #{name[:period]}"
-              br/
-      - count += 1
+            table
+              thead
+                tr
+                  th
+                    - if date.instance_of?(Date)
+                      .is-5
+                        = l(date, format: :long)
+                      .is-6
+                        =  Schedule.how_many_days_within_a_week(date)
+                    - else
+                      .is-5
+                        p 小学校入学前1年間
+                      .is-7
+                        = l(date.first, format: :default)
+                        = '〜'
+                        = l(date.last, format: :default)
+                      .is-6
+                        =  Schedule.how_many_days_within_a_week(date.first)
+              tbody
+                .schedule__items
+                  - names.each do |name|
+                    tr
+                      td
+                        .is-inline-flex
+                          - if Vaccination.find_by(name: name[:name]).regular?
+                            .regular__item.is-size-7
+                              | 定期
+                          - else
+                            .voluntary__item.is-size-7
+                              | 任意
+                        = "#{name[:name]} #{name[:period]}"
+                - count += 1

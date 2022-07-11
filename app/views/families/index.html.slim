@@ -1,6 +1,6 @@
 header
   = render 'settings/header'
-.page-main
+.page-main.main__contents
   = render 'layouts/notice'
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
     .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
@@ -9,20 +9,25 @@ header
       .card
         .card-content
           .content
-            - if date.instance_of?(Date)
-              .title.is-5.has-text-centered
-                = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
-                = Schedule.number_of_days_elapsed(date)
-            - else
-              .title.is-5.has-text-centered
-                = l(date.first, format: :long)
-              .subtitle.is-7.has-text-centered
-                = '〜'
-                = l(date.last, format: :long)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
-                =  Schedule.number_of_days_elapsed(date.first)
-          = render 'families/form', vaccinations: vacs, today: true
+            table
+              thead
+                tr
+                  th
+                    .is-inline-flex
+                      - if date.instance_of?(Date)
+                        .is-5
+                          = l(date, format: :long)
+                        .is-6.has-text-danger
+                          = Schedule.number_of_days_elapsed(date)
+                      - else
+                        .is-5.has-text-centered
+                          = l(date.first, format: :long)
+                        .is-7.has-text-centered
+                          = '〜'
+                          = l(date.last, format: :long)
+                        .is-6.has-text-centered.has-text-danger.pt-2
+                          =  Schedule.number_of_days_elapsed(date.first)
+              = render 'families/form', vaccinations: vacs, today: true
 
   .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
     = 'まだ予定日になっていません'
@@ -31,17 +36,19 @@ header
       .card
         .card-content
           .content
-            - if date.instance_of?(Date)
-              .title.is-5.has-text-centered
-                = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.pt-1
-                = Schedule.how_many_days_within_a_week(date)
-            - else
-              .title.is-5.has-text-centered
-                = l(date.first, format: :long)
-              .subtitle.is-7.has-text-centered
-                = '〜'
-                = l(date.last, format: :long)
-              .subtitle.is-6.has-text-centered.pt-1
-                = Schedule.how_many_days_within_a_week(date.first)
-          = render 'families/form', vaccinations: vaccinations, today: false
+            table
+              thead
+                tr
+                  th
+                    - if date.instance_of?(Date)
+                      .is-5
+                        = l(date, format: :long)
+                      .is-6
+                        = Schedule.how_many_days_within_a_week(date)
+                    - else
+                      .is-5
+                        = l(date.first, format: :long)
+                        = '〜 '
+                        = l(date.last, format: :long)
+                        = Schedule.how_many_days_within_a_week(date.first)
+              = render 'families/form', vaccinations: vaccinations, today: false
