@@ -17,7 +17,7 @@ header
               thead
                 tr
                   th
-                    .is-inline-flex
+                    .is-inline-flex.has-text-danger
                       - if date.instance_of?(Date)
                         .is-5
                           = l(date, format: :long)
@@ -33,19 +33,18 @@ header
                         .is-6.has-text-danger.pt-1
                           =  Schedule.number_of_days_elapsed(date.first)
               tbody
-                .schedule__items
-                  - names.each do |name|
-                    tr
-                      td
-                        .is-inline-flex
-                          - if Vaccination.find_by(name: name[:name]).regular?
-                            .regular__item.is-size-7.mr-2
-                              | 定期
-                          - else
-                            .voluntary__item.is-size-7.mr-2
-                              | 任意
-                        - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
-                        = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
+                - names.each do |name|
+                  tr
+                    td
+                      .is-inline-flex
+                        - if Vaccination.find_by(name: name[:name]).regular?
+                          .regular__item.is-size-7.mr-2
+                            | 定期
+                        - else
+                          .voluntary__item.is-size-7.mr-2
+                            | 任意
+                      - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
+                      = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
   - count = 0
   - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
@@ -73,16 +72,15 @@ header
                       .is-6
                         =  Schedule.how_many_days_within_a_week(date.first)
               tbody
-                .schedule__items
-                  - names.each do |name|
-                    tr
-                      td
-                        .is-inline-flex
-                          - if Vaccination.find_by(name: name[:name]).regular?
-                            .regular__item.is-size-7.mr-2
-                              | 定期
-                          - else
-                            .voluntary__item.is-size-7.mr-2
-                              | 任意
-                        = "#{name[:name]} #{name[:period]}"
-                - count += 1
+                - names.each do |name|
+                  tr
+                    td
+                      .is-inline-flex
+                        - if Vaccination.find_by(name: name[:name]).regular?
+                          .regular__item.is-size-7.mr-2
+                            | 定期
+                        - else
+                          .voluntary__item.is-size-7.mr-2
+                            | 任意
+                      = "#{name[:name]} #{name[:period]}"
+              - count += 1
