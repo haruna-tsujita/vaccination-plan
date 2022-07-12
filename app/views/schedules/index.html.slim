@@ -39,10 +39,10 @@ header
                       td
                         .is-inline-flex
                           - if Vaccination.find_by(name: name[:name]).regular?
-                            .regular__item.is-size-7
+                            .regular__item.is-size-7.mr-2
                               | 定期
                           - else
-                            .voluntary__item.is-size-7
+                            .voluntary__item.is-size-7.mr-2
                               | 任意
                         - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
                         = link_to "#{name[:name]} #{name[:period]}", new_child_history_path(@child, vaccination_id: vaccination.id)
@@ -79,10 +79,10 @@ header
                       td
                         .is-inline-flex
                           - if Vaccination.find_by(name: name[:name]).regular?
-                            .regular__item.is-size-7
+                            .regular__item.is-size-7.mr-2
                               | 定期
                           - else
-                            .voluntary__item.is-size-7
+                            .voluntary__item.is-size-7.mr-2
                               | 任意
                         = "#{name[:name]} #{name[:period]}"
                 - count += 1
