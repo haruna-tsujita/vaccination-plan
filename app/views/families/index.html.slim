@@ -17,15 +17,17 @@ header
                       - if date.instance_of?(Date)
                         .is-5
                           = l(date, format: :long)
-                        .is-6.has-text-danger
+                        .is-6
+                          i class="fa-solid fa-triangle-exclamation mr-1"
                           = Schedule.number_of_days_elapsed(date)
                       - else
-                        .is-5.has-text-centered
+                        .is-5
                           = l(date.first, format: :long)
-                        .is-7.has-text-centered
+                        .is-7
                           = '〜'
                           = l(date.last, format: :long)
-                        .is-6.has-text-centered.has-text-danger.pt-2
+                        .is-6.pt-2
+                          i class="fa-solid fa-triangle-exclamation mr-1"
                           =  Schedule.number_of_days_elapsed(date.first)
               = render 'families/form', vaccinations: vacs, today: true
 
@@ -40,15 +42,20 @@ header
               thead
                 tr
                   th
-                    - if date.instance_of?(Date)
-                      .is-5
-                        = l(date, format: :long)
-                      .is-6
-                        = Schedule.how_many_days_within_a_week(date)
-                    - else
-                      .is-5
-                        = l(date.first, format: :long)
-                        = '〜 '
-                        = l(date.last, format: :long)
-                        = Schedule.how_many_days_within_a_week(date.first)
+                    .is-inline-flex
+                      - if date.instance_of?(Date)
+                        .is-5
+                          = l(date, format: :long)
+                        .is-6
+                          - day = Schedule.how_many_days_within_a_week(date)
+                          - if day
+                            i class="fa-solid fa-triangle-exclamation mr-1"
+                            = Schedule.how_many_days_within_a_week(date)
+                      - else
+                        .is-5
+                          = l(date.first, format: :long)
+                          = '〜 '
+                          = l(date.last, format: :long)
+                          i class="fa-solid fa-triangle-exclamation mr-1"
+                          = Schedule.how_many_days_within_a_week(date.first)
               = render 'families/form', vaccinations: vaccinations, today: false
