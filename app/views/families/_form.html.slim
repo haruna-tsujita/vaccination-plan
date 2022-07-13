@@ -15,9 +15,9 @@ tbody
           - else
             .voluntary__item.mr-2
               p.is-size-7 任意
-        - if today
-          = link_to "#{vac[:name]} #{vac[:period]}", new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period]))
-        - else
-          = vac[:name]
-          = ' '
-          = vac[:period]
+          - if today
+            = link_to "#{vac[:name]} #{vac[:period]}", new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period]))
+          - else
+            = vac[:name]
+            = ' '
+            = vac[:period]
