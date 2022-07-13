@@ -52,7 +52,7 @@ header
                         .column.is-4
                         .column.is-1.has-text-right
                           i class="fa-solid fa-pen-to-square"
-      - count = 0
+  - count = 0
   - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
       .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
