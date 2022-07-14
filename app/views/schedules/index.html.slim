@@ -55,7 +55,7 @@ header
   - count = 0
   - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first > Date.current) || (date.instance_of?(Date) && date > Date.current)
-      .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
+      .has-text-centered.is-size-6.has-text-weight-medium.has-text-white.coming_soon_color
         = 'まだ予定日になっていません' if count.zero?
       .card
         .card-content
@@ -71,8 +71,9 @@ header
                         .is-6
                           - day = Schedule.how_many_days_within_a_week(date)
                           - if day
-                            i class="fa-solid fa-triangle-exclamation mr-1"
-                            = day
+                            .coming_soon_day
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              = day
                     - else
                       .is-5
                         p 小学校入学前1年間

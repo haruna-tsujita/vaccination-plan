@@ -31,7 +31,7 @@ header
                           =  Schedule.number_of_days_elapsed(date.first)
               = render 'families/form', vaccinations: vacs, today: true
 
-  .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
+  .has-text-centered.is-size-6.has-text-weight-medium.has-text-white.coming_soon_color
     = 'まだ予定日になっていません'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
     - unless Family.scheldule_before_today?(date)
@@ -49,8 +49,9 @@ header
                         .is-6
                           - day = Schedule.how_many_days_within_a_week(date)
                           - if day
-                            i class="fa-solid fa-triangle-exclamation mr-1"
-                            = Schedule.how_many_days_within_a_week(date)
+                            .coming_soon_day
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              = Schedule.how_many_days_within_a_week(date)
                       - else
                         .is-5
                           = l(date.first, format: :long)
