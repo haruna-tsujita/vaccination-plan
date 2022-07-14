@@ -12,12 +12,12 @@ header
         - count += 1
       .card
         .card-content
-          .content
+          .content.overdue_plan
             table
               thead
                 tr
                   th
-                    .is-inline-flex
+                    .is-inline-flex.overdue_plan
                       - if date.instance_of?(Date)
                         .is-5
                           = l(date, format: :long)
@@ -40,11 +40,11 @@ header
                       .columns.is-mobile.is-vcentered.is-gapless
                         - if Vaccination.find_by(name: name[:name]).regular?
                           .column.is-narrow
-                            .regular__item.is-size-7.mr-2
+                            .overdue_regular__item.is-size-7.mr-2
                               | 定期
                         - else
                           .column.is-narrow
-                            .voluntary__item.is-size-7.mr-2
+                            .overdue_voluntary__item.is-size-7.mr-2
                               | 任意
                         - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
                         .column.is-6

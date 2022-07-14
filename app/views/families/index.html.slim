@@ -8,12 +8,12 @@ header
     - if Family.scheldule_before_today?(date)
       .card
         .card-content
-          .content
+          .content.overdue_plan
             table
               thead
                 tr
                   th
-                    .is-inline-flex
+                    .is-inline-flex.overdue_plan
                       - if date.instance_of?(Date)
                         .is-5
                           = l(date, format: :long)

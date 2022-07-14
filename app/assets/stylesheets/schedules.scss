@@ -1,3 +1,36 @@
 .card {
   margin: 20px 0;
 }
+
+.overdue_plan :link{
+  color: #EC635E;
+}
+
+.overdue_plan :visited{
+  color: #EC635E;
+}
+
+.overdue_plan {
+  color: #EC635E;
+}
+
+.overdue_regular__item {
+  width: 40px;
+  height: 24px;
+  line-height: 24px;
+  background-color: #EC635E;
+  border-radius: 30%/50%;
+  color: #fff;
+  text-align: center;
+}
+
+.overdue_voluntary__item {
+  width: 40px;
+  height: 24px;
+  line-height: 24px;
+  border: 1px solid #EC635E;
+  background-color: #fff;
+  border-radius: 30%/50%;
+  color: #EC635E;
+  text-align: center;
+}
