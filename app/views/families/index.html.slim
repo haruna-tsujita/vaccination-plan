@@ -3,7 +3,7 @@ header
 .page-main.main__contents
   = render 'layouts/notice'
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
-    .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
+    .has-text-centered.is-size-6.has-text-weight-medium.overdue_color.has-text-white
       = '予定日を過ぎました' if index.zero?
     - if Family.scheldule_before_today?(date)
       .card

@@ -7,7 +7,7 @@ header
   - count = 0
   - @schedules.each_with_index do |(date, names)|
     - if (date.instance_of?(Range) && date.first <= Date.current) || (date.instance_of?(Date) && date <= Date.current)
-      .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
+      .has-text-centered.is-size-6.has-text-weight-medium.overdue_color.has-text-white
         = '予定日を過ぎました' if count.zero?
         - count += 1
       .card
