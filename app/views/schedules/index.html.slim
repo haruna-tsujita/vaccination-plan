@@ -80,14 +80,9 @@ header
                         p 小学校入学前1年間
                       .is-inline-flex
                         .is-7
-                          = l(date.first, format: :default)
+                          = l(date.first, format: :long)
                           = '〜'
-                          = l(date.last, format: :default)
-                        .is-6
-                          - day = Schedule.how_many_days_within_a_week(date.first)
-                          - if day
-                            i class="fa-solid fa-triangle-exclamation mr-1"
-                            = day
+                          = l(date.last, format: :long)
               tbody
                 - names.each do |name|
                   tr
