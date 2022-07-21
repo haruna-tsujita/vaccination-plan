@@ -1,3 +1,23 @@
 .subtitle.is-6.has-text-centered.pt-1 {
   color: #ff8206;
 }
+
+.families_child__picture {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.families_child__name {
+  vertical-align: middle;
+}
+
+.font_color :link {
+  color: #4a4a4a;
+}
+
+.font_color :visited{
+  color: #4a4a4a;
+}

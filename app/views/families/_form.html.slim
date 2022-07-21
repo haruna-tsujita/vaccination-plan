@@ -1,21 +1,41 @@
-- vaccinations.each_with_index do |vac, idx|
-  - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
-    .pb-3
-      a href=child_schedules_url(vac[:child])
-        = image_tag vac[:child].avatar_url, class: 'families_child__picture'
-        = vac[:child].name
-  ul.schedule__items
-      li.is-inline-flex.pb-2
-        .pr-3
-          - if Vaccination.find_by(name: vac[:name]).regular?
-            .regular__item
-              p.is-size-7 定期
-          - else
-            .voluntary__item
-              p.is-size-7 任意
+tbody
+  - vaccinations.each_with_index do |vac, idx|
+    - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
+      tr
+        td
+          = link_to child_schedules_url(vac[:child]) do
+            .columns.is-mobile.is-vcentered.is-gapless
+              .column.is-narrow.mr-1
+                = image_tag vac[:child].avatar_url, class: 'families_child__picture mr-2'
+              .column.is-size-5.is-1
+                = vac[:child].name
+    tr
+      td
         - if today
-          = link_to "#{vac[:name]} #{vac[:period]}", new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period]))
+          = link_to new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period])) do
+            .columns.is-mobile.is-vcentered.is-gapless
+              - if Vaccination.find_by(name: vac[:name]).regular?
+                .column.is-narrow
+                  .overdue_regular__item.mr-2
+                    p.is-size-7 定期
+              - else
+                .column.is-narrow
+                  .overdue_voluntary__item.mr-2
+                    p.is-size-7 任意
+              .column.is-6
+                = "#{vac[:name]} #{vac[:period]}"
+              .column.is-4
+              .column.is-1.has-text-right
+                i class="fa-solid fa-pen-to-square"
         - else
-          = vac[:name]
-          = ' '
-          = vac[:period]
+          .columns.is-mobile.is-vcentered.is-gapless
+            - if Vaccination.find_by(name: vac[:name]).regular?
+              .column.is-narrow
+                .regular__item.mr-2
+                  p.is-size-7 定期
+            - else
+              .column.is-narrow
+                .voluntary__item.mr-2
+                  p.is-size-7 任意
+            .column
+              = "#{vac[:name]} #{vac[:period]}"

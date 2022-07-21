@@ -1,47 +1,60 @@
 header
   = render 'settings/header'
-.page-main
+.page-main.main__contents
   = render 'layouts/notice'
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
-    .has-text-centered.is-size-6.has-text-weight-medium.has-background-danger.has-text-white
+    .has-text-centered.is-size-6.has-text-weight-medium.overdue_color.has-text-white
       = '予定日を過ぎました' if index.zero?
     - if Family.scheldule_before_today?(date)
       .card
         .card-content
-          .content
-            - if date.instance_of?(Date)
-              .title.is-5.has-text-centered
-                = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
-                = Schedule.number_of_days_elapsed(date)
-            - else
-              .title.is-5.has-text-centered
-                = l(date.first, format: :long)
-              .subtitle.is-7.has-text-centered
-                = '〜'
-                = l(date.last, format: :long)
-              .subtitle.is-6.has-text-centered.has-text-danger.pt-2
-                =  Schedule.number_of_days_elapsed(date.first)
-          = render 'families/form', vaccinations: vacs, today: true
+          .content.overdue_plan
+            table
+              thead
+                tr
+                  th
+                    .is-inline-flex.overdue_plan
+                      - if date.instance_of?(Date)
+                        .is-5
+                          = l(date, format: :long)
+                        .is-6
+                          i class="fa-solid fa-triangle-exclamation mr-1"
+                          = Schedule.number_of_days_elapsed(date)
+                      - else
+                        .is-5
+                          = l(date.first, format: :long)
+                        .is-7
+                          = '〜'
+                          = l(date.last, format: :long)
+                        .is-6.pt-2
+                          i class="fa-solid fa-triangle-exclamation mr-1"
+                          =  Schedule.number_of_days_elapsed(date.first)
+              = render 'families/form', vaccinations: vacs, today: true
 
-  .has-text-centered.is-size-6.has-text-weight-medium.has-background-warning.has-text-white
+  .has-text-centered.is-size-6.has-text-weight-medium.has-text-white.coming_soon_color
     = 'まだ予定日になっていません'
   - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
     - unless Family.scheldule_before_today?(date)
       .card
         .card-content
-          .content
-            - if date.instance_of?(Date)
-              .title.is-5.has-text-centered
-                = l(date, format: :long)
-              .subtitle.is-6.has-text-centered.pt-1
-                = Schedule.how_many_days_within_a_week(date)
-            - else
-              .title.is-5.has-text-centered
-                = l(date.first, format: :long)
-              .subtitle.is-7.has-text-centered
-                = '〜'
-                = l(date.last, format: :long)
-              .subtitle.is-6.has-text-centered.pt-1
-                = Schedule.how_many_days_within_a_week(date.first)
-          = render 'families/form', vaccinations: vaccinations, today: false
+          .content.font_color
+            table
+              thead
+                tr
+                  th
+                    .is-inline-flex.font_color
+                      - if date.instance_of?(Date)
+                        .is-5
+                          = l(date, format: :long)
+                        .is-6
+                          - day = Schedule.how_many_days_within_a_week(date)
+                          - if day
+                            .coming_soon_day
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              = Schedule.how_many_days_within_a_week(date)
+                      - else
+                        .is-5
+                          = l(date.first, format: :long)
+                          = '〜 '
+                          = l(date.last, format: :long)
+              = render 'families/form', vaccinations: vaccinations, today: false

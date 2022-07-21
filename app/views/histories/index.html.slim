@@ -22,15 +22,16 @@ header
           - if @vaccinations[idx].name != @vaccinations[idx - 1].name
             - vacs = []
             - vacs << vaccination
-            th.has-text-centered.table__items.has-background-warning-light
-              - if vaccination.regular?
-                .regular__item
-                  p.is-size-7 定期
-              - else
-                .voluntary__item
-                  p.is-size-7 任意
-              .pl-4
-                = vaccination.name
+            th.has-background-warning-light
+              .is-inline-flex
+                - if vaccination.regular?
+                  .regular__item
+                    p.is-size-7 定期
+                - else
+                  .voluntary__item
+                    p.is-size-7 任意
+                .pl-4
+                  = vaccination.name
           - else
             - vacs << vaccination
         - if (@vaccinations[idx] == @vaccinations[-1]) || (@vaccinations[idx.next].key[-1] == '1')
