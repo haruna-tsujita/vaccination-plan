@@ -57,6 +57,8 @@ header
                           = l(date.first, format: :long)
                           = '〜 '
                           = l(date.last, format: :long)
-                          i class="fa-solid fa-triangle-exclamation mr-1"
-                          = Schedule.how_many_days_within_a_week(date.first)
+                          - day = Schedule.how_many_days_within_a_week(date.first)
+                            .coming_soon_day
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              = Schedule.how_many_days_within_a_week(date.first)
               = render 'families/form', vaccinations: vaccinations, today: false
