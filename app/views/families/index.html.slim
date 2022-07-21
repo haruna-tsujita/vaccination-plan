@@ -22,9 +22,9 @@ header
                             i class="fa-solid fa-triangle-exclamation mr-1"
                             = Schedule.number_of_days_elapsed(date)
                       - else
-                        .is-5
+                        .is-size-5
                           = l(date.first, format: :long)
-                        .is-7
+                        .is-size-7
                           = '〜'
                           = l(date.last, format: :long)
                         .is-6.pt-2
@@ -55,7 +55,7 @@ header
                                 i class="fa-solid fa-triangle-exclamation mr-1"
                                 = day
                       - else
-                        .is-5
+                        .is-size-7
                           = l(date.first, format: :long)
                           = '〜 '
                           = l(date.last, format: :long)
