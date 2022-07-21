@@ -8,31 +8,31 @@ tbody
             = vac[:child].name
     tr
       td
-        .columns.is-mobile.is-vcentered.is-gapless
-          - if Vaccination.find_by(name: vac[:name]).regular?
-            .column.is-narrow
-              - if today
-                .overdue_regular__item.mr-2
-                  p.is-size-7 定期
+        - if today
+          = link_to new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period])) do
+            .columns.is-mobile.is-vcentered.is-gapless
+              - if Vaccination.find_by(name: vac[:name]).regular?
+                .column.is-narrow
+                  .overdue_regular__item.mr-2
+                    p.is-size-7 定期
               - else
+                .column.is-narrow
+                  .overdue_voluntary__item.mr-2
+                    p.is-size-7 任意
+              .column.is-6
+                = "#{vac[:name]} #{vac[:period]}"
+              .column.is-4
+              .column.is-1.has-text-right
+                i class="fa-solid fa-pen-to-square"
+        - else
+          .columns.is-mobile.is-vcentered.is-gapless
+            - if Vaccination.find_by(name: vac[:name]).regular?
+              .column.is-narrow
                 .regular__item.mr-2
                   p.is-size-7 定期
-          - else
-            .column.is-narrow
-              - if today
-                .overdue_voluntary__item.mr-2
-                  p.is-size-7 任意
-              - else
+            - else
+              .column.is-narrow
                 .voluntary__item.mr-2
                   p.is-size-7 任意
-          - if today
-            .column.is-6
-              = link_to "#{vac[:name]} #{vac[:period]}", new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period]))
-            .column.is-4
-            .column.is-1.has-text-right
-              i class="fa-solid fa-pen-to-square"
-          - else
             .column
-              = vac[:name]
-              = ' '
-              = vac[:period]
+              = "#{vac[:name]} #{vac[:period]}"
