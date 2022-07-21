@@ -36,7 +36,7 @@ header
               tbody
                 - names.each do |name|
                   tr
-                    td.is-block
+                    td
                       - vaccination = Vaccination.find_by(name: name[:name], period: name[:period])
                       = link_to new_child_history_path(@child, vaccination_id: vaccination.id) do
                         .columns.is-mobile.is-vcentered.is-gapless
