@@ -13,13 +13,14 @@ header
               thead
                 tr
                   th
-                    .is-inline-flex.overdue_plan
+                    .overdue_plan
                       - if date.instance_of?(Date)
-                        .is-5
-                          = l(date, format: :long)
-                        .is-6
-                          i class="fa-solid fa-triangle-exclamation mr-1"
-                          = Schedule.number_of_days_elapsed(date)
+                        .columns.is-mobile.is-vcentered.is-gapless
+                          .column.is-8
+                            = l(date, format: :long)
+                          .column.is-5
+                            i class="fa-solid fa-triangle-exclamation mr-1"
+                            = Schedule.number_of_days_elapsed(date)
                       - else
                         .is-5
                           = l(date.first, format: :long)
@@ -42,16 +43,17 @@ header
               thead
                 tr
                   th
-                    .is-inline-flex.font_color
+                    .font_color
                       - if date.instance_of?(Date)
-                        .is-5
-                          = l(date, format: :long)
-                        .is-6
-                          - day = Schedule.how_many_days_within_a_week(date)
-                          - if day
-                            .coming_soon_day
-                              i class="fa-solid fa-triangle-exclamation mr-1"
-                              = Schedule.how_many_days_within_a_week(date)
+                        .columns.is-mobile.is-vcentered.is-gapless
+                          .column.is-8
+                            = l(date, format: :long)
+                          .column.is-5
+                            - day = Schedule.how_many_days_within_a_week(date)
+                            - if day
+                              .coming_soon_day
+                                i class="fa-solid fa-triangle-exclamation mr-1"
+                                = day
                       - else
                         .is-5
                           = l(date.first, format: :long)

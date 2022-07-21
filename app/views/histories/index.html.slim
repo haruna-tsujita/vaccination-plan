@@ -23,7 +23,7 @@ header
             - vacs = []
             - vacs << vaccination
             th.has-background-warning-light
-              .is-inline-flex
+              .is-inline-flex.my-3.mx-3
                 - if vaccination.regular?
                   .regular__item
                     p.is-size-7 定期
@@ -36,25 +36,26 @@ header
             - vacs << vaccination
         - if (@vaccinations[idx] == @vaccinations[-1]) || (@vaccinations[idx.next].key[-1] == '1')
           tr
-            td.is-flex
-              .columns.is-mobile
-                - vacs.each do |vac|
-                  - history = @histories.find { |his| his.vaccination_id == vac.id && his.child_id == @child.id }
-                  - period = vac.period.size > 3 ? vac.period.slice(4, 3) : vac.period.slice(0, 3) # 第1期1回目みたいなやつを1回目だけの表示にしたかった。
-                  - if history && (history.date || history.vaccinated)
-                    .column
-                      button.button.vaccinated_num.mx-1
-                        span class="icon has-text-white period__smallsize"
-                          i class="fa-solid fa-check"
-                          = link_to edit_child_history_path(params[:child_id], history.id, vaccination_id: vac.id) do
+            td
+              .is-flex
+                .columns.is-mobile.is-gapless.position
+                  - vacs.each do |vac|
+                    - history = @histories.find { |his| his.vaccination_id == vac.id && his.child_id == @child.id }
+                    - period = vac.period.size > 3 ? vac.period.slice(4, 3) : vac.period.slice(0, 3) # 第1期1回目みたいなやつを1回目だけの表示にしたかった。
+                    - if history && (history.date || history.vaccinated)
+                      .column.my-3
+                        button.button.vaccinated_num.mx-2
+                          span class="icon has-text-white period__smallsize"
+                            i class="fa-solid fa-check"
+                            = link_to edit_child_history_path(params[:child_id], history.id, vaccination_id: vac.id) do
+                              = render 'display_period', period: period
+                        .ml-4.vaccinated_date
+                          = history&.date&.strftime('%y/%m/%d')
+                    - else
+                      .column.my-3
+                        button.button.non_vaccinated_num.mx-2
+                          = link_to new_child_history_path(params[:child_id], vaccination_id: vac.id) do
                             = render 'display_period', period: period
-                      .ml-3.vaccinated_date
-                        = history&.date&.strftime('%y/%m/%d')
-                  - else
-                    .column
-                      button.button.non_vaccinated_num.mx-1
-                        = link_to new_child_history_path(params[:child_id], vaccination_id: vac.id) do
-                          = render 'display_period', period: period
   .has-text-centered.mt-6
     a.button.is-fullwidth href=child_schedules_path(@child)
       | 予定を見る
