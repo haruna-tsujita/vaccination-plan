@@ -3,9 +3,12 @@ tbody
     - if idx.zero? || idx != 0 && vaccinations[idx][:child] != vaccinations[idx - 1][:child]
       tr
         td
-          a href=child_schedules_url(vac[:child])
-            = image_tag vac[:child].avatar_url, class: 'families_child__picture'
-            = vac[:child].name
+          = link_to child_schedules_url(vac[:child]) do
+            .columns.is-mobile.is-vcentered.is-gapless
+              .column.is-narrow.mr-1
+                = image_tag vac[:child].avatar_url, class: 'families_child__picture mr-2'
+              .column.is-size-5.is-1
+                = vac[:child].name
     tr
       td
         - if today
