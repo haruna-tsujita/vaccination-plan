@@ -17,14 +17,14 @@ header
               thead
                 tr
                   th
-                    .overdue_plan
+                    .font-color
                       - if date.instance_of?(Date)
                         .columns.is-mobile.is-vcentered.is-gapless
                           .column.is-8
                             = l(date, format: :long)
-                          .column.is-5
-                            i class="fa-solid fa-triangle-exclamation mr-1"
-                            = Schedule.number_of_days_elapsed(date)
+                          .column.is-5.overdue_plan
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              = Schedule.number_of_days_elapsed(date)
                       - else
                         .is-size-5
                           p 小学校入学前1年間
