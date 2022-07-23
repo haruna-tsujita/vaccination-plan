@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TopController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index tos pp], raise: false
+  skip_before_action :authenticate_user!
 
   def index
     return unless current_user
