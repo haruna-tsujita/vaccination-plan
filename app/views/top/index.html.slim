@@ -16,7 +16,7 @@
     .card-content.has-text-centered
       h3.title.is-5
         | 用意するもの
-      .columns
+      .columns.is-mobile
         .column
           = image_tag 'top/book.jpg', size: '50'
           br
@@ -25,15 +25,13 @@
           = image_tag 'top/heart.jpg', size: '50'
           br
           | 全て接種する気合い
-.has-text-centered.is-size-7
-  = link_to '利用規約', tos_path
-  = ' '
-  = link_to 'プライバシーポリシー', pp_path
-  = ' '
-  = link_to 'https://github.com/napple29/vaccination-plan' do
+.has-text-centered.is-size-7.overdue_plan
+  = link_to '利用規約', tos_path, class: 'mr-3'
+  = link_to 'プライバシーポリシー', pp_path, class: 'mr-3'
+  = link_to 'https://github.com/napple29/vaccination-plan', class: 'mr-3' do
     i class="fa-brands fa-github"
-  .content.has-text-centered.mt-5
-    i.far.fa-copyright
-    span
-      = Time.current.year
-      |  napple29
+.content.has-text-centered.mt-5.is-size-7
+  i.far.fa-copyright
+  span
+    = Time.current.year
+    |  napple29
