@@ -19,12 +19,12 @@
       .columns.is-mobile
         .column
           = image_tag 'top/book.jpg', size: '50'
-          br
-          | 母子手帳
+          .is-size-7
+            | 母子手帳
         .column
           = image_tag 'top/heart.jpg', size: '50'
-          br
-          | 全て接種する気合い
+          .is-size-7
+            | 全て接種する気合い
 .has-text-centered.is-size-7.overdue_plan
   = link_to '利用規約', tos_path, class: 'mr-3'
   = link_to 'プライバシーポリシー', pp_path, class: 'mr-3'
