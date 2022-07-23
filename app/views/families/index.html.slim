@@ -8,25 +8,26 @@ header
     - if Family.scheldule_before_today?(date)
       .card
         .card-content
-          .content.overdue_plan
+          .content.font_color
             table
               thead
                 tr
                   th
-                    .is-inline-flex.overdue_plan
+                    .font_color
                       - if date.instance_of?(Date)
-                        .is-5
-                          = l(date, format: :long)
-                        .is-6
-                          i class="fa-solid fa-triangle-exclamation mr-1"
-                          = Schedule.number_of_days_elapsed(date)
+                        .columns.is-mobile.is-vcentered.is-gapless
+                          .column.is-8
+                            = l(date, format: :long)
+                          .column.is-5.overdue_plan
+                            i class="fa-solid fa-triangle-exclamation mr-1"
+                            = Schedule.number_of_days_elapsed(date)
                       - else
-                        .is-5
-                          = l(date.first, format: :long)
-                        .is-7
+                        .is-size-5
+                          = l(date.first, format: :ja_default)
+                        .is-size-7
                           = '〜'
-                          = l(date.last, format: :long)
-                        .is-6.pt-2
+                          = l(date.last, format: :ja_default)
+                        .is-size-6.pt-2
                           i class="fa-solid fa-triangle-exclamation mr-1"
                           =  Schedule.number_of_days_elapsed(date.first)
               = render 'families/form', vaccinations: vacs, today: true
@@ -42,19 +43,23 @@ header
               thead
                 tr
                   th
-                    .is-inline-flex.font_color
+                    .font_color
                       - if date.instance_of?(Date)
-                        .is-5
-                          = l(date, format: :long)
-                        .is-6
-                          - day = Schedule.how_many_days_within_a_week(date)
-                          - if day
-                            .coming_soon_day
-                              i class="fa-solid fa-triangle-exclamation mr-1"
-                              = Schedule.how_many_days_within_a_week(date)
+                        .columns.is-mobile.is-vcentered.is-gapless
+                          .column.is-8
+                            = l(date, format: :long)
+                          .column.is-5
+                            - day = Schedule.how_many_days_within_a_week(date)
+                            - if day
+                              .coming_soon_day
+                                i class="fa-solid fa-triangle-exclamation mr-1"
+                                = day
                       - else
                         .is-5
-                          = l(date.first, format: :long)
-                          = '〜 '
-                          = l(date.last, format: :long)
+                          p 小学校入学前1年間
+                        .is-inline-flex
+                          .is-size-7
+                            = l(date.first, format: :ja_default)
+                            = '〜'
+                            = l(date.last, format: :ja_default)
               = render 'families/form', vaccinations: vaccinations, today: false

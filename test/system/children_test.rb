@@ -30,7 +30,7 @@ class Childrentest < ApplicationSystemTestCase
     visit new_child_path
     fill_in '名前', with: 'hanako'
     fill_in '生年月日', with: Date.parse('2022-03-01')
-    click_on '保存する'
+    click_on '保存'
     assert_text '家族が増えました'
     assert_text 'hanako'
     assert_text '2022年03月01日'
@@ -41,7 +41,7 @@ class Childrentest < ApplicationSystemTestCase
     visit "/children/#{children(:carol).id}/edit"
     fill_in '名前', with: '桃子'
     fill_in '生年月日', with: Date.parse('2022-03-03')
-    click_on '保存する'
+    click_on '保存'
     assert_text 'お子さんの情報を編集しました'
     assert_text '桃子'
     assert_text '2022年03月03日'
@@ -52,7 +52,7 @@ class Childrentest < ApplicationSystemTestCase
     visit new_child_path
     fill_in '名前', with: nil
     fill_in '生年月日', with: nil
-    click_on '保存する'
+    click_on '保存'
     assert_text '名前を入力してください'
     assert_text '生年月日を入力してください'
   end
@@ -62,7 +62,7 @@ class Childrentest < ApplicationSystemTestCase
     visit new_child_path
     fill_in '名前', with: 'alice'
     fill_in '生年月日', with: Date.current + 1.day
-    click_on '保存する'
+    click_on '保存'
     assert_text '生年月日は今日以前の日付にしてください'
   end
 end

@@ -4,7 +4,8 @@
     .column.is-narrow-mobile.is-3-desktop.is-4-widescreen
       .has-text-right
         button class="js-modal-trigger" data-target="modal-js-example"
-          | ▼
+          span class="icon is-small"
+            i class="fa-solid fa-caret-down"
       div id="modal-js-example" class="modal"
         .modal-background
         .modal-content
@@ -12,19 +13,21 @@
             .modal__item
               .columns.is-vcentered.is-gapless.is-mobile.border
                 .column.is-1
-                .column.is-2.has-text-centered.is-size-5.has-text-grey
+                .column.is-2.has-text-centered.is-size-6.has-text-grey
                   | 全員
                 .column.is-11
               - current_user.children.each do |child|
                 .columns.is-vcentered.is-gapless.is-mobile.border
                   .column.is-1
-                  .column.is-2.has-text-centered.is-vcentered
+                  .column.is-2.has-text-centered
                     = image_tag child.avatar_url, class: 'child__picture_modal'
-                  .column.is-1.is-size-5.dropdown__child
-                    = link_to child.name, child_schedules_path(child)
-                  .column.is-1
-                  .column.is-5.dropdown__child
-                    = link_to child.calc_moon_age(Date.current), child_schedules_path(child)
+                  .column.is-6.dropdown__child.has-text-left
+                      = link_to child_schedules_path(child) do
+                        .is-flex.is-align-items-baseline
+                          .has-text-weight-semibold.is-size-6
+                            = child.name
+                          .ml-2.is-size-7
+                            = child.calc_moon_age(Date.current)
                   .column.is-4
     button class="modal-close is-large" aria-label="close"
     a.column.is-3-mobile href=child_schedules_url(child)

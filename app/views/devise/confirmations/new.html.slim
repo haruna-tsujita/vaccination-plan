@@ -12,7 +12,7 @@ header
             = f.label :email
             = f.email_field :email, autofocus: true, autocomplete: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'input'
           .has-text-centered.mt-5
-            button class="button has-background-danger-light" type="submit"
-              .has-text-grey
+            button class="button color" type="submit"
+              .has-text-white
                 = t('.resend_mail')
   = render 'devise/shared/links'

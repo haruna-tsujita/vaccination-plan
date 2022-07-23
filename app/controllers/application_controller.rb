@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_active_storage_host
 
   def after_sign_out_path_for(_resource)
-    new_user_session_path # ログアウト後に遷移するpathを設定
+    root_path
   end
 
   private

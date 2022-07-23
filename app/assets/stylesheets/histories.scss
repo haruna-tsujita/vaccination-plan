@@ -4,7 +4,7 @@
   color: #EC635E;
 }
 
-.button.vaccinated_num.mx-1 {
+.button.vaccinated_num.mx-2 {
   background-color: #EC635E;
   border: #EC635E;
   width: 60px;
@@ -19,7 +19,7 @@
   color: #fff;
 }
 
-.button.non_vaccinated_num.mx-1 {
+.button.non_vaccinated_num.mx-2 {
   width: 60px;
   height: 25px;
 }
@@ -53,7 +53,7 @@
   text-align: center;
 }
 
-.table {
+.history__width {
   width: 100%;
 }
 
@@ -63,4 +63,9 @@
 
 .period__smallsize {
   font-size: 9px;
+}
+
+.position {
+  position: relative;
+  left: 7%
 }
