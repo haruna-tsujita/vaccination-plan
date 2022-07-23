@@ -81,9 +81,9 @@ header
                         p 小学校入学前1年間
                       .is-inline-flex
                         .is-size-7
-                          = l(date.first, format: :long)
+                          = l(date.first, format: :ja_default)
                           = '〜'
-                          = l(date.last, format: :long)
+                          = l(date.last, format: :ja_default)
               tbody
                 - names.each do |name|
                   tr

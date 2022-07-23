@@ -4,16 +4,16 @@ tbody
       tr
         td
           = link_to child_schedules_url(vac[:child]) do
-            .columns.is-mobile.is-vcentered.is-gapless
-              .column.is-narrow.mr-1
+            .columns.is-mobile.is-vcentered.is-gapless.font_color
+              .column.is-narrow
                 = image_tag vac[:child].avatar_url, class: 'families_child__picture mr-2'
-              .column.is-size-5.is-1
+              .column.is-size-6.is-8
                 = vac[:child].name
     tr
       td
         - if today
           = link_to new_child_history_path(vac[:child], vaccination_id: Vaccination.find_by(name: vac[:name], period: vac[:period])) do
-            .columns.is-mobile.is-vcentered.is-gapless
+            .columns.is-mobile.is-vcentered.is-gapless.overdue_plan
               - if Vaccination.find_by(name: vac[:name]).regular?
                 .column.is-narrow
                   .overdue_regular__item.mr-2
