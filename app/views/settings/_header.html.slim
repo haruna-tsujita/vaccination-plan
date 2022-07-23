@@ -1,7 +1,11 @@
 nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation"
   .navbar-brand
-    a.navbar-item href=families_path
-      = image_tag('header_logo.png', class: 'navbar-brand__logo-image')
+    - if current_user
+      a.navbar-item href=families_path
+        = image_tag('header_logo.png', class: 'navbar-brand__logo-image')
+    - else
+      a.navbar-item href=root_path
+        = image_tag('header_logo.png', class: 'navbar-brand__logo-image')
 
     - if current_user
       a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"
