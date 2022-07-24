@@ -26,14 +26,15 @@ header
                               i class="fa-solid fa-triangle-exclamation mr-1"
                               = Schedule.number_of_days_elapsed(date)
                       - else
-                        .is-size-5
-                          p 小学校入学前1年間
-                          = l(date.first, format: :default)
-                          = '〜'
-                          = l(date.last, format: :default)
-                        .is-size-7.pt-1
-                          i class="fa-solid fa-triangle-exclamation mr-1"
-                          =  Schedule.number_of_days_elapsed(date.first)
+                        .has-text-left
+                          .is-size-5
+                            p 小学校入学前1年間
+                            = l(date.first, format: :default)
+                            = '〜'
+                            = l(date.last, format: :default)
+                          .is-size-7.pt-1
+                            i class="fa-solid fa-triangle-exclamation mr-1"
+                            =  Schedule.number_of_days_elapsed(date.first)
               tbody
                 - names.each do |name|
                   tr
@@ -77,9 +78,9 @@ header
                               i class="fa-solid fa-triangle-exclamation mr-1"
                               = day
                     - else
-                      .is-5
-                        p 小学校入学前1年間
-                      .is-inline-flex
+                      .has-text-left
+                        .is-5
+                          p 小学校入学前1年間
                         .is-size-7
                           = l(date.first, format: :ja_default)
                           = '〜'
