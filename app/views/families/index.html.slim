@@ -1,6 +1,6 @@
 header
   = render 'settings/header'
-.page-main.main__contents
+.main__contents
   = render 'layouts/notice'
   - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
     .has-text-centered.is-size-6.has-text-weight-medium.overdue_color.has-text-white
@@ -22,14 +22,14 @@ header
                             i class="fa-solid fa-triangle-exclamation mr-1"
                             = Schedule.number_of_days_elapsed(date)
                       - else
-                        .is-size-5
+                        .has-text-left
                           = l(date.first, format: :ja_default)
-                        .is-size-7
-                          = '〜'
-                          = l(date.last, format: :ja_default)
-                        .is-size-6.pt-2
-                          i class="fa-solid fa-triangle-exclamation mr-1"
-                          =  Schedule.number_of_days_elapsed(date.first)
+                          .is-size-7
+                            = '〜'
+                            = l(date.last, format: :ja_default)
+                          .is-size-6.pt-2
+                            i class="fa-solid fa-triangle-exclamation mr-1"
+                            =  Schedule.number_of_days_elapsed(date.first)
               = render 'families/form', vaccinations: vacs, today: true
 
   .has-text-centered.is-size-6.has-text-weight-medium.has-text-white.coming_soon_color
@@ -55,9 +55,8 @@ header
                                 i class="fa-solid fa-triangle-exclamation mr-1"
                                 = day
                       - else
-                        .is-5
-                          p 小学校入学前1年間
-                        .is-inline-flex
+                        .has-text-left
+                          | 小学校入学前1年間
                           .is-size-7
                             = l(date.first, format: :ja_default)
                             = '〜'
