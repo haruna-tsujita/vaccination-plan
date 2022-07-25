@@ -5,7 +5,8 @@ class HistoriesController < ApplicationController
   before_action :set_vaccination, only: %i[new edit create update]
 
   def new
-    @history = @child.histories.new
+    date = Schedule.next_plan(@vaccination, @child)
+    @history = @child.histories.new(date: [Date, String].include?(date.class) ? date : date.first)
     @history.vaccination_id = @vaccination.id
   end
 
