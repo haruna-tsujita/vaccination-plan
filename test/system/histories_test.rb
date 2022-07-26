@@ -177,21 +177,10 @@ class Historiestest < ApplicationSystemTestCase
     eve = children(:eve)
     histories(:eve_history_rotavirus_third).update(date: Date.current - 1.month)
 
-    vaccination_key = 'rotavirus_2'
+    vaccination_key = 'rotavirus_3'
     visit new_child_history_path(eve.id, vaccination_id: vaccinations(:"#{vaccination_key}"))
     fill_in '接種日', with: Date.current - 1.month - 1.day
     click_on '登録する'
     assert_text 'Vaccinationはすでに存在します'
-  end
-
-  test 'validation history not date and vaccinated' do
-    setup_alice
-    eve = children(:eve)
-    histories(:eve_history_rotavirus_third).update(date: Date.current - 1.month)
-
-    vaccination_key = 'rotavirus_3'
-    visit new_child_history_path(eve.id, vaccination_id: vaccinations(:"#{vaccination_key}"))
-    click_on '登録する'
-    assert_text '接種日時が入力されていません'
   end
 end

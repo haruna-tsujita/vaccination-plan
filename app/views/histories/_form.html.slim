@@ -12,7 +12,12 @@
         = @vaccination.period
       .mt-3
         = form.label :date, '接種日'
-        = form.date_field :date, class: 'input'
+        .mt-1
+          = form.date_field :date, class: 'input'
+      - if current_page?(new_child_history_path(child))
+          .is-size-7.mt-1
+            i class="fa-solid fa-pen"
+            | 自動計算した接種予定日を表示しています
       .has-text-centered.mt-5
         button class="button color" type="submit"
           .has-text-white

@@ -109,4 +109,18 @@ class ScheduleTest < ActiveSupport::TestCase
     date = Date.current + 8.days
     assert_nil Schedule.how_many_days_within_a_week(date)
   end
+
+  test 'next_plan when before history nil' do
+    child = children(:dave)
+    vaccination = 'hib_2'
+    hib_second = vaccinations(:"#{vaccination}")
+    assert_equal Date.parse('2021-10-21'), Schedule.next_plan(hib_second, child)
+  end
+
+  test 'next_plan when before history exists' do
+    child = children(:eve)
+    rota_third = 'rotavirus_3'
+    vaccination = vaccinations(:"#{rota_third}")
+    assert_equal Date.parse('2022-03-29'), Schedule.next_plan(vaccination, child)
+  end
 end

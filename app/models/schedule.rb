@@ -25,6 +25,19 @@ class Schedule < ApplicationRecord
       "あと#{TimeDifference.between(date, Date.current).in_days.floor}日" if date <= (Date.current + 7.days)
     end
 
+    def next_plan(vaccination, child)
+      last_letter = vaccination.key[-1]
+      case last_letter
+      when '1'
+        calc_recommended_date(vaccination: vaccination, birthday: child.birthday)
+      else
+        before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
+        before_vac_id = Vaccination.find_by(key: before_vac_key).id
+        before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
+        calc_for_each_vaccinated_status(before_history: before_history, vaccination: vaccination, child: child)
+      end
+    end
+
     private
 
     def new_schedules(vaccinations, child)
@@ -32,17 +45,7 @@ class Schedule < ApplicationRecord
       vaccinations.map do |vaccination|
         next if histories.find { |history| history.vaccination.id == vaccination.id }
 
-        last_letter = vaccination.key[-1]
-        date = case last_letter
-               when '1'
-                 calc_recommended_date(vaccination: vaccination, birthday: child.birthday)
-               else
-                 before_vac_key = vaccination.key.gsub(/[2-4]/) { |num| (num.to_i - 1).to_s }
-                 before_vac_id = Vaccination.find_by(key: before_vac_key).id
-                 before_history = History.find_by(vaccination_id: before_vac_id, child_id: child.id)
-                 calc_for_each_vaccinated_status(before_history: before_history, vaccination: vaccination, child: child)
-               end
-        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: date }
+        { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: next_plan(vaccination, child) }
       end.compact
     end
 
