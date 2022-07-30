@@ -5,9 +5,13 @@ class ChildrenController < ApplicationController
 
   def new
     @child = current_user.children.new
+    @child.build_option
   end
 
-  def edit; end
+  def edit
+    @child.option
+    @child.build_option
+  end
 
   def create
     @child = current_user.children.new(child_params)
@@ -34,6 +38,6 @@ class ChildrenController < ApplicationController
   end
 
   def child_params
-    params.require(:child).permit(:name, :birthday, :avatar)
+    params.require(:child).permit(:name, :birthday, :avatar, option_attributes: [:mumps, :rotateq])
   end
 end

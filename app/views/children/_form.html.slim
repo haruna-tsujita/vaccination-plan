@@ -23,6 +23,15 @@
         = form.label :birthday, class: 'is-block'
         = form.date_field :birthday, class: 'input'
 
+      = form.fields_for :option do |f|
+        .is-inline-flex.mt-2
+          = f.check_box :mumps
+          = f.label :mumps, 'おたふくかぜを接種する', class: 'is-block is-size-7'
+        br/
+        .is-inline-flex.mt-1
+          = f.check_box :rotateq
+          = f.label :rotateq, 'ロタテック(5価ロタウイルスワクチン)を接種する', class: 'is-block is-size-7'
+
       .has-text-centered.mt-5
         button class="button color" type="submit"
           .has-text-white
