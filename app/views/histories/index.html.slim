@@ -53,9 +53,14 @@ header
                           = history&.date&.strftime('%y/%m/%d')
                     - else
                       .column.my-3
-                        button.button.non_vaccinated_num.mx-2
-                          = link_to new_child_history_path(params[:child_id], vaccination_id: vac.id) do
-                            = render 'display_period', period: period
+                        - if (vac.name == 'おたふくかぜ' && !@child.option.mumps) || (vac.key == 'rotavirus_3' && !@child.option.rotateq)
+                          button.button.non_option_vaccinated_num.mx-2.vaccinated_num
+                            = link_to new_child_history_path(params[:child_id], vaccination_id: vac.id) do
+                              = render 'display_period', period: period
+                        - else
+                          button.button.non_vaccinated_num.mx-2
+                            = link_to new_child_history_path(params[:child_id], vaccination_id: vac.id) do
+                              = render 'display_period', period: period
   .has-text-centered.mt-6
     a.button.is-fullwidth href=child_schedules_path(@child)
       | 予定を見る
