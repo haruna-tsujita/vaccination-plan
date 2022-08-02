@@ -1,11 +1,24 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+carol_option:
+  mumps: true
+  rotateq: true
+  child: carol
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+dave_option:
+  mumps: true
+  rotateq: true
+  child: dave
+
+frank_option:
+  mumps: true
+  rotateq: true
+  child: frank
+
+eve_option:
+  mumps: true
+  rotateq: true
+  child: eve
+
+issac_option:
+  mumps: true
+  rotateq: true
+  child: issac
