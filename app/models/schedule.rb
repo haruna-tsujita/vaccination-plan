@@ -44,6 +44,7 @@ class Schedule < ApplicationRecord
       histories = child.histories
       vaccinations.map do |vaccination|
         next if histories.find { |history| history.vaccination.id == vaccination.id }
+        next if (vaccination.name == 'おたふくかぜ' && !child.option.mumps) || (vaccination.key == 'rotavirus_3' && !child.option.rotateq)
 
         { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: next_plan(vaccination, child) }
       end.compact
