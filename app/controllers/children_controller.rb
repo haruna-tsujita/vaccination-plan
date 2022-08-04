@@ -5,12 +5,13 @@ class ChildrenController < ApplicationController
 
   def new
     @child = current_user.children.new
+    @child.build_option
   end
 
   def edit; end
 
   def create
-    @child = current_user.children.new(child_params)
+    @child = current_user.children.new(child_option_params)
 
     if @child.save
       redirect_to child_histories_path(@child), notice: '家族が増えました！'
@@ -20,7 +21,7 @@ class ChildrenController < ApplicationController
   end
 
   def update
-    if @child.update(child_params)
+    if @child.update(child_option_params)
       redirect_to child_histories_path(@child), notice: 'お子さんの情報を編集しました'
     else
       render :edit, status: :unprocessable_entity
@@ -33,7 +34,7 @@ class ChildrenController < ApplicationController
     @child = current_user.children.find(params[:id])
   end
 
-  def child_params
-    params.require(:child).permit(:name, :birthday, :avatar)
+  def child_option_params
+    params.require(:child).permit(:name, :birthday, :avatar, option_attributes: %i[mumps rotateq])
   end
 end

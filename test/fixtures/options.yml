@@ -1,0 +1,24 @@
+carol_option:
+  mumps: true
+  rotateq: true
+  child: carol
+
+dave_option:
+  mumps: true
+  rotateq: true
+  child: dave
+
+frank_option:
+  mumps: true
+  rotateq: true
+  child: frank
+
+eve_option:
+  mumps: true
+  rotateq: true
+  child: eve
+
+issac_option:
+  mumps: true
+  rotateq: true
+  child: issac

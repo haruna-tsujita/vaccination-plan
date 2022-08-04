@@ -5,6 +5,8 @@ class Child < ApplicationRecord
   has_many :histories, dependent: :destroy
   belongs_to :user
   has_one_attached :avatar
+  has_one :option, dependent: :destroy
+  accepts_nested_attributes_for :option, update_only: true
 
   validates :name, presence: true
   validates :birthday, presence: true

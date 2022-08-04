@@ -44,13 +44,16 @@ class Schedule < ApplicationRecord
       histories = child.histories
       vaccinations.map do |vaccination|
         next if histories.find { |history| history.vaccination.id == vaccination.id }
+        next if (vaccination.name == 'おたふくかぜ' && !child.option.mumps) || (vaccination.key == 'rotavirus_3' && !child.option.rotateq)
 
         { vaccinations: { name: vaccination.name.to_s, period: vaccination.period.to_s, child: child }, date: next_plan(vaccination, child) }
       end.compact
     end
 
     def calc_for_each_vaccinated_status(before_history:, vaccination:, child:)
-      if before_history.nil? || (before_history.date.nil? && !before_history.vaccinated)
+      if before_history.nil? || (before_history.date.nil? && !before_history.vaccinated) || (before_history.date == calc_recommended_date(
+        vaccination: before_history.vaccination, birthday: child.birthday
+      ))
         calc_recommended_date(vaccination: vaccination, birthday: child.birthday)
       else
         next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime('%Y-%m-%d'), child.birthday.strftime('%Y-%m-%d'))[:date]
