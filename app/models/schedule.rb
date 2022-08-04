@@ -51,7 +51,9 @@ class Schedule < ApplicationRecord
     end
 
     def calc_for_each_vaccinated_status(before_history:, vaccination:, child:)
-      if before_history.nil? || (before_history.date.nil? && !before_history.vaccinated) || (before_history.date == calc_recommended_date(vaccination: before_history.vaccination, birthday: child.birthday))
+      if before_history.nil? || (before_history.date.nil? && !before_history.vaccinated) || (before_history.date == calc_recommended_date(
+        vaccination: before_history.vaccination, birthday: child.birthday
+      ))
         calc_recommended_date(vaccination: vaccination, birthday: child.birthday)
       else
         next_day = JpVaccination.next_day(vaccination.key, before_history.date.strftime('%Y-%m-%d'), child.birthday.strftime('%Y-%m-%d'))[:date]
