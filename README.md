@@ -35,8 +35,8 @@ https://www.jpeds.or.jp/uploads/files/vaccine_schedule.pdf
 
 
 ## 開発環境
-- RUby on Rails 6.1.5
-- PsotgreSQL
+- Ruby on Rails 6.1.5
+- PostgreSQL
 - Heroku
 - GitHub Actions
 
