@@ -1,7 +1,7 @@
 # ワクチンプラン
 ### お子さんの予防接種の予定を自動で計算します
 
-https://vaccination-plan.herokuapp.com/
+http://www.vaccination-plan.com/
 
 ## サービスについて
 このサービスは乳幼児期のお子さんを育てている保護者を対象とした、予防接種の予定管理サービスです。
