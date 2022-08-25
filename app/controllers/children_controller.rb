@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChildrenController < ApplicationController
-  before_action :set_child, only: %i[edit update]
+  before_action :set_child, only: %i[edit update destroy]
 
   def new
     @child = current_user.children.new
@@ -26,6 +26,10 @@ class ChildrenController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    redirect_to root_path, notice: 'お子さんの情報を削除しました' if @child.destroy!
   end
 
   private

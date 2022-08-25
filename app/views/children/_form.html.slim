@@ -36,3 +36,7 @@
         button class="button color" type="submit"
           .has-text-white
             | 保存
+
+  - if current_user.children.count >= 1
+    p
+      = link_to '子どもの情報を削除', child_path(child), data: { confirm: '本当に削除しますか？' }, method: :delete
