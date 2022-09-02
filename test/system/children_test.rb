@@ -47,11 +47,11 @@ class Childrentest < ApplicationSystemTestCase
     assert_text '2022年03月03日'
   end
 
-    test 'destroy_child' do
+  test 'destroy_child' do
     setup
     visit "/children/#{children(:carol).id}/edit"
     accept_confirm do
-      click_link "削除"
+      click_link '削除'
     end
     assert_text 'お子さんの情報を削除しました'
   end
