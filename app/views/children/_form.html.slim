@@ -37,6 +37,6 @@
           .has-text-white
             | 保存
 
-  - unless current_page?(new_child_path)
-    p
-      = link_to '子どもの情報を削除', child_path(child), data: { confirm: '本当に削除しますか？' }, method: :delete
+  - if child.id
+    .is-size-7
+      = link_to '削除する', child_path(child), data: { confirm: '本当に削除しますか？' }, method: :delete
