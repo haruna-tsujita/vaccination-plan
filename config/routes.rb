@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :families, only: [:index]
   resources :settings, only: [:index]
-  resources :children , only: %i[edit new create update] do
+  resources :children , only: %i[edit new create update destroy] do
     resources :histories, only: %i[new edit update index create]
     resources :schedules, only: [:index]
   end
