@@ -40,7 +40,7 @@ class HistoriesController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path, notice: 'ワクチンの接種情報を削除しました' if @history.destroy!
+    redirect_to child_histories_url, notice: 'ワクチンの接種情報を削除しました' if @history.destroy!
   end
 
   private
@@ -54,7 +54,7 @@ class HistoriesController < ApplicationController
   end
 
   def set_history
-    @history = churrent_user.histories.find(params[:id])
+    @history = @child.histories.find(params[:id])
   end
 
   def set_vaccination
