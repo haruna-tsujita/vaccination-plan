@@ -42,7 +42,7 @@ header
                   - vacs.each do |vac|
                     - history = @histories.find { |his| his.vaccination_id == vac.id && his.child_id == @child.id }
                     - period = vac.period.size > 3 ? vac.period.slice(4, 3) : vac.period.slice(0, 3) # 第1期1回目みたいなやつを1回目だけの表示にしたかった。
-                    - if history && (history.date || history.vaccinated)
+                    - if history&.date || history&.vaccinated
                       .column.my-3
                         button.button.vaccinated_num.mx-2
                           span class="icon has-text-white period__smallsize"
