@@ -10,6 +10,7 @@ class History < ApplicationRecord
   validate :smaller_than_after_history
   validate :date_or_vaccinatied
 
+  after_destroy :after_vaccinated_true
   after_destroy :before_vaccinated_false
 
   class << self
@@ -76,6 +77,27 @@ class History < ApplicationRecord
     errors.add(:date, 'が入力されていません') if date.nil? && !vaccinated
   end
 
+  def after_vaccinated_true
+    vaccinations = Vaccination.where(name: vaccination.name).order(key: :desc)
+    return if vaccinations.size == 1
+    histories = vaccinations.map do |vac|
+      History.find_by(child_id: child, vaccination_id: vac.id)
+    end&.compact
+
+    biggest_history = histories.max_by{_1.date.to_s}
+    return if biggest_history&.date.nil?
+    vaccinations = Vaccination.where(name: biggest_history.vaccination.name)
+      vaccinations.each do |vac|
+        next unless vac.key <  biggest_history.vaccination.key
+
+        history = History.find_by(vaccination_id: vac.id, child_id: child.id)
+        if history.nil?
+          new_history = History.new
+          new_history.update(vaccination_id: vac.id, vaccinated: true, child_id: child.id)
+        end
+      end
+  end
+
   def before_vaccinated_false
     vaccinations = Vaccination.where(name: vaccination.name).order(key: :desc)
 
@@ -85,6 +107,7 @@ class History < ApplicationRecord
       next if vac.id >= vaccination.id
 
       history = History.find_by(child_id: child, vaccination_id: vac.id)
+      next if history.nil?
       return if history&.date
 
       history.destroy!
