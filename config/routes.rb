@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :families, only: [:index]
   resources :settings, only: [:index]
   resources :children , only: %i[edit new create update destroy] do
-    resources :histories, only: %i[new edit update index create]
+    resources :histories, only: %i[new edit update index create destroy]
     resources :schedules, only: [:index]
   end
   root 'top#index'
