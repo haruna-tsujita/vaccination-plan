@@ -23,7 +23,6 @@ class HistoriesController < ApplicationController
     @history.vaccination_id = @vaccination.id
 
     if @history.save
-      History.automatically_vaccinated(@vaccination, @child)
       redirect_to child_histories_url, notice: '接種日時が保存されました'
     else
       render :edit, status: :unprocessable_entity
@@ -32,7 +31,6 @@ class HistoriesController < ApplicationController
 
   def update
     if @history.update(history_params)
-      History.automatically_vaccinated(@history.vaccination, @history.child)
       redirect_to child_histories_url, notice: '接種日時が保存されました'
     else
       render :edit, status: :unprocessable_entity
