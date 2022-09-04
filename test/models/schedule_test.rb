@@ -64,7 +64,6 @@ class ScheduleTest < ActiveSupport::TestCase
     hib_second = vaccinations(:"#{vaccination}")
     history = History.new(child: dave, vaccination: hib_second, date: Date.parse('2021-10-22'))
     history.save
-    History.automatically_vaccinated(hib_second, dave)
     # ヒブ2回目と3回目の間隔は27日なのでヒブ2回目 + 27日分で割り出せる。連動して4回目も変更になるが、3回目から60日経過&&1歳以降なので1歳の誕生日からは動かない
     expected = { Date.parse('2021-09-21') => [{ name: '小児用肺炎球菌', period: '1回目', child: dave }, { name: 'Ｂ型肝炎', period: '1回目', child: dave }],
                  Date.parse('2021-10-21') => [{ name: '小児用肺炎球菌', period: '2回目', child: dave },

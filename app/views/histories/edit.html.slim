@@ -3,3 +3,6 @@ header
   = render '/children/child', child: @child
   .page-main.main__contents
     = render 'form', child: @child, history: @history, vaccination: @vaccination
+  - if @history.date && @history.id
+    .is-size-7
+      = link_to '削除する', child_history_path(@child, @history), data: { confirm: '本当に削除しますか？' }, method: :delete
