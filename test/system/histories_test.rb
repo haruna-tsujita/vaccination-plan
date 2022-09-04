@@ -80,6 +80,17 @@ class Historiestest < ApplicationSystemTestCase
     assert_text 'ActiveRecord::RecordNotFound'
   end
 
+  test 'destroy history' do
+    setup_alice
+    alice_child = children(:eve)
+    vaccination_key = 'rotavirus_2'
+    visit edit_child_history_path(alice_child.id, histories(:eve_history_rotavirus_second).id, vaccination_id: vaccinations(:"#{vaccination_key}"))
+    accept_confirm do
+      click_link '削除'
+    end
+    assert_text '接種情報を削除しました'
+  end
+
   test 'validation history before today' do
     setup_alice
     carol = children(:carol)
