@@ -2,63 +2,67 @@ header
   = render 'settings/header'
 .main__contents
   = render 'layouts/notice'
-  - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
-    .has-text-centered.is-size-6.has-text-weight-medium.overdue_color.has-text-white
-      = '予定日を過ぎました' if index.zero?
-    - if Family.scheldule_before_today?(date)
-      .card
-        .card-content
-          .content.font_color
-            table
-              thead
-                tr
-                  th
-                    .font_color
-                      - if date.instance_of?(Date)
-                        .columns.is-mobile.is-vcentered.is-gapless
-                          .column.is-8
-                            = l(date, format: :long)
-                          .column.is-5.overdue_plan
-                            i class="fa-solid fa-triangle-exclamation mr-1"
-                            = Schedule.number_of_days_elapsed(date)
-                      - else
-                        .has-text-left
-                          = l(date.first, format: :ja_default)
-                          .is-size-7
-                            = '〜'
-                            = l(date.last, format: :ja_default)
-                          .is-size-6.pt-2
-                            i class="fa-solid fa-triangle-exclamation mr-1"
-                            =  Schedule.number_of_days_elapsed(date.first)
-              = render 'families/form', vaccinations: vacs, today: true
-
-  .has-text-centered.is-size-6.has-text-weight-medium.has-text-white.coming_soon_color
-    = 'まだ予定日になっていません'
-  - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
-    - unless Family.scheldule_before_today?(date)
-      .card
-        .card-content
-          .content.font_color
-            table
-              thead
-                tr
-                  th
-                    .font_color
-                      - if date.instance_of?(Date)
-                        .columns.is-mobile.is-vcentered.is-gapless
-                          .column.is-8
-                            = l(date, format: :long)
-                          .column.is-5
-                            - day = Schedule.how_many_days_within_a_week(date)
-                            - if day
-                              .coming_soon_day
-                                i class="fa-solid fa-triangle-exclamation mr-1"
-                                = day
-                      - else
-                        .has-text-left
-                          | 小学校入学前1年間
-                          .is-size-7
+  - if current_user.children.size.zero?
+    .has-text-centered.is-size-6.has-text-weight-medium
+      | お子さんが登録されていません
+  - else
+    - Family.vaccination_date_before_today(@vaccinations, @children, Date.current).each_with_index do |(date, vacs), index|
+      .has-text-centered.is-size-6.has-text-weight-medium.overdue_color.has-text-white
+        = '予定日を過ぎました' if index.zero?
+      - if Family.scheldule_before_today?(date)
+        .card
+          .card-content
+            .content.font_color
+              table
+                thead
+                  tr
+                    th
+                      .font_color
+                        - if date.instance_of?(Date)
+                          .columns.is-mobile.is-vcentered.is-gapless
+                            .column.is-8
+                              = l(date, format: :long)
+                            .column.is-5.overdue_plan
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              = Schedule.number_of_days_elapsed(date)
+                        - else
+                          .has-text-left
                             = l(date.first, format: :ja_default)
-                            = '〜'
-                            = l(date.last, format: :ja_default)
-              = render 'families/form', vaccinations: vaccinations, today: false
+                            .is-size-7
+                              = '〜'
+                              = l(date.last, format: :ja_default)
+                            .is-size-6.pt-2
+                              i class="fa-solid fa-triangle-exclamation mr-1"
+                              =  Schedule.number_of_days_elapsed(date.first)
+                = render 'families/form', vaccinations: vacs, today: true
+
+    .has-text-centered.is-size-6.has-text-weight-medium.has-text-white.coming_soon_color
+      = 'まだ予定日になっていません'
+    - Family.family_schedule(@vaccinations, @children).each_with_index do |(date, vaccinations), _index|
+      - unless Family.scheldule_before_today?(date)
+        .card
+          .card-content
+            .content.font_color
+              table
+                thead
+                  tr
+                    th
+                      .font_color
+                        - if date.instance_of?(Date)
+                          .columns.is-mobile.is-vcentered.is-gapless
+                            .column.is-8
+                              = l(date, format: :long)
+                            .column.is-5
+                              - day = Schedule.how_many_days_within_a_week(date)
+                              - if day
+                                .coming_soon_day
+                                  i class="fa-solid fa-triangle-exclamation mr-1"
+                                  = day
+                        - else
+                          .has-text-left
+                            | 小学校入学前1年間
+                            .is-size-7
+                              = l(date.first, format: :ja_default)
+                              = '〜'
+                              = l(date.last, format: :ja_default)
+                = render 'families/form', vaccinations: vaccinations, today: false
