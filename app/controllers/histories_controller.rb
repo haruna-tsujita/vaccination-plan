@@ -24,7 +24,7 @@ class HistoriesController < ApplicationController
     @history.vaccination_id = @vaccination.id
 
     if @history.save
-      redirect_to session[:previous_url], notice: '接種日時が保存されました'
+      redirect_to session[:previous_url] ||= child_histories_path(@child), notice: '接種日時が保存されました'
     else
       render :edit, status: :unprocessable_entity
     end
