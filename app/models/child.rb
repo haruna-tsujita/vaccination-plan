@@ -20,7 +20,11 @@ class Child < ApplicationRecord
 
   def avatar_url
     if avatar.attached?
-      avatar.variant(resize: AVATAR_SIZE).processed.url
+      begin
+        avatar.variant(resize: AVATAR_SIZE).processed.url
+      rescue => e
+        'default.png'
+      end
     else
       'default.png'
     end
