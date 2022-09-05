@@ -22,7 +22,7 @@ class Child < ApplicationRecord
     if avatar.attached?
       begin
         avatar.variant(resize: AVATAR_SIZE).processed.url
-      rescue => e
+      rescue StandardError
         'default.png'
       end
     else
