@@ -9,6 +9,7 @@ class HistoriesController < ApplicationController
     date = Schedule.next_plan(@vaccination, @child)
     @history = @child.histories.new(date: [Date, String].include?(date.class) ? date : date.first)
     @history.vaccination_id = @vaccination.id
+    session[:previous_url] = request.referer
   end
 
   def index
@@ -23,7 +24,7 @@ class HistoriesController < ApplicationController
     @history.vaccination_id = @vaccination.id
 
     if @history.save
-      redirect_to child_histories_url, notice: '接種日時が保存されました'
+      redirect_to session[:previous_url] ||= child_histories_path(@child), notice: '接種日時が保存されました'
     else
       render :edit, status: :unprocessable_entity
     end
